@@ -5,12 +5,12 @@ import 'package:itretail/CustomFiles/Customtext.dart';
 import 'package:itretail/CustomFiles/CustomtextWithUnderline.dart';
 import 'package:itretail/Global/CustomColors.dart';
 
-class Watchtrainingvediopage extends StatefulWidget {
+class Finalpayment extends StatefulWidget {
   @override
-  _WatchtrainingvediopageState createState() => _WatchtrainingvediopageState();
+  _FinalpaymentState createState() => _FinalpaymentState();
 }
 
-class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
+class _FinalpaymentState extends State<Finalpayment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
         child: Column(
           children: [
             Center(
-              child: Text("Watch training Videos",style: TextStyle(
+              child: Text("Final Payment",style: TextStyle(
                   fontSize:MediaQuery.of(context).size.height*0.03
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
@@ -30,23 +30,35 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
                   SizedBox(height: 20,),
                   Row(
                     children: [
-                      CustomText(title: "Click on the topic you want to watch the video.",
-                    ),
+                      CustomText(title: "Upload the picture of payment",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 20,),
+
+
                   Row(
                     children: [
-                      CustomTextUnderline(title: "1. Training Video 01",titleclr: Greencolor,underlineclr: Greencolor,),
+
+                      Image.asset('assets/images/Imageupload.png',
+
+                        height: MediaQuery.of(context).size.height*0.1,
+
+                        width:  MediaQuery.of(context).size.width*0.1,),
+                      SizedBox(width: 30,),
+                      Image.asset('assets/images/Imageupload.png',
+
+                        height: MediaQuery.of(context).size.height*0.1,
+
+                        width:  MediaQuery.of(context).size.width*0.1,),
+                      SizedBox(width: 30,),
+
+
                     ],
                   ),
-                  SizedBox(height: 20,),
-                  Row(
-                    children: [
-                      CustomTextUnderline(title: "2. Training Video 02 ",titleclr: Greencolor,
-                      underlineclr: Greencolor,),
-                    ],
-                  ),
+
+
+
+
                 ],
               ),
             ),
@@ -55,12 +67,19 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Greycolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
                   SizedBox(width: 30,),
-                  Custombutton(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){},),
+                  Custombuttongrey(title: "NEXT",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+
 
                 ],
               ),
+            ),
+            SizedBox(height: 20,),
+
+            CustomTextUnderline(
+              title: "Upload Picture Of The Payment To Next",
+              titleclr: Colors.black.withOpacity(0.6),underlineclr: Colors.black.withOpacity(0.6),
             )
           ],
         ),

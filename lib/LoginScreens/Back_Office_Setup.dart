@@ -5,12 +5,12 @@ import 'package:itretail/CustomFiles/Customtext.dart';
 import 'package:itretail/CustomFiles/CustomtextWithUnderline.dart';
 import 'package:itretail/Global/CustomColors.dart';
 
-class Watchtrainingvediopage extends StatefulWidget {
+class BackOfficeSetup extends StatefulWidget {
   @override
-  _WatchtrainingvediopageState createState() => _WatchtrainingvediopageState();
+  _BackOfficeSetupState createState() => _BackOfficeSetupState();
 }
 
-class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
+class _BackOfficeSetupState extends State<BackOfficeSetup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
         child: Column(
           children: [
             Center(
-              child: Text("Watch training Videos",style: TextStyle(
+              child: Text("Back Office Setup",style: TextStyle(
                   fontSize:MediaQuery.of(context).size.height*0.03
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
@@ -31,22 +31,48 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
                   Row(
                     children: [
                       CustomText(title: "Click on the topic you want to watch the video.",
-                    ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 20,),
                   Row(
                     children: [
-                      CustomTextUnderline(title: "1. Training Video 01",titleclr: Greencolor,underlineclr: Greencolor,),
+                      CustomTextUnderline(title: "1. How to setup taxes",titleclr: Greencolor,underlineclr: Greencolor,),
                     ],
                   ),
                   SizedBox(height: 20,),
                   Row(
                     children: [
-                      CustomTextUnderline(title: "2. Training Video 02 ",titleclr: Greencolor,
-                      underlineclr: Greencolor,),
+                      CustomTextUnderline(title: "2. How to setup Departments",titleclr: Greencolor,
+                        underlineclr: Greencolor,),
                     ],
                   ),
+
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      CustomTextUnderline(title: "3. How to setup vendors",titleclr: Greencolor,
+                        underlineclr: Greencolor,),
+                    ],
+                  ),
+
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      CustomTextUnderline(title: "4. How to setup Employees",titleclr: Greencolor,
+                        underlineclr: Greencolor,),
+                    ],
+                  ),
+
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      CustomTextUnderline(title: "5. How to setup Fees",titleclr: Greencolor,
+                        underlineclr: Greencolor,),
+                    ],
+                  ),
+
+
                 ],
               ),
             ),

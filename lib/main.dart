@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'LoginScreens/Hardware_Requiements.dart';
-import 'LoginScreens/On_Boarding_Questionaire.dart';
-import 'LoginScreens/Store_Pictures.dart';
+
+import 'LoginScreens/Back_Office_Setup.dart';
+import 'LoginScreens/Equipment_Shipped.dart';
+import 'LoginScreens/Final_Payment.dart';
+import 'LoginScreens/Install.dart';
+import 'LoginScreens/Install_Done.dart';
+import 'LoginScreens/PaymentDone.dart';
+import 'LoginScreens/Product_File.dart';
+import 'LoginScreens/TrainingAndGolive.dart';
 import 'LoginScreens/WatchTraining_Video.dart';
 
 void main() {
@@ -19,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: watchtrainingvediopage(),
+      home: Trainingandgolive(),
     );
   }
 }

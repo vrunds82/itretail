@@ -78,8 +78,6 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                             ),),
                         ],
                       ),
-
-
                     ],
                 ),
               ),

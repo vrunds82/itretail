@@ -11,7 +11,7 @@ class CustomText extends StatelessWidget {
     return Text(title,style: TextStyle(
 fontSize:MediaQuery.of(context).size.height*0.02
         ,color:textcolor,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       fontFamily: 'GOTHAMMEDIUM'
     ),);
   }
