@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
 
-import 'LoginScreens/Back_Office_Setup.dart';
-import 'LoginScreens/Equipment_Shipped.dart';
-import 'LoginScreens/Final_Payment.dart';
-import 'LoginScreens/Install.dart';
-import 'LoginScreens/Install_Done.dart';
-import 'LoginScreens/PaymentDone.dart';
-import 'LoginScreens/Product_File.dart';
-import 'LoginScreens/TrainingAndGolive.dart';
-import 'LoginScreens/WatchTraining_Video.dart';
+
+
+
+
+import 'Sign_Up/SignUp.dart';
+import 'Sign_Up/SignUp_Style2.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Trainingandgolive(),
+      home: SignUpStyle2(),
     );
   }
 }

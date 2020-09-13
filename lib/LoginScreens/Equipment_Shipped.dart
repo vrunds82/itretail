@@ -125,7 +125,7 @@ SizedBox(height: 20,),
                 children: [
                   Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
                   SizedBox(width: 30,),
-                  Custombutton(title: "NEXT",titleclr:Whitecolor,bgclr: Greencolor,click: (){},),
+                  Custombuttongreen(title: "NEXT",titleclr:Whitecolor,bgclr: Greencolor,click: (){},),
 
                 ],
               ),

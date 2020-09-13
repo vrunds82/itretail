@@ -83,7 +83,7 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                 children: [
                   Custombuttongrey(title: "BACK",titleclr: Greycolor,bgclr: Lightgreycolor,click: (){},),
                   SizedBox(width: 30,),
-                  Custombutton(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){},),
+                  Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){},),
 
                 ],
               ),

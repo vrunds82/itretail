@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Custombutton extends StatelessWidget {
+class Custombuttongreen extends StatelessWidget {
   final String title;
   final Color bgclr;
   final Color titleclr;
   final VoidCallback click;
 
 
-  Custombutton({this.title, this.bgclr, this.titleclr, this.click});
+  Custombuttongreen({this.title, this.bgclr, this.titleclr, this.click});
 
   @override
   Widget build(BuildContext context) {

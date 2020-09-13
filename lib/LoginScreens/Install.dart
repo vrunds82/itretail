@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itretail/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/CustomFiles/CustomtextWithUnderline.dart';
 import 'package:itretail/Global/CustomColors.dart';
 
 class Installpage extends StatefulWidget {

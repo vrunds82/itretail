@@ -1088,7 +1088,7 @@ Row(children: [
 ],),
 
 SizedBox(height: 40,),
-                    Custombutton(title: "NEXT",
+                    Custombuttongreen(title: "NEXT",
                     click: (){},
                     bgclr: Greencolor,
                     titleclr: Colors.white,),

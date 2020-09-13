@@ -9,7 +9,7 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(title,style: TextStyle(
-fontSize:MediaQuery.of(context).size.height*0.02
+fontSize:MediaQuery.of(context).size.height*0.03
         ,color:textcolor,
       fontWeight: FontWeight.w700,
       fontFamily: 'GOTHAMMEDIUM'
