@@ -17,7 +17,7 @@ class _InstallpageState extends State<Installpage> {
           children: [
             Center(
               child: Text("Install",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
             ),
@@ -28,12 +28,12 @@ class _InstallpageState extends State<Installpage> {
                   SizedBox(height: 20,),
                   Row(
                     children: [
-                      CustomText(title: "Upload the picture of payment",
+                      CustomText(title: "Upload the picture of installed store",
                       ),
                     ],
                   ),
 
-
+                  SizedBox(height: 20,),
                   Row(
                     children: [
 
@@ -42,13 +42,13 @@ class _InstallpageState extends State<Installpage> {
                         height: MediaQuery.of(context).size.height*0.1,
 
                         width:  MediaQuery.of(context).size.width*0.1,),
-                      SizedBox(width: 30,),
+
                       Image.asset('assets/images/Imageupload.png',
 
                         height: MediaQuery.of(context).size.height*0.1,
 
                         width:  MediaQuery.of(context).size.width*0.1,),
-                      SizedBox(width: 30,),
+
 
                       Image.asset('assets/images/Imageupload.png',
 
@@ -71,9 +71,15 @@ class _InstallpageState extends State<Installpage> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,
+                    click: (){
+                    Navigator.of(context).pop();
+                    },),
                   SizedBox(width: 30,),
-                  Custombuttongrey(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,click: (){},),
+                  Custombuttongrey(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,
+                    click: (){
+                    Navigator.of(context).pushNamed('Install_Done');
+                    },),
 
 
                 ],

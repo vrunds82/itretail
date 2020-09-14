@@ -97,8 +97,11 @@ class _SignUppageState extends State<SignUppage> {
 
                                     SizedBox(height: 30,),
 
-                                    Custombuttongreen(title: "Sign In",
-                                      titleclr: Whitecolor,bgclr: Greencolor,),
+                                    Custombuttongreen(title: "Sign Up",
+                                      titleclr: Whitecolor,bgclr: Greencolor,
+                                    click: (){
+                                      Navigator.of(context).pushNamed('Orderstatus');
+                                    },),
 
                                     SizedBox(height: 20,),
 

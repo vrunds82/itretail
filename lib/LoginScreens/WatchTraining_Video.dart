@@ -19,7 +19,7 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
           children: [
             Center(
               child: Text("Watch training Videos",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
             ),
@@ -55,9 +55,13 @@ class _WatchtrainingvediopageState extends State<Watchtrainingvediopage> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Greycolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){
+                    Navigator.of(context).pop();
+                  },),
                   SizedBox(width: 30,),
-                  Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){},),
+                  Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){
+                    Navigator.of(context).pushNamed('backOffice_setup');
+                  },),
 
                 ],
               ),

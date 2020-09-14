@@ -21,7 +21,7 @@ class _PaymentdoneState extends State<Paymentdone> {
           children: [
             Center(
               child: Text("Final Payment",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
 
@@ -53,9 +53,15 @@ class _PaymentdoneState extends State<Paymentdone> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,
+                    click: (){
+                    Navigator.of(context).pop();
+                    },),
                   SizedBox(width: 30,),
-                  Custombuttongreen(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,click: (){},),
+                  Custombuttongreen(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,
+                    click: (){
+                    Navigator.of(context).pushNamed('Equipment_Shipped');
+                    },),
 
                 ],
               ),

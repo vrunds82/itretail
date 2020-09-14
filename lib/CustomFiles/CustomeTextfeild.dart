@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:itretail/Global/CustomColors.dart';
 
@@ -15,7 +16,9 @@ class Customtectfeild extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: TextField(controller: textcontroller,
+          child: TextField(controller: textcontroller,style: TextStyle(
+            fontWeight: FontWeight.w600
+          ),
             decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Greycolor,

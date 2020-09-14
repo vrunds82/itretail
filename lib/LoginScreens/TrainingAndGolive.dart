@@ -21,7 +21,7 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
           children: [
             Center(
               child: Text("Training & Go Live",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
 
@@ -39,7 +39,7 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
 
             SizedBox(height: 10,),
 
-            Text("Final Training Complete",
+            Text("FINAL TRAINING COMPLETE",
               style: TextStyle(
                   decoration: TextDecoration.underline,
                   fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
                   fontSize: 30,
                   fontFamily: 'GOTHAMMEDIUM'
               ),),
-            Text("Store Is Live",
+            Text("STORE IS LIVE",
               style: TextStyle(
                   decoration: TextDecoration.underline,
                   fontWeight: FontWeight.bold,
@@ -61,9 +61,11 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
-                  SizedBox(width: 30,),
-                  Custombuttongreen(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,click: (){},),
+
+                  Custombuttongreen(title: "DONE",titleclr: Whitecolor,bgclr: Greencolor,
+                    click: (){
+                    Navigator.of(context).pushNamed('Signin');
+                    },),
 
                 ],
               ),

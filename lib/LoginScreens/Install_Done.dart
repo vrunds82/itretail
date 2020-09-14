@@ -20,8 +20,8 @@ class _InstalldoneState extends State<Installdone> {
         child: Column(
           children: [
             Center(
-              child: Text("Final Payment",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+              child: Text("Install",style: TextStyle(
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
 
@@ -37,12 +37,12 @@ class _InstalldoneState extends State<Installdone> {
               width: 200,
             ),
 
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
 
-            Text("Installation Done",
+            Text("INSTALLATION DONE",
               style: TextStyle(
                   decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w800,
                   color: Greencolor,
                   fontSize: 30,
                   fontFamily: 'GOTHAM-BLACK'
@@ -53,9 +53,15 @@ class _InstalldoneState extends State<Installdone> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,
+                    click: (){
+                    Navigator.of(context).pop();
+                    },),
                   SizedBox(width: 30,),
-                  Custombuttongreen(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,click: (){},),
+                  Custombuttongreen(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,
+                    click: (){
+                    Navigator.of(context).pushNamed('Training_Go_AndLive');
+                    },),
 
                 ],
               ),

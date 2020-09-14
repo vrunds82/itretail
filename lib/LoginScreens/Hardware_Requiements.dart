@@ -19,7 +19,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
             children: [
               Center(
                 child: Text("Hardware Requirnment",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.03
+                    fontSize:MediaQuery.of(context).size.height*0.06
                     ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
                 ),),
               ),
@@ -36,13 +36,14 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                           CustomText(title: "Upload the following pictures.",),
                         ],
                       ),
-                      SizedBox( height: 5,),
+                      SizedBox( height: 10,),
                       Row(
                         children: [
                           CustomText(title: "1. Back of computer all ports",),
 
                         ],
                       ),
+                      SizedBox( height: 20,),
                       Row(
                         children: [
 
@@ -67,12 +68,13 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                         ],
                       ),
+                      SizedBox(height: 5,),
                       Row(
                         children: [
                           Text("Upload Images Your Here",
                             style: TextStyle(
                                 fontFamily: 'GOTHAMBOLDITALIC',
-                                fontSize: 26,fontWeight: FontWeight.w700,
+                                fontSize: 22,fontWeight: FontWeight.w700,
                                 color: Greycolor,
                                 decoration: TextDecoration.underline
                             ),),
@@ -97,6 +99,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                       ],
                     ),
+                    SizedBox( height: 20,),
                     Row(
                       children: [
 
@@ -121,12 +124,13 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                       ],
                     ),
+                    SizedBox(height: 5,),
                     Row(
                       children: [
                         Text("Upload Images Your Here",
                           style: TextStyle(
                               fontFamily: 'GOTHAMBOLDITALIC',
-                              fontSize: 26,fontWeight: FontWeight.w700,
+                              fontSize: 22,fontWeight: FontWeight.w700,
                               color: Greycolor,
                               decoration: TextDecoration.underline
                           ),),
@@ -152,6 +156,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                       ],
                     ),
+                    SizedBox( height: 20,),
                     Row(
                       children: [
 
@@ -176,12 +181,13 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                       ],
                     ),
+                    SizedBox(height: 5,),
                     Row(
                       children: [
                         Text("Upload Images Your Here",
                           style: TextStyle(
                               fontFamily: 'GOTHAMBOLDITALIC',
-                              fontSize: 26,fontWeight: FontWeight.w700,
+                              fontSize: 22,fontWeight: FontWeight.w700,
                               color: Greycolor,
                               decoration: TextDecoration.underline
                           ),),
@@ -206,6 +212,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                       ],
                     ),
+                    SizedBox( height: 20,),
                     Row(
                       children: [
 
@@ -230,12 +237,13 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
                       ],
                     ),
+                    SizedBox(height: 5,),
                     Row(
                       children: [
                         Text("Upload Images Your Here",
                           style: TextStyle(
                               fontFamily: 'GOTHAMBOLDITALIC',
-                              fontSize: 26,fontWeight: FontWeight.w700,
+                              fontSize: 22,fontWeight: FontWeight.w700,
                               color: Greycolor,
                               decoration: TextDecoration.underline
                           ),),
@@ -244,18 +252,22 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                   ],
                 ),
               ),
-SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+              SizedBox(height: MediaQuery.of(context).size.height*0.1,),
               Center(
                 child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Custombuttongrey(title: "BACK",titleclr: Greycolor,bgclr: Lightgreycolor,click: (){},),
+                    Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
                     SizedBox(width: 30,),
-                    Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){},),
+                    Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,
+                      click: (){
+                      Navigator.of(context).pushNamed('store_picture');
+                      },),
 
                   ],
                 ),
-              )
+              ),
+              SizedBox( height: 20,),
             ],
           ),
         ),

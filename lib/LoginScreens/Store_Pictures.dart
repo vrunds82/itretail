@@ -19,7 +19,7 @@ class _StorepictureState extends State<Storepicture> {
             children: [
               Center(
                 child: Text("Store Pictures",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.03
+                    fontSize:MediaQuery.of(context).size.height*0.06
                     ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
                 ),),
               ),
@@ -27,7 +27,7 @@ class _StorepictureState extends State<Storepicture> {
 
               SizedBox(height: 40,),
               Padding(
-                padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                padding: const EdgeInsets.fromLTRB(60, 0, 40, 0),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -52,34 +52,36 @@ class _StorepictureState extends State<Storepicture> {
                                 height: MediaQuery.of(context).size.height*0.1,
 
                                 width:  MediaQuery.of(context).size.width*0.1,),
-                              SizedBox(width: 30,),
+                             // SizedBox(width: 10,),
                               Image.asset('assets/images/Imageupload.png',
 
                                 height: MediaQuery.of(context).size.height*0.1,
 
                                 width:  MediaQuery.of(context).size.width*0.1,),
-                              SizedBox(width: 30,),
+                             // SizedBox(width: 10,),
                               Image.asset('assets/images/Imageupload.png',
 
                                 height: MediaQuery.of(context).size.height*0.1,
 
                                 width:  MediaQuery.of(context).size.width*0.1,),
-                              SizedBox(width: 30,),
+                              //SizedBox(width: 10,),
                               Image.asset('assets/images/Imageupload.png',
 
                                 height: MediaQuery.of(context).size.height*0.1,
 
                                 width:  MediaQuery.of(context).size.width*0.1,),
-                              Spacer(),
+
 
                             ],
                           ),
+                          SizedBox(height: 20,),
                           Row(
                             children: [
+                              SizedBox(width: 30,),
                               Text("Upload Images Your Here",
                                 style: TextStyle(
                                     fontFamily: 'GOTHAMBOLDITALIC',
-                                    fontSize: 26,fontWeight: FontWeight.w700,
+                                    fontSize: 22,fontWeight: FontWeight.w700,
                                     color: Greycolor,
                                     decoration: TextDecoration.underline
                                 ),),
@@ -97,36 +99,38 @@ class _StorepictureState extends State<Storepicture> {
 
                       ],
                     ),
-
+                    SizedBox(height: MediaQuery.of(context).size.height*0.03,),
                     Column(
                       children: [
                         Row(children: [
                           Image.asset('assets/images/1.png',
-                            height:MediaQuery.of(context).size.height*0.2,
-                            width:MediaQuery.of(context).size.width*0.2,),
-                          SizedBox(width: 20,),
+                            height:MediaQuery.of(context).size.height*0.3,
+                            width:MediaQuery.of(context).size.width*0.3,),
+                          SizedBox(width: 10,),
                           Image.asset('assets/images/2.png',
-                            height:MediaQuery.of(context).size.height*0.2,
-                            width:MediaQuery.of(context).size.width*0.2,),
-                          SizedBox(width: 20,),
+                            height:MediaQuery.of(context).size.height*0.3,
+                            width:MediaQuery.of(context).size.width*0.3,),
+                          SizedBox(width: 10,),
                           Image.asset('assets/images/1.png',
-                            height:MediaQuery.of(context).size.height*0.2,
-                            width:MediaQuery.of(context).size.width*0.2,),
+                            height:MediaQuery.of(context).size.height*0.3,
+                            width:MediaQuery.of(context).size.width*0.3,),
 
                           ],),
 
+                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+
                         Row(children: [
                           Image.asset('assets/images/2.png',
-                            height:MediaQuery.of(context).size.height*0.2,
-                            width:MediaQuery.of(context).size.width*0.2,),
-                          SizedBox(width: 20,),
+                            height:MediaQuery.of(context).size.height*0.3,
+                            width:MediaQuery.of(context).size.width*0.3,),
+                          SizedBox(width: 10,),
                           Image.asset('assets/images/1.png',
-                            height:MediaQuery.of(context).size.height*0.2,
-                            width:MediaQuery.of(context).size.width*0.2,),
-                          SizedBox(width: 20,),
+                            height:MediaQuery.of(context).size.height*0.3,
+                            width:MediaQuery.of(context).size.width*0.3,),
+                          SizedBox(width: 10,),
                           Image.asset('assets/images/2.png',
-                            height:MediaQuery.of(context).size.height*0.2,
-                            width:MediaQuery.of(context).size.width*0.2,),
+                            height:MediaQuery.of(context).size.height*0.3,
+                            width:MediaQuery.of(context).size.width*0.3,),
 
 
 
@@ -138,18 +142,23 @@ class _StorepictureState extends State<Storepicture> {
                   ],
                 ),
               ),
-
+              SizedBox(height: MediaQuery.of(context).size.height*0.06,),
               Center(
                 child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Custombuttongrey(title: "BACK",titleclr: Greycolor,bgclr: Lightgreycolor,click: (){},),
+                    Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){
+                      Navigator.of(context).pop();
+                    },),
                     SizedBox(width: 30,),
-                    Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){},),
+                    Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){
+                      Navigator.of(context).pushNamed('watch_trainingVedio');
+                    },),
 
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 20,),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:itretail/CustomFiles/CustomRadiobuttonText.dart';
 import 'package:itretail/CustomFiles/CustomRaisedButtonGreenColor.dart';
@@ -60,18 +61,18 @@ class _OnbordingquesState extends State<Onbordingques> {
             children: [
               SizedBox(height: 40,),
               Text("On Boarding Questionaire",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
               SizedBox(height: 25,),
               Text("Congrats for signing up with Retail MARKET!  We are very excited to welcome you to the team.",
               style: TextStyle(
-                color: Greycolor,fontSize: 16,
+                color: Greycolor,fontSize: 20,
                   fontFamily: 'GOTHAM-BLACK'
               ),),
               Text("Please take the time to answer these questions to help us successfully onboard your store.",
                 style: TextStyle(
-                    color: Greycolor,fontSize: 16,
+                    color: Greycolor,fontSize: 20,
                     fontFamily: 'GOTHAM-BLACK'
                 ),),
 
@@ -1070,9 +1071,12 @@ Padding(
                     ),
 
                     SizedBox( height: 40,),
-                    CustomText(title: "We are so excited to  bring  you  on! We  also  love  giving  our  software away for free! ",),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CustomText(title: "We are so excited to  bring  you  on! We  also  love  giving  our  software away for free! ",),
 
-                    CustomText(title: "If you give us a referral & if we are able to close we will give you one month free."),
+                        CustomText(title: "If you give us a referral & if we are able to close we will give you one month free."),
 
 SizedBox( height: 20,),
 Row(children: [
@@ -1086,13 +1090,17 @@ Row(children: [
     fontFamily: 'GOTHAMBOLDITALIC'
   ),)
 ],),
+                      ],
+                    ),
 
 SizedBox(height: 40,),
                     Custombuttongreen(title: "NEXT",
-                    click: (){},
+                    click: (){
+                      Navigator.of(context).pushNamed('merchantinfo');
+                    },
                     bgclr: Greencolor,
                     titleclr: Colors.white,),
-SizedBox(height: 60,),
+                SizedBox(height: 60,),
                   ],
                 ),
               )

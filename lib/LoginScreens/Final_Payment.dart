@@ -18,7 +18,7 @@ class _FinalpaymentState extends State<Finalpayment> {
           children: [
             Center(
               child: Text("Final Payment",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.03
+                  fontSize:MediaQuery.of(context).size.height*0.06
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
             ),
@@ -34,7 +34,7 @@ class _FinalpaymentState extends State<Finalpayment> {
                     ],
                   ),
 
-
+                  SizedBox( height: 20,),
                   Row(
                     children: [
 
@@ -43,7 +43,7 @@ class _FinalpaymentState extends State<Finalpayment> {
                         height: MediaQuery.of(context).size.height*0.1,
 
                         width:  MediaQuery.of(context).size.width*0.1,),
-                      SizedBox(width: 30,),
+                      //SizedBox(width: 30,),
                       Image.asset('assets/images/Imageupload.png',
 
                         height: MediaQuery.of(context).size.height*0.1,
@@ -66,9 +66,15 @@ class _FinalpaymentState extends State<Finalpayment> {
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,
+                    click: (){
+                    Navigator.of(context).pop();
+                    },),
                   SizedBox(width: 30,),
-                  Custombuttongrey(title: "NEXT",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "NEXT",titleclr: Whitecolor,bgclr: Lightgreycolor,
+                    click: (){
+                    Navigator.of(context).pushNamed('Equipment_Shipped');
+                    },),
 
 
                 ],

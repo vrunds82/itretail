@@ -105,7 +105,10 @@ class _SigninpageState extends State<Signinpage> {
                                     SizedBox(height: 30,),
 
                                     Custombuttongreen(title: "Sign In",
-                                    titleclr: Whitecolor,bgclr: Greencolor,),
+                                    titleclr: Whitecolor,bgclr: Greencolor,
+                                    click: (){
+                                      Navigator.of(context).pushNamed('Signup');
+                                    },),
 
 SizedBox(height: 20,),
 

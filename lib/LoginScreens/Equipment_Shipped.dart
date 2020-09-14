@@ -19,7 +19,7 @@ class _EquipmentshippedState extends State<Equipmentshipped> {
           children: [
           Center(
             child: Text("Equipment Shipped",style: TextStyle(
-                fontSize:MediaQuery.of(context).size.height*0.03
+                fontSize:MediaQuery.of(context).size.height*0.06
                 ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
             ),),
           ),
@@ -54,62 +54,76 @@ SizedBox(height: 20,),
                   Row(
                     children: [
                       CustomText(title: "Computer",),
-                      Spacer(),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "It Retail 92311129345",)
                     ],
                   ),
                   //2
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       CustomText(title: "Pin Pad & Cables",),
-                      Spacer(),
+                     SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "Blue Star 92311129345",)
                     ],
                   ),
+
                   //3
+                  SizedBox(height: 10,),
+
                   Row(
                     children: [
                       CustomText(title: "Scale & Cables",),
-                      Spacer(),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "It Retail 92311129345",)
                     ],
                   ),
                   //4
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       CustomText(title: "Scanner & Cables",),
-                      Spacer(),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "Blue Star 92311129345",)
                     ],
                   ),
+
                   //5
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       CustomText(title: "Had Scanner",),
-                      Spacer(),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "It Retail 92311129345",)
                     ],
                   ),
+
                   //6
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       CustomText(title: "Had Scanner",),
-                      Spacer(),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "It Retail 92311129345",)
                     ],
                   ),
+
                   //7
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       CustomText(title: "Cash Draswe",),
-                      Spacer(),                      Statictextitalic(title: "Blue Star 92311129345",)
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
+                      Statictextitalic(title: "Blue Star 92311129345",)
                     ],
                   ),
+
                   //8
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       CustomText(title: "Printer & Cables",),
-                      Spacer(),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                       Statictextitalic(title: "Blue Star 92311129345",)
                     ],
                   ),
@@ -123,9 +137,15 @@ SizedBox(height: 20,),
               child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){},),
+                  Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,
+                    click: (){
+                    Navigator.of(context).pop();
+                    },),
                   SizedBox(width: 30,),
-                  Custombuttongreen(title: "NEXT",titleclr:Whitecolor,bgclr: Greencolor,click: (){},),
+                  Custombuttongreen(title: "NEXT",titleclr:Whitecolor,bgclr: Greencolor,
+                    click: (){
+                    Navigator.of(context).pushNamed('Install');
+                    },),
 
                 ],
               ),
