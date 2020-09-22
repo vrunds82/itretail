@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:itretail/Screens/Constant/Constant_Screen.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRadiobuttonText.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/Custom_pagebar.dart';
 import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
@@ -60,6 +61,8 @@ class _OnbordingquesState extends State<Onbordingques> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 40,),
+              Pagebar(),
               SizedBox(height: 40,),
               Text("On Boarding Questionaire",style: TextStyle(
                   fontSize:MediaQuery.of(context).size.height*0.05
@@ -1104,7 +1107,8 @@ Row(children: [
                 SizedBox(height: 60,),
                   ],
                 ),
-              )
+              ),
+
             ],
           ),
         ),
