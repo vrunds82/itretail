@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class SigninTextfield extends StatelessWidget {
 

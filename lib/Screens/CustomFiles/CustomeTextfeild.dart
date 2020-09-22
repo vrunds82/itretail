@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Customtectfeild extends StatelessWidget {
 
@@ -33,7 +33,8 @@ class Customtectfeild extends StatelessWidget {
                   width: 2),
                 ),
               hintText: hinttitle,hintStyle: TextStyle(
-              color: Greycolor,fontSize: 24
+              color: Greycolor,fontSize: 24,
+              fontFamily: 'GOTHAMMEDIUM'
             )
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class CustomOrderstaus extends StatelessWidget {
 

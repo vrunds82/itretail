@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:itretail/CustomFiles/CustomRadiobuttonText.dart';
-import 'package:itretail/CustomFiles/CustomRaisedButtonGreenColor.dart';
-import 'package:itretail/CustomFiles/CustomeTextfeild.dart';
-import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/Constant/Constant_Screen.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRadiobuttonText.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
+import 'package:itretail/Screens/CustomFiles/Customtext.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Onbordingques extends StatefulWidget {
   @override
@@ -61,7 +62,7 @@ class _OnbordingquesState extends State<Onbordingques> {
             children: [
               SizedBox(height: 40,),
               Text("On Boarding Questionaire",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.06
+                  fontSize:MediaQuery.of(context).size.height*0.05
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
               SizedBox(height: 25,),
@@ -86,7 +87,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                     Row(crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        CustomText(title: "What date would you like to go live with IT Retail ?",),
+                        CustomText(title: onbording_Que1,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -102,7 +103,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Please write your name and date below to acknowledge that you are aware that you are responsible for having a tested Ethernet cable at each lane. *",)),
+                            child: CustomText(title: onbording_Que2,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -118,7 +119,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Write your name and date to acknowledge that you are aware if you purchased Scanner-Scale that you are responsible to get it certified by Weights and Measures.",)),
+                            child: CustomText(title: onbording_Que3,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -133,7 +134,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Please write your name and the date below to acknowledge that you will not pre-cut any holes in your counter (i.e. for mounts and scanner scales) without verifying the size with IT Retail. ",)),
+                            child: CustomText(title: onbording_Que4,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -147,7 +148,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "What POS company are you switching off of and why?",)),
+                            child: CustomText(title: onbording_Que5)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -161,7 +162,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Do you have your own Hand Scanners?",)),
+                            child: CustomText(title: onbording_Que6,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -214,7 +215,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "How many registers does your store have ?",)),
+                            child: CustomText(title:onbording_Que7,)),
                         SizedBox(height: 10,),
 
                       ],
@@ -270,7 +271,7 @@ class _OnbordingquesState extends State<Onbordingques> {
 //Does your store sell Random Weight or Deli Items?
                     SizedBox(height: 40,),
                     Container(width: MediaQuery.of(context).size.width*.93,
-                        child: CustomText(title: "Does your store sell Random Weight or Deli Items?",)),
+                        child: CustomText(title: onbording_Que8)),
                     SizedBox(height: 10,),
                     Row(children: <Widget>[
 
@@ -319,7 +320,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Front of StoreWhat are the locations of your registers? All in the front, or do you havelanes located at stations throughout the store?",)),
+                            child: CustomText(title: onbording_Que9)),
                         SizedBox(height: 10,),
 
                       ],
@@ -376,7 +377,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Do you have a laptop or desktop that you can use to do back-office Functions?",)),
+                            child: CustomText(title: onbording_Que10,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -433,7 +434,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Do you have a printer connected to a back-office computer or laptop at the store?",)),
+                            child: CustomText(title: onbording_Que11,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -483,7 +484,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Do you currently have unique coupons and/or discounts? If yes, please explain here.",)),
+                            child: CustomText(title: onbording_Que12)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -541,7 +542,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Will you be doing shelf labels? ",)),
+                            child: CustomText(title:onbording_Que13,)),
                       ],
                     ),
                     SizedBox(  height: 10,),
@@ -598,8 +599,8 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Will you be doing Quickbooks?",)),
-                      ],
+                            child: CustomText(title: onbording_Que14,)),
+            ],
                     ),
                     SizedBox(  height: 10,),
                     Row(children: <Widget>[
@@ -656,7 +657,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "How many terminals were you originally set up with on your account?",)),
+                            child: CustomText(title:onbording_Que15,)),
                         SizedBox(height: 10,),
 
                       ],
@@ -712,7 +713,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Are we adding or removing terminals?",)),
+                            child: CustomText(title: onbording_Que16,)),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -764,7 +765,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(width: MediaQuery.of(context).size.width*.93,
-                            child: CustomText(title: "Please select the types of Payments you will be accepting.",)),
+                            child: CustomText(title: onbording_Que17,)),
                       ],
                     ),
                     SizedBox(height: 20,),
@@ -926,7 +927,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(width: MediaQuery.of(context).size.width*.91,
-                                child: CustomText(title: "Do you have a product file? (A list of all products, with their description, UPC,cost, & price).",)),
+                                child: CustomText(title: onbording_Que18,)),
                           ],
                         ),
                         SizedBox(  height: 10,),
@@ -1009,20 +1010,20 @@ Padding(
 
         height: MediaQuery.of(context).size.height*0.1,
 
-      width:  MediaQuery.of(context).size.width*0.2,),
-     SizedBox(width: 10,),
+      width:  MediaQuery.of(context).size.width*0.1,),
+
       Image.asset('assets/images/Imageupload.png',
 
         height: MediaQuery.of(context).size.height*0.1,
 
-        width:  MediaQuery.of(context).size.width*0.2,),
-      SizedBox(width: 10,),
+        width:  MediaQuery.of(context).size.width*0.1,),
+
       Image.asset('assets/images/Imageupload.png',
 
         height: MediaQuery.of(context).size.height*0.1,
 
-        width:  MediaQuery.of(context).size.width*0.2,),
-      Spacer(),
+        width:  MediaQuery.of(context).size.width*0.1,),
+
 
     ],
   ),
@@ -1049,7 +1050,7 @@ Padding(
                     Row(crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        CustomText(title: "Is there anything else we should know about your store?",),
+                        CustomText(title: onbording_Que19,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -1062,7 +1063,7 @@ Padding(
                     Row(crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        CustomText(title: "What would make this project successful in your eyes?",),
+                        CustomText(title: onbording_Que20,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -1093,7 +1094,7 @@ Row(children: [
                       ],
                     ),
 
-SizedBox(height: 40,),
+                    SizedBox(height: 40,),
                     Custombuttongreen(title: "NEXT",
                     click: (){
                       Navigator.of(context).pushNamed('merchantinfo');

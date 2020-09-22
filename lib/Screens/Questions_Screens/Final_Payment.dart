@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:itretail/CustomFiles/CustomReiasedButtonGreyColor.dart';
-import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/CustomFiles/CustomtextWithUnderline.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
+import 'package:itretail/Screens/CustomFiles/Customtext.dart';
+import 'package:itretail/Screens/CustomFiles/CustomtextWithUnderline.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Finalpayment extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _FinalpaymentState extends State<Finalpayment> {
           children: [
             Center(
               child: Text("Final Payment",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.06
+                  fontSize:MediaQuery.of(context).size.height*0.05
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
             ),

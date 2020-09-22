@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:itretail/CustomFiles/Custom_OrderStatus_textimage.dart';
-import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/CustomFiles/Custom_OrderStatus_textimage.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class OrderstatusPage extends StatefulWidget {
   @override

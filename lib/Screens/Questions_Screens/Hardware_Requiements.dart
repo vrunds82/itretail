@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:itretail/CustomFiles/CustomRaisedButtonGreenColor.dart';
-import 'package:itretail/CustomFiles/CustomReiasedButtonGreyColor.dart';
-import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
+import 'package:itretail/Screens/CustomFiles/Customtext.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Hardwarerequirnment extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
             children: [
               Center(
                 child: Text("Hardware Requirnment",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.06
+                    fontSize:MediaQuery.of(context).size.height*0.05
                     ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
                 ),),
               ),

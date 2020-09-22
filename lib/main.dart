@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:itretail/LoginScreens/Back_Office_Setup.dart';
-import 'package:itretail/LoginScreens/Final_Payment.dart';
-import 'package:itretail/LoginScreens/Hardware_Requiements.dart';
-import 'package:itretail/LoginScreens/Install.dart';
-import 'package:itretail/LoginScreens/Install_Done.dart';
-import 'package:itretail/LoginScreens/Merchant_Information.dart';
-import 'package:itretail/LoginScreens/On_Boarding_Questionaire.dart';
-import 'package:itretail/LoginScreens/PaymentDone.dart';
-import 'package:itretail/LoginScreens/Product_File.dart';
-import 'package:itretail/LoginScreens/TrainingAndGolive.dart';
-import 'package:itretail/LoginScreens/WatchTraining_Video.dart';
-import 'package:itretail/Sign_In/SignIn.dart';
 
+import 'Screens/Order_Status/Orderstatus.dart';
+import 'Screens/Questions_Screens/Back_Office_Setup.dart';
+import 'Screens/Questions_Screens/Equipment_Shipped.dart';
+import 'Screens/Questions_Screens/Final_Payment.dart';
+import 'Screens/Questions_Screens/Hardware_Requiements.dart';
+import 'Screens/Questions_Screens/Install.dart';
+import 'Screens/Questions_Screens/Install_Done.dart';
+import 'Screens/Questions_Screens/Merchant_Information.dart';
+import 'Screens/Questions_Screens/On_Boarding_Questionaire.dart';
+import 'Screens/Questions_Screens/PaymentDone.dart';
+import 'Screens/Questions_Screens/Product_File.dart';
+import 'Screens/Questions_Screens/Store_Pictures.dart';
+import 'Screens/Questions_Screens/TrainingAndGolive.dart';
+import 'Screens/Questions_Screens/WatchTraining_Video.dart';
+import 'Screens/Sign_In/SignIn.dart';
+import 'Screens/Sign_Up/SignUp.dart';
+import 'Screens/Sign_Up/SignUp_Style2.dart';
 
-
-
-
-
-import 'LoginScreens/Equipment_Shipped.dart';
-import 'LoginScreens/Store_Pictures.dart';
-import 'Order_Status/Orderstatus.dart';
-import 'Sign_Up/SignUp.dart';
-import 'Sign_Up/SignUp_Style2.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,16 +54,6 @@ class MyApp extends StatelessWidget {
         'Signup':(context)=>SignUppage(),
         'Signup_style2':(context)=>SignUpStyle2(),
         'Orderstatus':(context)=>OrderstatusPage()
-
-
-
-
-
-
-
-
-
-
       },
     );
   }

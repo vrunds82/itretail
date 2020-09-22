@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:itretail/CustomFiles/CustomRaisedButtonGreenColor.dart';
-import 'package:itretail/CustomFiles/CustomReiasedButtonGreyColor.dart';
-import 'package:itretail/CustomFiles/CustomeTextfeild.dart';
-import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/Global/CustomColors.dart';
-
+import 'package:itretail/Screens/Constant/Constant_Screen.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
+import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
+import 'package:itretail/Screens/CustomFiles/Customtext.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Merchantinformationpage extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
             children: [
               Center(
                 child: Text("Merchant Information",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.06
+                    fontSize:MediaQuery.of(context).size.height*0.05
                     ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
                 ),),
               ),
@@ -34,7 +34,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(height: 20,),
                     Row(
                       children: [
-                        CustomText(title: "Name",),
+                        CustomText(title: name,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -44,7 +44,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(height: 40,),
                     Row(
                       children: [
-                        CustomText(title: "Oficial Address",),
+                        CustomText(title: officeAddress,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -55,7 +55,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(height: 40,),
                     Row(
                       children: [
-                        CustomText(title: "Gmail Address",),
+                        CustomText(title:gmailAddress,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -66,7 +66,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(height: 40,),
                     Row(
                       children: [
-                        CustomText(title: "Pincode",),
+                        CustomText(title:pinCode,),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -76,7 +76,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(height: 40,),
                     Row(
                       children: [
-                        CustomText(title: "Mobile Number",),
+                        CustomText(title: mobileNumber,),
                       ],
                     ),
                     SizedBox(height: 10,),

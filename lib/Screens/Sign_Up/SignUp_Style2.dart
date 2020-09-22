@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:itretail/CustomFiles/CustomRaisedButtonGreenColor.dart';
-import 'package:itretail/CustomFiles/Customtext.dart';
-import 'package:itretail/CustomFiles/SigninTectfield.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/Customtext.dart';
+import 'package:itretail/Screens/CustomFiles/SigninTectfield.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class SignUpStyle2 extends StatefulWidget {
 

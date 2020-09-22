@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:itretail/CustomFiles/CustomRaisedButtonGreenColor.dart';
-import 'package:itretail/CustomFiles/CustomReiasedButtonGreyColor.dart';
-import 'package:itretail/Global/CustomColors.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
+import 'package:itretail/Screens/Global/CustomColors.dart';
 
-class Installdone extends StatefulWidget {
+class Paymentdone extends StatefulWidget {
   @override
-  _InstalldoneState createState() => _InstalldoneState();
+  _PaymentdoneState createState() => _PaymentdoneState();
 }
 
-class _InstalldoneState extends State<Installdone> {
+class _PaymentdoneState extends State<Paymentdone> {
 
-  final String installDone = 'assets/images/InstallDone.svg';
+  final String paymentDone = 'assets/images/PaymentDone.svg';
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,8 @@ class _InstalldoneState extends State<Installdone> {
         child: Column(
           children: [
             Center(
-              child: Text("Install",style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.06
+              child: Text("Final Payment",style: TextStyle(
+                  fontSize:MediaQuery.of(context).size.height*0.05
                   ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
               ),),
 
@@ -31,22 +31,22 @@ class _InstalldoneState extends State<Installdone> {
             SizedBox(height: MediaQuery.of(context).size.height*0.1,),
 
             SvgPicture.asset(
-              installDone,
+              paymentDone,
               color: Greencolor,
               height: 200,
               width: 200,
             ),
 
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
 
-            Text("INSTALLATION DONE",
-              style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.w800,
-                  color: Greencolor,
-                  fontSize: 30,
-                  fontFamily: 'GOTHAM-BLACK'
-              ),),
+            Text("Payment Done",
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+              fontWeight: FontWeight.bold,
+              color: Greencolor,
+              fontSize: 30,
+              fontFamily: 'GOTHAM-BLACK'
+            ),),
 
             SizedBox(height: MediaQuery.of(context).size.height*0.1,),
             Center(
@@ -60,7 +60,7 @@ class _InstalldoneState extends State<Installdone> {
                   SizedBox(width: 30,),
                   Custombuttongreen(title: "NEXT",titleclr: Whitecolor,bgclr: Greencolor,
                     click: (){
-                    Navigator.of(context).pushNamed('Training_Go_AndLive');
+                    Navigator.of(context).pushNamed('Equipment_Shipped');
                     },),
 
                 ],
