@@ -7,6 +7,7 @@ import 'package:itretail/Screens/CustomFiles/Custom_pagebar.dart';
 import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:http/http.dart' as http;
 
 class Onbordingques extends StatefulWidget {
   @override
@@ -30,9 +31,9 @@ class _OnbordingquesState extends State<Onbordingques> {
   TextEditingController ans3Controller = TextEditingController();
   TextEditingController ans4Controller = TextEditingController();
   TextEditingController ans5Controller = TextEditingController();
-  TextEditingController ans6Controller = TextEditingController();
-  TextEditingController ans7Controller = TextEditingController();
-  TextEditingController ans8Controller = TextEditingController();
+  TextEditingController ans12Controller = TextEditingController();
+  TextEditingController ans19Controller = TextEditingController();
+  TextEditingController ans20Controller = TextEditingController();
 
   @override
   void initState() {
@@ -577,7 +578,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                         ),
                         Customtectfeild(
                           hinttitle: "Your Answer Here...",
-                          textcontroller: ans6Controller,
+                          textcontroller: ans12Controller,
                         ),
 
                         //Will you be doing shelf labels?
@@ -1126,7 +1127,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                         ),
                         Customtectfeild(
                           hinttitle: "Your Answer Here....",
-                          textcontroller: ans7Controller,
+                          textcontroller: ans19Controller,
                         ),
 
 //What would make this project successful in your eyes?
@@ -1141,7 +1142,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                         ),
                         Customtectfeild(
                           hinttitle: "Your Answer Here....",
-                          textcontroller: ans8Controller,
+                          textcontroller: ans20Controller,
                         ),
 
                         SizedBox(
@@ -1214,9 +1215,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                             print("ans3Controller " + ans3Controller.text);
                             print("ans4Controller " + ans4Controller.text);
                             print("ans5Controller " + ans5Controller.text);
-                            print("ans6Controller " + ans6Controller.text);
-                            print("ans7Controller " + ans7Controller.text);
-                            print("ans8Controller " + ans8Controller.text);
+                            print("ans6Controller " + ans12Controller.text);
+                            print("ans7Controller " + ans19Controller.text);
+                            print("ans8Controller " + ans20Controller.text);
                             print("  cashVal ${cashVal.toString()}");
                             print("  debitcardVal ${debitcardVal.toString()}");
                             print("  creditcardVal ${creditcardVal.toString()}");
@@ -1227,7 +1228,51 @@ class _OnbordingquesState extends State<Onbordingques> {
                             print("  checkVal ${checkVal.toString()}");
 
 
+                            Map<String,String> Paymentmode ={
+                              "cashval":cashVal.toString(),
+                              "debitcardVal":debitcardVal.toString(),
+                              "creditcardVal":creditcardVal.toString(),
+                              "ebtfoodVal":ebtfoodVal.toString(),
+                              "ebtcashVal":ebtcashVal.toString(),
+                              "giftcardVal":giftcardVal.toString(),
+                              "paperfoodstampVal":paperfoodstampVal.toString(),
 
+
+                            };
+
+
+
+
+                            Map<String,String> data = {
+                              "uid":"0",
+                              "q":"0",
+                              "q1":ans1Controller.text,
+                              "q2":ans2Controller.text,
+                              "q3":ans3Controller.text,
+                              "q4":ans4Controller.text,
+                              "q5":ans5Controller.text,
+                              "q6":_currentSelectedStoreItems,
+                              "q7":_currentSelectedStoreItems,
+                              "q8":radioRandomWeights.toString(),
+                              "q9":_currentSelectedStoreoftheFront,
+                              "q10":radioHaveDesktop,
+                              "q11":radioPrinterConnected,
+                              "q12":ans12Controller.text + ", " + radioUniqueCoupon,
+                              "q13":radioShelfLabels,
+                              "q14":radioQuickBooks,
+                              "q15":_currentselectedterminal,
+                              "q16":radioTerminal,
+                              "q17":Paymentmode.toString(),
+                              "q18":radioProductFile,
+                              "q19":ans19Controller.text,
+                              "q20":ans20Controller.text,
+                            };
+
+
+                            http.post("http://admin.itretail.saurabhenterprise.com/addOnBording.php",body: data).then((response){
+                              print(response.statusCode);
+                              print(response.body);
+                            });
 
 
 setState(() {
