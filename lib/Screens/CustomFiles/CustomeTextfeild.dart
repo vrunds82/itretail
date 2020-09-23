@@ -33,8 +33,8 @@ class Customtectfeild extends StatelessWidget {
                   width: 2),
                 ),
               hintText: hinttitle,hintStyle: TextStyle(
-              color: Greycolor,fontSize: 24,
-              fontFamily: 'GOTHAMMEDIUM'
+              color: Greycolor,fontSize:
+              18,
             )
             ),
           ),

@@ -9,7 +9,7 @@ class Customradiotext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(title,style: TextStyle(
-      fontSize: 24,
+      fontSize: 15,
     ),);
   }
 }
