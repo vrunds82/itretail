@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:itretail/Screens/Constant/Constant_Screen.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRadiobuttonText.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
@@ -15,6 +18,10 @@ class Onbordingques extends StatefulWidget {
 }
 
 class _OnbordingquesState extends State<Onbordingques> {
+
+  File _image;
+  final picker = ImagePicker();
+
   String selectedRadio;
   String radioHandScanner;
   String radioQuickBooks;
@@ -34,6 +41,12 @@ class _OnbordingquesState extends State<Onbordingques> {
   TextEditingController ans12Controller = TextEditingController();
   TextEditingController ans19Controller = TextEditingController();
   TextEditingController ans20Controller = TextEditingController();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+  }
+
+
 
   @override
   void initState() {
@@ -1074,11 +1087,16 @@ class _OnbordingquesState extends State<Onbordingques> {
                           padding: const EdgeInsets.fromLTRB(40, 0, 20, 0),
                           child: Row(
                             children: [
-                              Image.asset(
-                                'assets/images/Imageupload.png',
-                                height:
-                                MediaQuery.of(context).size.height * 0.1,
-                                width: MediaQuery.of(context).size.width * 0.1,
+                              GestureDetector(
+                                onTap:(){
+                                  getImage();
+                                },
+                                child: Image.asset(
+                                  'assets/images/Imageupload.png',
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.1,
+                                  width: MediaQuery.of(context).size.width * 0.1,
+                                ),
                               ),
                               Image.asset(
                                 'assets/images/Imageupload.png',
@@ -1266,6 +1284,8 @@ class _OnbordingquesState extends State<Onbordingques> {
                               "q18":radioProductFile,
                               "q19":ans19Controller.text,
                               "q20":ans20Controller.text,
+                              "q21":ans20Controller.text,
+                              "q22":ans20Controller.text
                             };
 
 
@@ -1275,9 +1295,8 @@ class _OnbordingquesState extends State<Onbordingques> {
                             });
 
 
-setState(() {
-
-});
+                            setState(() {
+                            });
 
 
 
