@@ -20,6 +20,7 @@ class Onbordingques extends StatefulWidget {
 class _OnbordingquesState extends State<Onbordingques> {
 
   File _image;
+  PickedFile _file;
   final picker = ImagePicker();
 
   String selectedRadio;
@@ -44,6 +45,14 @@ class _OnbordingquesState extends State<Onbordingques> {
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _file = pickedFile;
+      } else {
+        print('No image selected.');
+      }
+    });
   }
 
 
@@ -1091,7 +1100,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                                 onTap:(){
                                   getImage();
                                 },
-                                child: Image.asset(
+                                child: _file!=null?Image.network( _file.path,height:
+                                MediaQuery.of(context).size.height * 0.1,
+                                  width: MediaQuery.of(context).size.width * 0.1,):Image.asset(
                                   'assets/images/Imageupload.png',
                                   height:
                                   MediaQuery.of(context).size.height * 0.1,
@@ -1320,6 +1331,46 @@ class _OnbordingquesState extends State<Onbordingques> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class UploadImage extends StatefulWidget {
+  @override
+  _UploadImageState createState() => _UploadImageState();
+}
+
+class _UploadImageState extends State<UploadImage> {
+
+  PickedFile _file;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _file = pickedFile;
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return         GestureDetector(
+      onTap:(){
+        getImage();
+      },
+      child: _file!=null?Image.network( _file.path,height:
+      MediaQuery.of(context).size.height * 0.1,
+        width: MediaQuery.of(context).size.width * 0.1,):Image.asset(
+        'assets/images/Imageupload.png',
+        height:
+        MediaQuery.of(context).size.height * 0.1,
+        width: MediaQuery.of(context).size.width * 0.1,
       ),
     );
   }
