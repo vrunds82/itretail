@@ -3,6 +3,7 @@ import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:itretail/Screens/Questions_Screens/On_Boarding_Questionaire.dart';
 
 class Hardwarerequirnment extends StatefulWidget {
   @override
@@ -18,11 +19,19 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
           child: Column(
             children: [
               Center(
-                child: Text("Hardware Requirnment",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.05
-                    ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
-                ),),
+                child: Text(
+                  "Hardware Requirement",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
+
+                    fontWeight: FontWeight.bold,
+                    //fontFamily: 'GOTHAM-BLACK',
+                    color: Greencolor,
+                  ),
+                ),
               ),
+
 
 //1
               SizedBox(height: 30,),
@@ -46,7 +55,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                       SizedBox( height: 20,),
                       Row(
                         children: [
-
+                          UploadImage(),
                           Image.asset('assets/images/Imageupload.png',
 
                             height: MediaQuery.of(context).size.height*0.1,
