@@ -34,7 +34,11 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*.15, 0, MediaQuery.of(context).size.width*.15, 0),
+                padding: EdgeInsets.fromLTRB(
+                    MediaQuery.of(context).size.width * .15,
+                    0,
+                    MediaQuery.of(context).size.width * .15,
+                    0),
                 child: Column(
                   children: [
                     //name

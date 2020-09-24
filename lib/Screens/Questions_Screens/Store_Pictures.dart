@@ -3,6 +3,7 @@ import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:itretail/Widgets/UploadImage.dart';
 
 
 class Storepicture extends StatefulWidget {
@@ -19,147 +20,187 @@ class _StorepictureState extends State<Storepicture> {
           child: Column(
             children: [
               Center(
-                child: Text("Store Pictures",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.05
-                    ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
-                ),),
-              ),
-              SizedBox(height: 20,),
+                child: Text(
+                  "Store Pictures",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
 
-              SizedBox(height: 40,),
+                    fontWeight: FontWeight.bold,
+                    //fontFamily: 'GOTHAM-BLACK',
+                    color: Greencolor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(60, 0, 40, 0),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                padding: EdgeInsets.fromLTRB(
+                    MediaQuery.of(context).size.width * .15,
+                    0,
+                    MediaQuery.of(context).size.width * .15,
+                    0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-
-
-                    Row(
+                    CustomText(
+                      title:
+                          "Upload the picture of store from different side and angles.)",
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Column(
                       children: [
-                        CustomText(title: "Upload the picture of store from different side and angles.)",),
-
+                        Row(
+                          children: [
+                            Container(
+                              //color: Colors.red,
+                              width: 350,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  UploadImage(),
+                                  // SizedBox(width: 10,),
+                                  UploadImage(),
+                                  // SizedBox(width: 10,),
+                                  UploadImage(),
+                                  //SizedBox(width: 10,),
+                                  UploadImage(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Upload Images Your Here",
+                              style: TextStyle(
+                                  //fontFamily: 'GOTHAMBOLDITALIC',
+                                  fontSize: 18,
+                                  //fontWeight: FontWeight.w700,
+                                  color: Greycolor,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
 
-                              Image.asset('assets/images/Imageupload.png',
-
-                                height: MediaQuery.of(context).size.height*0.1,
-
-                                width:  MediaQuery.of(context).size.width*0.1,),
-                             // SizedBox(width: 10,),
-                              Image.asset('assets/images/Imageupload.png',
-
-                                height: MediaQuery.of(context).size.height*0.1,
-
-                                width:  MediaQuery.of(context).size.width*0.1,),
-                             // SizedBox(width: 10,),
-                              Image.asset('assets/images/Imageupload.png',
-
-                                height: MediaQuery.of(context).size.height*0.1,
-
-                                width:  MediaQuery.of(context).size.width*0.1,),
-                              //SizedBox(width: 10,),
-                              Image.asset('assets/images/Imageupload.png',
-
-                                height: MediaQuery.of(context).size.height*0.1,
-
-                                width:  MediaQuery.of(context).size.width*0.1,),
-
-
-                            ],
-                          ),
-                          SizedBox(height: 20,),
-                          Row(
-                            children: [
-                              SizedBox(width: 30,),
-                              Text("Upload Images Your Here",
-                                style: TextStyle(
-                                    fontFamily: 'GOTHAMBOLDITALIC',
-                                    fontSize: 22,fontWeight: FontWeight.w700,
-                                    color: Greycolor,
-                                    decoration: TextDecoration.underline
-                                ),),
-                            ],
-                          ),
-                        ],
-                      ),
+                    SizedBox(
+                      height: 20,
                     ),
-
-                    SizedBox(height: 20,),
                     //example
                     Row(
                       children: [
-                        CustomText(title: "Example",),
-
+                        CustomText(
+                          title: "Example",
+                        ),
                       ],
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
+                    ),
                     Column(
                       children: [
-                        Row(children: [
-                          Image.asset('assets/images/1.png',
-                            height:MediaQuery.of(context).size.height*0.3,
-                            width:MediaQuery.of(context).size.width*0.3,),
-                          SizedBox(width: 10,),
-                          Image.asset('assets/images/2.png',
-                            height:MediaQuery.of(context).size.height*0.3,
-                            width:MediaQuery.of(context).size.width*0.3,),
-                          SizedBox(width: 10,),
-                          Image.asset('assets/images/1.png',
-                            height:MediaQuery.of(context).size.height*0.3,
-                            width:MediaQuery.of(context).size.width*0.3,),
-
-                          ],),
-
-                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
-
-                        Row(children: [
-                          Image.asset('assets/images/2.png',
-                            height:MediaQuery.of(context).size.height*0.3,
-                            width:MediaQuery.of(context).size.width*0.3,),
-                          SizedBox(width: 10,),
-                          Image.asset('assets/images/1.png',
-                            height:MediaQuery.of(context).size.height*0.3,
-                            width:MediaQuery.of(context).size.width*0.3,),
-                          SizedBox(width: 10,),
-                          Image.asset('assets/images/2.png',
-                            height:MediaQuery.of(context).size.height*0.3,
-                            width:MediaQuery.of(context).size.width*0.3,),
-
-
-
-                        ],),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/1.png',
+                              //height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Image.asset(
+                              'assets/images/2.png',
+                              //height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Image.asset(
+                              'assets/images/1.png',
+                              //height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/2.png',
+                              //height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Image.asset(
+                              'assets/images/1.png',
+                              // height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Image.asset(
+                              'assets/images/2.png',
+                              //height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-
-
                   ],
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height*0.06,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+              ),
               Center(
-                child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Custombuttongrey(title: "BACK",titleclr: Whitecolor,bgclr: Lightgreycolor,click: (){
-                      Navigator.of(context).pop();
-                    },),
-                    SizedBox(width: 30,),
-                    Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,click: (){
-                      Navigator.of(context).pushNamed('watch_trainingVedio');
-                    },),
-
+                    Custombuttongrey(
+                      title: "BACK",
+                      titleclr: Whitecolor,
+                      bgclr: Lightgreycolor,
+                      click: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Custombuttongreen(
+                      title: "NEXT",
+                      titleclr: Colors.white,
+                      bgclr: Greencolor,
+                      click: () {
+                        Navigator.of(context).pushNamed('watch_trainingVedio');
+                      },
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),

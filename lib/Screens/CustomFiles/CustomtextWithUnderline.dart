@@ -12,10 +12,10 @@ class CustomTextUnderline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(title,style: TextStyle(
-        fontSize:MediaQuery.of(context).size.height*0.03,
+        fontSize:20,
         color:titleclr,decoration: TextDecoration.underline,decorationThickness: 1.0,
         fontWeight: FontWeight.w700,
-        fontFamily: 'GOTHAMMEDIUM'
+       // fontFamily: 'GOTHAMMEDIUM'
     ),);
   }
 }
