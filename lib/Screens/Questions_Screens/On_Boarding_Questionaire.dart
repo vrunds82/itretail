@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:itretail/Screens/Constant/Constant_Screen.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRadiobuttonText.dart';
@@ -12,6 +11,7 @@ import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:http/http.dart' as http;
+import 'package:itretail/Widgets/UploadImage.dart';
 
 class Onbordingques extends StatefulWidget {
   @override
@@ -19,62 +19,10 @@ class Onbordingques extends StatefulWidget {
 }
 
 class _OnbordingquesState extends State<Onbordingques> {
+
   File _image;
   PickedFile _file;
   final picker = ImagePicker();
-
-  saveData()
-  {
-    Map<String, String> paymentMode = {
-      "cashval": cashVal.toString(),
-      "debitcardVal": debitcardVal.toString(),
-      "creditcardVal": creditcardVal.toString(),
-      "ebtfoodVal": ebtfoodVal.toString(),
-      "ebtcashVal": ebtcashVal.toString(),
-      "giftcardVal": giftcardVal.toString(),
-      "paperfoodstampVal": paperfoodstampVal.toString(),
-    };
-
-    Map<String, String> data = {
-      "uid": "0",
-      "q": "0",
-      "q1": ans1Controller.text,
-      "q2": ans2Controller.text,
-      "q3": ans3Controller.text,
-      "q4": ans4Controller.text,
-      "q5": ans5Controller.text,
-      "q6": _currentSelectedStoreItems,
-      "q7": _currentSelectedStoreItems,
-      "q8": radioRandomWeights.toString(),
-      "q9": _currentSelectedStoreoftheFront,
-      "q10": radioHaveDesktop,
-      "q11": radioPrinterConnected,
-      "q12": ans12Controller.text +
-          ", " +
-          radioUniqueCoupon,
-      "q13": radioShelfLabels,
-      "q14": radioQuickBooks,
-      "q15": _currentselectedterminal,
-      "q16": radioTerminal,
-      "q17": paymentMode.toString(),
-      "q18": radioProductFile,
-      "q19": ans19Controller.text,
-      "q20": ans20Controller.text,
-      "q21": ans20Controller.text,
-      "q22": ans20Controller.text
-    };
-
-    http
-        .post(
-        "http://admin.itretail.saurabhenterprise.com/addOnBording.php",
-        body: data)
-        .then((response) {
-      print(response.statusCode);
-      print(response.body);
-    });
-
-    setState(() {});
-  }
 
   String selectedRadio;
   String radioHandScanner;
@@ -108,23 +56,25 @@ class _OnbordingquesState extends State<Onbordingques> {
     });
   }
 
+
+
   @override
   void initState() {
     super.initState();
-    selectedRadio = "Yes";
-    radioHandScanner = "Yes";
-    radioQuickBooks = "Yes";
-    radioTerminal = "Yes";
-    radioShelfLabels = "Yes";
-    radioUniqueCoupon = "Yes";
-    radioPrinterConnected = "Yes";
-    radioHaveDesktop = "Yes";
-    radioRandomWeights = "Yes";
-    radioProductFile = "Yes";
+    selectedRadio = "";
+     radioHandScanner ="";
+     radioQuickBooks="";
+     radioTerminal="";
+     radioShelfLabels="";
+     radioUniqueCoupon="";
+     radioPrinterConnected="";
+     radioHaveDesktop="";
+     radioRandomWeights="";
+     radioProductFile="";
   }
 
 // Changes the selected value on 'onChanged' click on each radio button
-  setSelectedRadio(String val, String grpValue) {
+  setSelectedRadio(String val,String grpValue) {
     setState(() {
       grpValue = val;
     });
@@ -136,8 +86,8 @@ class _OnbordingquesState extends State<Onbordingques> {
   List<String> terminals = ['1', '2', '3', '4'];
 
   var _currentSelectedStoreItems = "1";
-  var _currentSelectedStoreoftheFront = "1";
-  var _currentselectedterminal = "1";
+  var _currentSelectedStoreoftheFront= "1";
+  var _currentselectedterminal= "1";
 
   bool cashVal = false;
   bool debitcardVal = false;
@@ -162,6 +112,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  UploadImage(onChanged: (value){print(value);},),
                   SizedBox(
                     height: 40,
                   ),
@@ -298,19 +249,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioHandScanner = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioHandScanner,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioHandScanner = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -344,7 +300,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     Radius.circular(5.0),
                                   ),
                                   border:
-                                      Border.all(width: 0.5, color: Greycolor),
+                                  Border.all(width: 0.5, color: Greycolor),
                                 ),
                                 child: Row(
                                   children: <Widget>[
@@ -370,7 +326,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                             value: val,
                                             child: Padding(
                                               padding:
-                                                  const EdgeInsets.all(10.0),
+                                              const EdgeInsets.all(10.0),
                                               child: CustomText(
                                                 title: val,
                                               ),
@@ -409,19 +365,25 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioRandomWeights = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioRandomWeights,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioRandomWeights = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
+
                               },
                             ),
                             new Customradiotext(
@@ -453,7 +415,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     Radius.circular(5.0),
                                   ),
                                   border:
-                                      Border.all(width: 0.5, color: Greycolor),
+                                  Border.all(width: 0.5, color: Greycolor),
                                 ),
                                 child: Row(
                                   children: <Widget>[
@@ -516,20 +478,29 @@ class _OnbordingquesState extends State<Onbordingques> {
                               groupValue: radioHaveDesktop,
                               activeColor: Greencolor,
                               onChanged: (val) {
+
                                 radioHaveDesktop = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioHaveDesktop,
                               activeColor: Colors.green,
                               onChanged: (val) {
+
+
+
                                 radioHaveDesktop = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -559,19 +530,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioPrinterConnected = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioPrinterConnected,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioPrinterConnected = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -599,19 +575,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioUniqueCoupon = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioUniqueCoupon,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioUniqueCoupon = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -645,19 +626,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioShelfLabels = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioShelfLabels,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioShelfLabels = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -693,19 +679,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioQuickBooks = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioQuickBooks,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioQuickBooks = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -739,7 +730,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     Radius.circular(5.0),
                                   ),
                                   border:
-                                      Border.all(width: 0.5, color: Greycolor),
+                                  Border.all(width: 0.5, color: Greycolor),
                                 ),
                                 child: Row(
                                   children: <Widget>[
@@ -802,19 +793,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                               activeColor: Greencolor,
                               onChanged: (val) {
                                 radioTerminal = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
                               title: "Yes",
                             ),
+
                             Radio(
                               value: "No",
                               groupValue: radioTerminal,
                               activeColor: Colors.green,
                               onChanged: (val) {
                                 radioTerminal = val;
-                                setState(() {});
+                                setState(() {
+
+                                });
                               },
                             ),
                             new Customradiotext(
@@ -856,7 +852,8 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     "Cash",
                                     style: TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w500),
+                                        fontWeight: FontWeight.w500
+                                      ),
                                   ),
                                 ],
                               ),
@@ -1029,19 +1026,24 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     activeColor: Greencolor,
                                     onChanged: (val) {
                                       radioProductFile = val;
-                                      setState(() {});
+                                      setState(() {
+
+                                      });
                                     },
                                   ),
                                   new Customradiotext(
                                     title: "Yes",
                                   ),
+
                                   Radio(
                                     value: "No",
                                     groupValue: radioProductFile,
                                     activeColor: Colors.green,
                                     onChanged: (val) {
                                       radioProductFile = val;
-                                      setState(() {});
+                                      setState(() {
+
+                                      });
                                     },
                                   ),
                                   new Customradiotext(
@@ -1057,7 +1059,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                               ),
                               CustomText(
                                 title:
-                                    "What is the number one feature you need for this software?Please draw a picture of your current network and email it or attach below.",
+                                "What is the number one feature you need for this software?Please draw a picture of your current network and email it or attach below.",
                               ),
                               SizedBox(
                                 height: 20,
@@ -1079,7 +1081,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                 child: Image.asset(
                                   'assets/images/cloud.png',
                                   height:
-                                      MediaQuery.of(context).size.height * 0.4,
+                                  MediaQuery.of(context).size.height * 0.4,
                                   //width: MediaQuery.of(context).size.width*04,
                                 ),
                               )
@@ -1096,42 +1098,11 @@ class _OnbordingquesState extends State<Onbordingques> {
                           padding: const EdgeInsets.fromLTRB(40, 0, 20, 0),
                           child: Row(
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  getImage();
-                                },
-                                child: _file != null
-                                    ? Image.network(
-                                        _file.path,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.1,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.1,
-                                      )
-                                    : Image.asset(
-                                        'assets/images/Imageupload.png',
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.1,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.1,
-                                      ),
-                              ),
-                              Image.asset(
-                                'assets/images/Imageupload.png',
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                width: MediaQuery.of(context).size.width * 0.1,
-                              ),
-                              Image.asset(
-                                'assets/images/Imageupload.png',
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                width: MediaQuery.of(context).size.width * 0.1,
-                              ),
+                              UploadImage(onChanged: (value){
+                                print(value);
+                              },),
+                              UploadImage(),
+                              UploadImage()
                             ],
                           ),
                         ),
@@ -1145,7 +1116,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                               Text(
                                 "Upload Images Your Here",
                                 style: TextStyle(
-                                    //fontFamily: 'GOTHAMBOLDITALIC',
+                                  //fontFamily: 'GOTHAMBOLDITALIC',
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,
                                     color: Greycolor,
@@ -1194,11 +1165,11 @@ class _OnbordingquesState extends State<Onbordingques> {
                           children: [
                             CustomText(
                               title:
-                                  "We are so excited to  bring  you  on! We  also  love  giving  our  software away for free! ",
+                              "We are so excited to  bring  you  on! We  also  love  giving  our  software away for free! ",
                             ),
                             CustomText(
                                 title:
-                                    "If you give us a referral & if we are able to close we will give you one month free."),
+                                "If you give us a referral & if we are able to close we will give you one month free."),
                             SizedBox(
                               height: 20,
                             ),
@@ -1208,7 +1179,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                   child: RichText(
                                     text: TextSpan(
                                         text:
-                                            "Please email this form and all other photos or files to",
+                                        "Please email this form and all other photos or files to",
                                         style: TextStyle(
                                           fontSize: 20,
                                           decoration: TextDecoration.underline,
@@ -1217,11 +1188,11 @@ class _OnbordingquesState extends State<Onbordingques> {
                                           TextSpan(
                                             text: " egoodwin@itretail.com",
                                             style: TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 20,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              //fontFamily: 'GOTHAMBOLDITALIC'
+                                                color: Colors.blue,
+                                                fontSize: 20,
+                                                decoration:
+                                                TextDecoration.underline,
+                                                //fontFamily: 'GOTHAMBOLDITALIC'
                                             ),
                                           )
                                         ]),
@@ -1238,16 +1209,12 @@ class _OnbordingquesState extends State<Onbordingques> {
                         Custombuttongreen(
                           title: "NEXT",
                           click: () {
-                            print("_currentSelectedStoreItems " +
-                                _currentSelectedStoreItems);
-                            print("_currentSelectedStoreoftheFront " +
-                                _currentSelectedStoreoftheFront);
-                            print(" _currentselectedterminal " +
-                                _currentselectedterminal);
+                            print("_currentSelectedStoreItems " + _currentSelectedStoreItems);
+                            print("_currentSelectedStoreoftheFront " +_currentSelectedStoreoftheFront);
+                            print(" _currentselectedterminal "+_currentselectedterminal);
                             print("Scanner" + radioHandScanner);
                             print("radioHaveDesktop " + radioHaveDesktop);
-                            print("radioPrinterConnected " +
-                                radioPrinterConnected);
+                            print("radioPrinterConnected " + radioPrinterConnected);
                             print("radioQuickBooks " + radioQuickBooks);
                             print("radioRandomWeights " + radioRandomWeights);
                             print("radioShelfLabels " + radioShelfLabels);
@@ -1264,66 +1231,66 @@ class _OnbordingquesState extends State<Onbordingques> {
                             print("ans8Controller " + ans20Controller.text);
                             print("  cashVal ${cashVal.toString()}");
                             print("  debitcardVal ${debitcardVal.toString()}");
-                            print(
-                                "  creditcardVal ${creditcardVal.toString()}");
+                            print("  creditcardVal ${creditcardVal.toString()}");
                             print("  ebtfoodVal ${ebtfoodVal.toString()}");
                             print("  ebtcashVal ${ebtcashVal.toString()}");
                             print("  giftcardVal ${giftcardVal.toString()}");
-                            print(
-                                "  paperfoodstampVal ${paperfoodstampVal.toString()}");
+                            print("  paperfoodstampVal ${paperfoodstampVal.toString()}");
                             print("  checkVal ${checkVal.toString()}");
-                            if (ans1Controller.text == null ||
-                                ans1Controller.text == "" ||
-                                ans2Controller.text == null ||
-                                ans2Controller.text == "" ||
-                                ans3Controller.text == null ||
-                                ans3Controller.text == "" ||
-                                ans4Controller.text == null ||
-                                ans4Controller.text == "" ||
-                                ans5Controller.text == null ||
-                                ans5Controller.text == "" ||
-                                ans19Controller.text == null ||
-                                ans19Controller.text == "" ||
-                                ans20Controller.text == null ||
-                                ans20Controller.text == "") {
-                              Fluttertoast.showToast(
-                                  msg: "All Fields Required",
-                                  toastLength: Toast.LENGTH_LONG,
-                                  //gravity: ToastGravity.CENTER,
-                                  timeInSecForIosWeb: 1,
-                                  webBgColor:
-                                  "linear-gradient(to right, #FF0000, #FF0000)",
-                                  webPosition: "center",
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
 
-                            }
-                            else
-                              {
-                                if (cashVal == true ||
-                                    debitcardVal == true ||
-                                    creditcardVal == true ||
-                                    ebtcashVal == true ||
-                                    ebtfoodVal == true ||
-                                    paperfoodstampVal == true ||
-                                    giftcardVal == true) {
 
-                                  saveData();
+                            Map<String,String> Paymentmode ={
+                              "cashval":cashVal.toString(),
+                              "debitcardVal":debitcardVal.toString(),
+                              "creditcardVal":creditcardVal.toString(),
+                              "ebtfoodVal":ebtfoodVal.toString(),
+                              "ebtcashVal":ebtcashVal.toString(),
+                              "giftcardVal":giftcardVal.toString(),
+                              "paperfoodstampVal":paperfoodstampVal.toString(),
 
-                                }
-                                else{
-                                  Fluttertoast.showToast(
-                                      msg: "All Fields Required",
-                                      toastLength: Toast.LENGTH_LONG,
-                                      //gravity: ToastGravity.CENTER,
-                                      timeInSecForIosWeb: 1,
-                                      webBgColor:
-                                      "linear-gradient(to right, #FF0000, #FF0000)",
-                                      webPosition: "center",
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
-                                }
-                              }
+
+                            };
+
+
+
+
+                            Map<String,String> data = {
+                              "uid":"0",
+                              "q":"0",
+                              "q1":ans1Controller.text,
+                              "q2":ans2Controller.text,
+                              "q3":ans3Controller.text,
+                              "q4":ans4Controller.text,
+                              "q5":ans5Controller.text,
+                              "q6":_currentSelectedStoreItems,
+                              "q7":_currentSelectedStoreItems,
+                              "q8":radioRandomWeights.toString(),
+                              "q9":_currentSelectedStoreoftheFront,
+                              "q10":radioHaveDesktop,
+                              "q11":radioPrinterConnected,
+                              "q12":ans12Controller.text + ", " + radioUniqueCoupon,
+                              "q13":radioShelfLabels,
+                              "q14":radioQuickBooks,
+                              "q15":_currentselectedterminal,
+                              "q16":radioTerminal,
+                              "q17":Paymentmode.toString(),
+                              "q18":radioProductFile,
+                              "q19":ans19Controller.text,
+                              "q20":ans20Controller.text,
+                              "q21":ans20Controller.text,
+                              "q22":ans20Controller.text
+                            };
+
+
+                            http.post("http://admin.itretail.saurabhenterprise.com/addOnBording.php",body: data).then((response){
+                              print(response.statusCode);
+                              print(response.body);
+                            });
+
+
+                            setState(() {
+                            });
+
 
 
 
@@ -1351,44 +1318,4 @@ class _OnbordingquesState extends State<Onbordingques> {
   }
 }
 
-class UploadImage extends StatefulWidget {
-  @override
-  _UploadImageState createState() => _UploadImageState();
-}
 
-class _UploadImageState extends State<UploadImage> {
-  PickedFile _file;
-  final picker = ImagePicker();
-
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _file = pickedFile;
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        getImage();
-      },
-      child: _file != null
-          ? Image.network(
-              _file.path,
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width * 0.1,
-            )
-          : Image.asset(
-              'assets/images/Imageupload.png',
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width * 0.1,
-            ),
-    );
-  }
-}
