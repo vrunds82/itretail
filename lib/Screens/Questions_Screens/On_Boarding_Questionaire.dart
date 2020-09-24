@@ -11,6 +11,7 @@ import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:http/http.dart' as http;
+import 'package:itretail/Widgets/UploadImage.dart';
 
 class Onbordingques extends StatefulWidget {
   @override
@@ -111,6 +112,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  UploadImage(onChanged: (value){print(value);},),
                   SizedBox(
                     height: 40,
                   ),
@@ -1096,31 +1098,11 @@ class _OnbordingquesState extends State<Onbordingques> {
                           padding: const EdgeInsets.fromLTRB(40, 0, 20, 0),
                           child: Row(
                             children: [
-                              GestureDetector(
-                                onTap:(){
-                                  getImage();
-                                },
-                                child: _file!=null?Image.network( _file.path,height:
-                                MediaQuery.of(context).size.height * 0.1,
-                                  width: MediaQuery.of(context).size.width * 0.1,):Image.asset(
-                                  'assets/images/Imageupload.png',
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.1,
-                                  width: MediaQuery.of(context).size.width * 0.1,
-                                ),
-                              ),
-                              Image.asset(
-                                'assets/images/Imageupload.png',
-                                height:
-                                MediaQuery.of(context).size.height * 0.1,
-                                width: MediaQuery.of(context).size.width * 0.1,
-                              ),
-                              Image.asset(
-                                'assets/images/Imageupload.png',
-                                height:
-                                MediaQuery.of(context).size.height * 0.1,
-                                width: MediaQuery.of(context).size.width * 0.1,
-                              ),
+                              UploadImage(onChanged: (value){
+                                print(value);
+                              },),
+                              UploadImage(),
+                              UploadImage()
                             ],
                           ),
                         ),
@@ -1336,42 +1318,4 @@ class _OnbordingquesState extends State<Onbordingques> {
   }
 }
 
-class UploadImage extends StatefulWidget {
-  @override
-  _UploadImageState createState() => _UploadImageState();
-}
 
-class _UploadImageState extends State<UploadImage> {
-
-  PickedFile _file;
-  final picker = ImagePicker();
-
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _file = pickedFile;
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return         GestureDetector(
-      onTap:(){
-        getImage();
-      },
-      child: _file!=null?Image.network( _file.path,height:
-      MediaQuery.of(context).size.height * 0.1,
-        width: MediaQuery.of(context).size.width * 0.1,):Image.asset(
-        'assets/images/Imageupload.png',
-        height:
-        MediaQuery.of(context).size.height * 0.1,
-        width: MediaQuery.of(context).size.width * 0.1,
-      ),
-    );
-  }
-}
