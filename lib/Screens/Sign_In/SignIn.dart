@@ -16,7 +16,10 @@ class _SigninpageState extends State<Signinpage> {
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery.of(context).size.width;
+    screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -28,7 +31,10 @@ class _SigninpageState extends State<Signinpage> {
                   flex: 60,
                   child: SingleChildScrollView(
                     child: Container(
-                      height: MediaQuery.of(context).size.height,
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height,
                       child: Center(
                         child: SingleChildScrollView(
                           child: Column(
@@ -39,7 +45,8 @@ class _SigninpageState extends State<Signinpage> {
                                 padding: const EdgeInsets.all(40.0),
                                 child: Card(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(40)),
                                   ),
                                   color: Colors.white.withOpacity(0.9),
                                   child: Padding(
@@ -50,13 +57,14 @@ class _SigninpageState extends State<Signinpage> {
                                           height: 30,
                                         ),
                                         Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
                                           children: [
                                             Text(
                                               "Sign In",
                                               style: TextStyle(
-                                                fontSize:30,
-                                                fontWeight: FontWeight.bold
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold
                                                 //fontFamily: 'GOTHAM-BLACK',
                                               ),
                                             ),
@@ -67,7 +75,8 @@ class _SigninpageState extends State<Signinpage> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                          const EdgeInsets.fromLTRB(
+                                              10, 0, 10, 0),
                                           child: Column(
                                             children: [
                                               //email
@@ -92,16 +101,18 @@ class _SigninpageState extends State<Signinpage> {
                                                 children: [
                                                   Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.spaceEvenly,
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
                                                     children: [
                                                       CustomText(
                                                         title: "Password",
                                                         textcolor: Greycolor,
                                                       ),
                                                       SizedBox(
-                                                        width: MediaQuery.of(context)
-                                                                .size
-                                                                .width *
+                                                        width: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width *
                                                             0.07,
                                                       ),
                                                       CustomText(
@@ -132,7 +143,8 @@ class _SigninpageState extends State<Signinpage> {
                                                     "Keep me logged in",
                                                     style: TextStyle(
                                                         fontSize: 25,
-                                                        fontWeight: FontWeight.w700,
+                                                        fontWeight: FontWeight
+                                                            .w700,
                                                         color: Greycolor),
                                                   ),
                                                 ],
@@ -160,10 +172,11 @@ class _SigninpageState extends State<Signinpage> {
                                                 "Don't have an account ? Sign Up",
                                                 style: TextStyle(
                                                     decoration:
-                                                        TextDecoration.underline,
+                                                    TextDecoration.underline,
                                                     color: Greycolor,
                                                     fontSize: 22,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight: FontWeight
+                                                        .bold),
                                               ),
                                               SizedBox(
                                                 height: 20,
@@ -185,20 +198,23 @@ class _SigninpageState extends State<Signinpage> {
                 ),
 
                 //part 2
-                screenWidth > 1000?
+                screenWidth > 1000 ?
                 Expanded(
                   flex: 40,
                   child: Column(
                     children: [
                       Container(
-                          height: MediaQuery.of(context).size.height,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height,
                           child: Image.asset(
                             'assets/images/signinbg.png',
                             fit: BoxFit.cover,
                           ))
                     ],
                   ),
-                ):SizedBox(),
+                ) : SizedBox(),
               ],
             )
           ],
