@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 //question of onbording questioner screen
 var onbording_Que1="1. What date would you like to go live with IT Retail ?";

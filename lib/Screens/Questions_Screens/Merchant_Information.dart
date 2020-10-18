@@ -8,7 +8,8 @@ import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Merchantinformationpage extends StatefulWidget {
   @override
-  _MerchantinformationpageState createState() => _MerchantinformationpageState();
+  _MerchantinformationpageState createState() =>
+      _MerchantinformationpageState();
 }
 
 class _MerchantinformationpageState extends State<Merchantinformationpage> {
@@ -20,94 +21,152 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
           child: Column(
             children: [
               Center(
-                child: Text("Merchant Information",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.05
-                    ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
-                ),),
-              ),
+                child: Text(
+                  "Merchant Information",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
 
+                    fontWeight: FontWeight.bold,
+                    //fontFamily: 'GOTHAM-BLACK',
+                    color: Greencolor,
+                  ),
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                padding: EdgeInsets.fromLTRB(
+                    MediaQuery.of(context).size.width * .15,
+                    0,
+                    MediaQuery.of(context).size.width * .15,
+                    0),
                 child: Column(
                   children: [
                     //name
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
-                        CustomText(title: name,),
+                        CustomText(
+                          title: name,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Customtectfeild(hinttitle: "Your Answer Here...",),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Customtectfeild(
+                      hinttitle: "Your Answer Here...",
+                    ),
 
-                  //official address
-                    SizedBox(height: 40,),
+                    //official address
+                    SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       children: [
-                        CustomText(title: officeAddress,),
+                        CustomText(
+                          title: officeAddress,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Customtectfeild(hinttitle: "Your Answer Here...",),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Customtectfeild(
+                      hinttitle: "Your Answer Here...",
+                    ),
 
 //gmail address
 
-                    SizedBox(height: 40,),
+                    SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       children: [
-                        CustomText(title:gmailAddress,),
+                        CustomText(
+                          title: gmailAddress,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Customtectfeild(hinttitle: "Your Answer Here...",),
-
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Customtectfeild(
+                      hinttitle: "Your Answer Here...",
+                    ),
 
                     //pincode
-                    SizedBox(height: 40,),
+                    SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       children: [
-                        CustomText(title:pinCode,),
+                        CustomText(
+                          title: pinCode,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Customtectfeild(hinttitle: "Your Answer Here...",),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Customtectfeild(
+                      hinttitle: "Your Answer Here...",
+                    ),
 
                     //mobile number
-                    SizedBox(height: 40,),
+                    SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       children: [
-                        CustomText(title: mobileNumber,),
+                        CustomText(
+                          title: mobileNumber,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Customtectfeild(hinttitle: "Your Answer Here...",),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Customtectfeild(
+                      hinttitle: "Your Answer Here...",
+                    ),
 
                     //buttons
-SizedBox(height: 60,),
+                    SizedBox(
+                      height: 60,
+                    ),
                     Center(
-                      child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Custombuttongrey(title: "BACK",titleclr: Greycolor,bgclr: Lightgreycolor,
-                            click: (){
-                            Navigator.of(context).pop();
-                            },),
-                          SizedBox(width: 30,),
-                          Custombuttongreen(title: "NEXT",titleclr: Colors.white,bgclr: Greencolor,
-                            click: (){
-                            Navigator.of(context).pushNamed('hardware_reruirnment');
-                            },),
-
+                          Custombuttongrey(
+                            title: "BACK",
+                            titleclr: Greycolor,
+                            bgclr: Lightgreycolor,
+                            click: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Custombuttongreen(
+                            title: "NEXT",
+                            titleclr: Colors.white,
+                            bgclr: Greencolor,
+                            click: () {
+                              Navigator.of(context)
+                                  .pushNamed('hardware_reruirnment');
+                            },
+                          ),
                         ],
                       ),
                     )
-
                   ],
                 ),
               )
-
-
-
             ],
           ),
         ),
