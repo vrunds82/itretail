@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
+import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
 
 import 'Screens/Order_Status/Orderstatus.dart';
 import 'Screens/Questions_Screens/Back_Office_Setup.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Productfile(),
+      home: UserDashboard(),
 
       routes: {
 
@@ -54,7 +56,11 @@ class MyApp extends StatelessWidget {
         'Signin':(context)=>Signinpage(),
         'Signup':(context)=>SignUppage(),
         'Signup_style2':(context)=>SignUpStyle2(),
-        'Orderstatus':(context)=>OrderstatusPage()
+        'Orderstatus':(context)=>OrderstatusPage(),
+
+        // ADMIN PAGES
+        AdminDashboard.route:(context)=>AdminDashboard()
+
       },
     );
   }

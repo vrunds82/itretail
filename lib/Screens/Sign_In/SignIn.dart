@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:itretail/Config/API_URLs.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/CustomFiles/SigninTectfield.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:http/http.dart' as http;
+import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 
 class Signinpage extends StatefulWidget {
   @override
@@ -11,182 +17,107 @@ class Signinpage extends StatefulWidget {
 }
 
 class _SigninpageState extends State<Signinpage> {
+
   bool keepmelogiin = false;
-  double screenWidth;
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                //part 1
-                Expanded(
-                  flex: 60,
-                  child: SingleChildScrollView(
-                    child: Container(
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height,
-                      child: Center(
-                        child: SingleChildScrollView(
+      body: Column(
+        children: [
+
+          Row(children: [
+
+            //part 1
+            Expanded(flex: 40,
+              child: Container(height: MediaQuery.of(context).size.height,
+
+                child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: Card(elevation: 20, shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(40)),),
+                        color: Colors.white.withOpacity(0.9),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              SizedBox(height: 30,),
+                              Text("Sign In",style: TextStyle(
+                                  fontSize:MediaQuery.of(context).size.height*0.05,
+                                color: Greencolor
+                              ),),
+
+                              SizedBox(height: 30,),
                               Padding(
-                                padding: const EdgeInsets.all(40.0),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(40)),
-                                  ),
-                                  color: Colors.white.withOpacity(0.9),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Column(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                child: Column(
+                                  children: [
+
+                                    //email
+                                    Row(
                                       children: [
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment
-                                              .start,
-                                          children: [
-                                            Text(
-                                              "Sign In",
-                                              style: TextStyle(
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.bold
-                                                //fontFamily: 'GOTHAM-BLACK',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.fromLTRB(
-                                              10, 0, 10, 0),
-                                          child: Column(
-                                            children: [
-                                              //email
-                                              Row(
-                                                children: [
-                                                  CustomText(
-                                                    title: "Email Address",
-                                                    textcolor: Greycolor,
-                                                  ),
-                                                ],
-                                              ),
-                                              //SizedBox(height: 5,),
-                                              SigninTextfield(
-                                                  hinttitle: "you@example.com"),
-
-                                              SizedBox(
-                                                height: 40,
-                                              ),
-
-                                              //password
-                                              Row(
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                    children: [
-                                                      CustomText(
-                                                        title: "Password",
-                                                        textcolor: Greycolor,
-                                                      ),
-                                                      SizedBox(
-                                                        width: MediaQuery
-                                                            .of(context)
-                                                            .size
-                                                            .width *
-                                                            0.07,
-                                                      ),
-                                                      CustomText(
-                                                        textcolor: Greencolor,
-                                                        title: 'Forgot Password',
-                                                      )
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              //SizedBox(height: 5,),
-                                              SigninTextfield(
-                                                  hinttitle: "you@example.com"),
-
-                                              Row(
-                                                children: [
-                                                  Checkbox(
-                                                    checkColor: Colors.white,
-                                                    activeColor: Greencolor,
-                                                    value: keepmelogiin,
-                                                    onChanged: (bool value) {
-                                                      setState(() {
-                                                        keepmelogiin = value;
-                                                      });
-                                                    },
-                                                  ),
-                                                  Text(
-                                                    "Keep me logged in",
-                                                    style: TextStyle(
-                                                        fontSize: 25,
-                                                        fontWeight: FontWeight
-                                                            .w700,
-                                                        color: Greycolor),
-                                                  ),
-                                                ],
-                                              ),
-
-                                              SizedBox(
-                                                height: 30,
-                                              ),
-
-                                              Custombuttongreen(
-                                                title: "Sign In",
-                                                titleclr: Whitecolor,
-                                                bgclr: Greencolor,
-                                                click: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed('Signup');
-                                                },
-                                              ),
-
-                                              SizedBox(
-                                                height: 20,
-                                              ),
-
-                                              Text(
-                                                "Don't have an account ? Sign Up",
-                                                style: TextStyle(
-                                                    decoration:
-                                                    TextDecoration.underline,
-                                                    color: Greycolor,
-                                                    fontSize: 22,
-                                                    fontWeight: FontWeight
-                                                        .bold),
-                                              ),
-                                              SizedBox(
-                                                height: 20,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        CustomText(title: "Email Address",textcolor: Greycolor,),
                                       ],
                                     ),
-                                  ),
+                                    //SizedBox(height: 5,),
+                                    SigninTextfield(hinttitle: "you@example.com"),
+
+                                    SizedBox(  height: 40,),
+
+
+                                    //password
+                                    Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        CustomText(title: "Password",textcolor: Greycolor,),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.07,),
+                                      Spacer(),
+                                        CustomText(textcolor: Greencolor,title: 'Forgot Password',)
+                                      ],
+                                    ),
+                                    //SizedBox(height: 5,),
+                                    SigninTextfield(hinttitle: "you@example.com"),
+
+                                    /*Row(
+                                      children: [
+                                        Checkbox(checkColor: Colors.white,
+                                          activeColor: Greencolor,
+                                          value: keepmelogiin,
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              keepmelogiin = value;
+                                            });
+                                          },
+                                        ),
+                                        Text("Keep me logged in",style: TextStyle(
+                                            fontSize: 20,
+                                          color:Greycolor
+                                        ),),
+
+                                      ],
+                                    ),*/
+
+                                    SizedBox(height: 30,),
+
+                                    Custombuttongreen(title: "Sign In",
+                                    titleclr: Whitecolor,bgclr: Greencolor,
+                                    click: (){
+                                      signInAPICall();
+                               //       Navigator.of(context).pushNamed('Signup');
+                                    },),
+
+                                      SizedBox(height: 20,),
+
+                                    /*Text("Don't have an account ? Sign Up",style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Greycolor,fontSize: 22,
+                                      fontWeight: FontWeight.bold
+                                    ),),
+                                    SizedBox(height: 20,),*/
+                                  ],
                                 ),
                               ),
                             ],
@@ -194,32 +125,48 @@ class _SigninpageState extends State<Signinpage> {
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-
-                //part 2
-                screenWidth > 1000 ?
-                Expanded(
-                  flex: 40,
-                  child: Column(
-                    children: [
-                      Container(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height,
-                          child: Image.asset(
-                            'assets/images/signinbg.png',
-                            fit: BoxFit.cover,
-                          ))
-                    ],
-                  ),
-                ) : SizedBox(),
-              ],
+              ),
+            ),
+            //part 2
+            Expanded(flex: 60,
+              child: Column(children: [
+                Container(height: MediaQuery.of(context).size.height,
+                    child: Image.asset('assets/images/signinbg.png',fit: BoxFit.cover,))
+              ],),
             )
-          ],
-        ),
-      ),
-    );
+    ])]));
+
   }
+
+
+  signInAPICall(){
+
+    Map<String,String> params = {
+      "email":"arun1711996@gmail.com",
+      "password":"12345678"
+    };
+
+   http.post(APIs.loginURL,body: params).then((value){
+     print(value.body);
+     var parsedJson = jsonDecode(value.body);
+     if(parsedJson['status'].toString()=="1"){
+
+
+       if(parsedJson['status'].toString()=="0"){
+         Navigator.of(context).pushNamed(AdminDashboard.route);
+       }else if(parsedJson['status'].toString()=="1"){
+
+       }
+
+
+     }else
+       {
+         Fluttertoast.showToast(msg: "Invalid ID or Password");
+       }
+
+   });
+  }
+
 }

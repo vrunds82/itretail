@@ -15,11 +15,9 @@ class Custombuttongrey extends StatelessWidget {
       borderRadius: BorderRadius.circular(40.0),
 
     ),color: bgclr,child: Padding(
-      padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+      padding: const EdgeInsets.fromLTRB(65, 15, 65, 15),
       child: Text(title,style: TextStyle(
-          fontSize: 18,
-          //fontFamily: 'GOTHAM-BLACK',
-        color: titleclr
+          fontSize: 22,color: titleclr
       ),),
     ),
       onPressed: (){
