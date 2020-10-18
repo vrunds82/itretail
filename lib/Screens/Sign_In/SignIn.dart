@@ -136,11 +136,8 @@ class _SigninpageState extends State<Signinpage> {
                     child: Image.asset('assets/images/signinbg.png',fit: BoxFit.cover,))
               ],),
             )
-          ],)
+    ])]));
 
-        ],
-      ),
-    );
   }
 
 
