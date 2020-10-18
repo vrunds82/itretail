@@ -13,7 +13,11 @@ class _MenuState extends State<Menu> {
     return Container(
 
         height: MediaQuery.of(context).size.width,
-        color: Greencolor,
+        decoration: BoxDecoration(
+          color: Greencolor,
+          boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 5)]
+        ),
+
         child: Column(
           children: [
             MenuItem(title: "Home",iconData: Icons.home,position: 0,),
@@ -21,7 +25,9 @@ class _MenuState extends State<Menu> {
             MenuItem(title: "Add User",iconData: Icons.person_add,position: 2,),
             MenuItem(title: "Reports",iconData: Icons.assignment_outlined,position: 3,),
             Spacer(),
-            Icon(Icons.power_settings_new_sharp,size: 40,color: Colors.white,),
+            GestureDetector(onTap: (){
+              Navigator.pushNamedAndRemoveUntil(context, "Signin", (r) => false);
+            },child: Icon(Icons.power_settings_new_sharp,size: 40,color: Colors.white,)),
             SizedBox(height: 20,)
           ],
         ));

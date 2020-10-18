@@ -10,6 +10,7 @@ import 'package:itretail/Screens/CustomFiles/SigninTectfield.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:http/http.dart' as http;
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
+import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
 
 class Signinpage extends StatefulWidget {
   @override
@@ -19,6 +20,8 @@ class Signinpage extends StatefulWidget {
 class _SigninpageState extends State<Signinpage> {
 
   bool keepmelogiin = false;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,7 @@ class _SigninpageState extends State<Signinpage> {
                                       ],
                                     ),
                                     //SizedBox(height: 5,),
-                                    SigninTextfield(hinttitle: "you@example.com"),
+                                    SigninTextfield(hinttitle: "you@example.com",textcontroller: email,),
 
                                     SizedBox(  height: 40,),
 
@@ -79,7 +82,7 @@ class _SigninpageState extends State<Signinpage> {
                                       ],
                                     ),
                                     //SizedBox(height: 5,),
-                                    SigninTextfield(hinttitle: "you@example.com"),
+                                    SigninTextfield(hinttitle: "password",textcontroller: password,),
 
                                     /*Row(
                                       children: [
@@ -144,23 +147,19 @@ class _SigninpageState extends State<Signinpage> {
   signInAPICall(){
 
     Map<String,String> params = {
-      "email":"arun1711996@gmail.com",
-      "password":"12345678"
+      "email":email.text,
+      "password":password.text
     };
 
    http.post(APIs.loginURL,body: params).then((value){
      print(value.body);
      var parsedJson = jsonDecode(value.body);
      if(parsedJson['status'].toString()=="1"){
-
-
-       if(parsedJson['status'].toString()=="0"){
+       if(parsedJson['type'].toString()=="0"){
+         Navigator.of(context).pushNamed(UserDashboard.route);
+       }else if(parsedJson['type'].toString()=="1"){
          Navigator.of(context).pushNamed(AdminDashboard.route);
-       }else if(parsedJson['status'].toString()=="1"){
-
        }
-
-
      }else
        {
          Fluttertoast.showToast(msg: "Invalid ID or Password");

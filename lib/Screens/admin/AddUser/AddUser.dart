@@ -14,113 +14,127 @@ class AddUser extends StatefulWidget {
 }
 
 class _AddUserState extends State<AddUser> {
+
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController addressController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  TextEditingController pincodeController = new TextEditingController();
+  TextEditingController numberController = new TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SafeArea(
         child: Card(
           elevation: 5,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width*0.5,
-              child: Column(
-                children: [
-                  Center(
-                    child: Text("Add New Merchant",style: TextStyle(
-                        fontSize:MediaQuery.of(context).size.height*0.05
-                     ,color:Greencolor
-                    ),),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
-                    child: Column(
-                      children: [
-                        //name
-                        SizedBox(height: 20,),
-                        Row(
-                          children: [
-                            CustomText(title: name,),
-                          ],
-                        ),
-                        Customtectfeild(hinttitle: "Your Answer Here...",),
-                        //official address
-                        SizedBox(height: 30,),
-                        Row(
-                          children: [
-                            CustomText(title: officeAddress,),
-                          ],
-                        ),
-                        Customtectfeild(hinttitle: "Your Answer Here...",),
-//gmail address
-                        SizedBox(height: 30,),
-                        Row(
-                          children: [
-                            CustomText(title:gmailAddress,),
-                          ],
-                        ),
-                        Customtectfeild(hinttitle: "Your Answer Here...",),
-                        SizedBox(height: 30,),
-                        Row(
-                          children: [
-                            CustomText(title:"Password",),
-                          ],
-                        ),
-                        Customtectfeild(hinttitle: "Your Answer Here...",),
-                        //pincode
-                        SizedBox(height: 30,),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      CustomText(title:pinCode,),
-                                    ],
-                                  ),
-                                  Customtectfeild(hinttitle: "Your Answer Here...",),
-                                ],
-                              ),
-                            ),
+          child: Container(
+            width: MediaQuery.of(context).size.width*0.5,
+            child: Column(
+              children: [
 
-                            //mobile number
-                            SizedBox(width: 30,),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      CustomText(title: mobileNumber,),
-                                    ],
-                                  ),
-                                  Customtectfeild(hinttitle: "Your Answer Here...",),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        //buttons
-                        SizedBox(height: 30,),
-                        Center(
-                          child: Row(crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Custombuttongreen(title: "Add Merchant",titleclr: Colors.white,bgclr: Greencolor,
-                                click: (){
-                                    addUser();
-                                },),
-                            ],
-                          ),
-                        )
-                      ],
+
+                Container(
+                  color: Greencolor,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Add New Merchant",style: TextStyle(
+                          fontSize:MediaQuery.of(context).size.height*0.05
+                       ,color:Whitecolor
+                      ),),
                     ),
-                  )
+                  ),
+                ),
 
+                // Name
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                  child: Column(
+                    children: [
+                      //name
+                      SizedBox(height: 20,),
+                      Row(
+                        children: [
+                          CustomText(title: name,),
 
+                        ],
+                      ),
+                      Customtectfeild(hinttitle: "Your Answer Here...",textcontroller: nameController,),
+                      //official address
+                      SizedBox(height: 30,),
+                      Row(
+                        children: [
+                          CustomText(title: officeAddress,),
+                        ],
+                      ),
+                      Customtectfeild(hinttitle: "Your Answer Here...",textcontroller: addressController,),
+//gmail address
+                      SizedBox(height: 30,),
+                      Row(
+                        children: [
+                          CustomText(title:gmailAddress,),
+                        ],
+                      ),
+                      Customtectfeild(hinttitle: "Your Answer Here...",textcontroller: emailController,),
+                      SizedBox(height: 30,),
+                      Row(
+                        children: [
+                          CustomText(title:"Password",),
+                        ],
+                      ),
+                      Customtectfeild(hinttitle: "Your Answer Here...",textcontroller: passwordController,),
+                      //pincode
+                      SizedBox(height: 30,),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    CustomText(title:pinCode,),
+                                  ],
+                                ),
+                                Customtectfeild(hinttitle: "Your Answer Here...",textcontroller: pincodeController,),
+                              ],
+                            ),
+                          ),
 
-                ],
-              ),
+                          //mobile number
+                          SizedBox(width: 30,),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    CustomText(title: mobileNumber,),
+                                  ],
+                                ),
+                                Customtectfeild(hinttitle: "Your Answer Here...",textcontroller: numberController,),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ), //buttons
+                      SizedBox(height: 30,),
+                      Center(
+                        child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Custombuttongreen(title: "Add Merchant",titleclr: Colors.white,bgclr: Greencolor,
+                              click: (){
+                                  addUser();
+                              },),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 30,),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),
@@ -128,19 +142,18 @@ class _AddUserState extends State<AddUser> {
     );
   }
 
-
-
   addUser() async {
 
 
 
     Map<String,String> params = {
-    'name':"arun",
-    "email":"apple",
-    "password":"12345678",
-    "contact":"1234561",
+    'name':nameController.text,
+    "email":emailController.text,
+    "password":passwordController.text,
+    "contact":numberController.text,
     "type":"0",
-      "address":"asdfas df"
+      "address":addressController.text,
+      "pincode":pincodeController.text
     };
 
 
