@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:itretail/Config/API_URLs.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/CustomFiles/SigninTectfield.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:http/http.dart' as http;
+import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 
 class Signinpage extends StatefulWidget {
   @override
@@ -32,7 +38,7 @@ class _SigninpageState extends State<Signinpage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(40.0),
-                      child: Card( shape: RoundedRectangleBorder(
+                      child: Card(elevation: 20, shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(40)),),
                         color: Colors.white.withOpacity(0.9),
                         child: Padding(
@@ -40,14 +46,10 @@ class _SigninpageState extends State<Signinpage> {
                           child: Column(
                             children: [
                               SizedBox(height: 30,),
-                              Row(crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Sign In",style: TextStyle(
-                                      fontSize:MediaQuery.of(context).size.height*0.05
-                                      ,fontFamily: 'GOTHAM-BLACK',
-                                  ),),
-                                ],
-                              ),
+                              Text("Sign In",style: TextStyle(
+                                  fontSize:MediaQuery.of(context).size.height*0.05,
+                                color: Greencolor
+                              ),),
 
                               SizedBox(height: 30,),
                               Padding(
@@ -68,22 +70,18 @@ class _SigninpageState extends State<Signinpage> {
 
 
                                     //password
-                                    Row(
+                                    Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            CustomText(title: "Password",textcolor: Greycolor,),
+                                        CustomText(title: "Password",textcolor: Greycolor,),
                                       SizedBox(width: MediaQuery.of(context).size.width*0.07,),
-
-                                            CustomText(textcolor: Greencolor,title: 'Forgot Password',)
-                                          ],
-                                        ),
+                                      Spacer(),
+                                        CustomText(textcolor: Greencolor,title: 'Forgot Password',)
                                       ],
                                     ),
                                     //SizedBox(height: 5,),
                                     SigninTextfield(hinttitle: "you@example.com"),
 
-                                    Row(
+                                    /*Row(
                                       children: [
                                         Checkbox(checkColor: Colors.white,
                                           activeColor: Greencolor,
@@ -95,29 +93,30 @@ class _SigninpageState extends State<Signinpage> {
                                           },
                                         ),
                                         Text("Keep me logged in",style: TextStyle(
-                                            fontSize: 25,fontWeight: FontWeight.w700,
+                                            fontSize: 20,
                                           color:Greycolor
                                         ),),
 
                                       ],
-                                    ),
+                                    ),*/
 
                                     SizedBox(height: 30,),
 
                                     Custombuttongreen(title: "Sign In",
                                     titleclr: Whitecolor,bgclr: Greencolor,
                                     click: (){
-                                      Navigator.of(context).pushNamed('Signup');
+                                      signInAPICall();
+                               //       Navigator.of(context).pushNamed('Signup');
                                     },),
 
-SizedBox(height: 20,),
+                                      SizedBox(height: 20,),
 
-                                    Text("Don't have an account ? Sign Up",style: TextStyle(
+                                    /*Text("Don't have an account ? Sign Up",style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       color: Greycolor,fontSize: 22,
                                       fontWeight: FontWeight.bold
                                     ),),
-                                    SizedBox(height: 20,),
+                                    SizedBox(height: 20,),*/
                                   ],
                                 ),
                               ),
@@ -130,22 +129,47 @@ SizedBox(height: 20,),
                 ),
               ),
             ),
-
-
             //part 2
             Expanded(flex: 60,
               child: Column(children: [
-
                 Container(height: MediaQuery.of(context).size.height,
                     child: Image.asset('assets/images/signinbg.png',fit: BoxFit.cover,))
-
               ],),
             )
-
           ],)
 
         ],
       ),
     );
   }
+
+
+  signInAPICall(){
+
+    Map<String,String> params = {
+      "email":"arun1711996@gmail.com",
+      "password":"12345678"
+    };
+
+   http.post(APIs.loginURL,body: params).then((value){
+     print(value.body);
+     var parsedJson = jsonDecode(value.body);
+     if(parsedJson['status'].toString()=="1"){
+
+
+       if(parsedJson['status'].toString()=="0"){
+         Navigator.of(context).pushNamed(AdminDashboard.route);
+       }else if(parsedJson['status'].toString()=="1"){
+
+       }
+
+
+     }else
+       {
+         Fluttertoast.showToast(msg: "Invalid ID or Password");
+       }
+
+   });
+  }
+
 }

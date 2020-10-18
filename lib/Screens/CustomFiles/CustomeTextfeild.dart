@@ -16,9 +16,7 @@ class Customtectfeild extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: TextField(controller: textcontroller,style: TextStyle(
-            fontWeight: FontWeight.w600
-          ),
+          child: TextField(controller: textcontroller,style: TextStyle(),
             decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Greycolor,

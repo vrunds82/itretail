@@ -1,4 +1,10 @@
 
+class Global{
 
 
-const String BaseURL = "admin.itretail.saurabhenterprise.com/";
+
+  static int currentMenu=0;
+
+}
+
+
