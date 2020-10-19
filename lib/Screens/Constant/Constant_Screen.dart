@@ -26,7 +26,7 @@ var onbording_Que20="20. What would make this project successful in your eyes?";
 
 var name="Name";
 var officeAddress="Office Address";
-var gmailAddress="Gmail Address";
-var pinCode = "Pincode";
+var emailAddress="Email Address";
+var pinCode = "Pin code";
 var mobileNumber = "Mobile Number";
 

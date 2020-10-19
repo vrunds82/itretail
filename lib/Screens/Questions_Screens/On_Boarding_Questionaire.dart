@@ -160,9 +160,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans1Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans1Controller,
                         ),
 
                         // Quesiton 2
@@ -177,9 +177,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans2Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans2Controller,
                         ),
 
                         //Quesiton 3
@@ -194,9 +194,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans3Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans3Controller,
                         ),
 
                         //Please write your name and the date below to acknowledge that you will not pre-cut
@@ -210,9 +210,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans4Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans4Controller,
                         ),
 
                         //What POS company are you switching off of and why?
@@ -223,9 +223,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans5Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans5Controller,
                         ),
 
                         //Do you have your own Hand Scanners?
@@ -600,9 +600,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                             ),
                           ],
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here...",
-                          textcontroller: ans12Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here...",
+                          textController: ans12Controller,
                         ),
 
                         //Will you be doing shelf labels?
@@ -1136,9 +1136,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans19Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans19Controller,
                         ),
 
 //What would make this project successful in your eyes?
@@ -1151,9 +1151,9 @@ class _OnbordingquesState extends State<Onbordingques> {
                         SizedBox(
                           height: 10,
                         ),
-                        Customtectfeild(
-                          hinttitle: "Your Answer Here....",
-                          textcontroller: ans20Controller,
+                        CustomTextField(
+                          hintTitle: "Your Answer Here....",
+                          textController: ans20Controller,
                         ),
 
                         SizedBox(

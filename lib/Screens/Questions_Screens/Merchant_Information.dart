@@ -55,8 +55,8 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(
                       height: 10,
                     ),
-                    Customtectfeild(
-                      hinttitle: "Your Answer Here...",
+                    CustomTextField(
+                      hintTitle: "Your Answer Here...",
                     ),
 
                     //official address
@@ -73,8 +73,8 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(
                       height: 10,
                     ),
-                    Customtectfeild(
-                      hinttitle: "Your Answer Here...",
+                    CustomTextField(
+                      hintTitle: "Your Answer Here...",
                     ),
 
 //gmail address
@@ -85,15 +85,15 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     Row(
                       children: [
                         CustomText(
-                          title: gmailAddress,
+                          title: emailAddress,
                         ),
                       ],
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Customtectfeild(
-                      hinttitle: "Your Answer Here...",
+                    CustomTextField(
+                      hintTitle: "Your Answer Here...",
                     ),
 
                     //pincode
@@ -110,8 +110,8 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(
                       height: 10,
                     ),
-                    Customtectfeild(
-                      hinttitle: "Your Answer Here...",
+                    CustomTextField(
+                      hintTitle: "Your Answer Here...",
                     ),
 
                     //mobile number
@@ -128,8 +128,8 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                     SizedBox(
                       height: 10,
                     ),
-                    Customtectfeild(
-                      hinttitle: "Your Answer Here...",
+                    CustomTextField(
+                      hintTitle: "Your Answer Here...",
                     ),
 
                     //buttons

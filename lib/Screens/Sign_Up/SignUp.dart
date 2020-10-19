@@ -63,7 +63,7 @@ class _SignUppageState extends State<SignUppage> {
                                         CustomText(title: "Full Name",textcolor: Greycolor,),
                                       ],
                                     ),
-                                    SigninTextfield(hinttitle: "Lorem Ipsum"),
+                                    SignInTextField(hintTitle: "Lorem Ipsum"),
 
                                     SizedBox(  height: 40,),
                                     //email
@@ -73,7 +73,7 @@ class _SignUppageState extends State<SignUppage> {
                                       ],
                                     ),
                                     //SizedBox(height: 5,),
-                                    SigninTextfield(hinttitle: "you@example.com"),
+                                    SignInTextField(hintTitle: "you@example.com"),
 
                                     SizedBox(  height: 40,),
 
@@ -92,7 +92,7 @@ class _SignUppageState extends State<SignUppage> {
                                       ],
                                     ),
                                     //SizedBox(height: 5,),
-                                    SigninTextfield(hinttitle: "you@example.com"),
+                                    SignInTextField(hintTitle: "you@example.com"),
 
 
 

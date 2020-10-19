@@ -64,7 +64,7 @@ class _SignUpStyle2State extends State<SignUpStyle2> {
                               ],
                             ),
                             //SizedBox(height: 5,),
-                            SigninTextfield(hinttitle: "you@example.com"),
+                            SignInTextField(hintTitle: "you@example.com"),
 
                             SizedBox(  height: 40,),
 
@@ -83,7 +83,7 @@ class _SignUpStyle2State extends State<SignUpStyle2> {
                               ],
                             ),
                             //SizedBox(height: 5,),
-                            SigninTextfield(hinttitle: "you@example.com"),
+                            SignInTextField(hintTitle: "you@example.com"),
 
                             Row(
                               children: [
