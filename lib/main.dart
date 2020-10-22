@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
 
       routes: {
 
-      'onbordingque':(context)=>Onbordingques(),
+        'onbordingque':(context)=>Onbordingques(),
         'merchantinfo':(context)=>Merchantinformationpage(),
         'hardware_reruirnment':(context)=>Hardwarerequirnment(),
         'store_picture':(context)=>Storepicture(),
@@ -58,8 +58,11 @@ class MyApp extends StatelessWidget {
         'Signup_style2':(context)=>SignUpStyle2(),
         'Orderstatus':(context)=>OrderstatusPage(),
 
+        Hardwarerequirnment.route:(context)=>Hardwarerequirnment(),
+
         // ADMIN PAGES
-        AdminDashboard.route:(context)=>AdminDashboard()
+        AdminDashboard.route:(context)=>AdminDashboard(),
+        UserDashboard.route:(context)=>UserDashboard()
 
       },
     );

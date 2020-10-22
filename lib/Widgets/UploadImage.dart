@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
@@ -8,15 +9,20 @@ import 'package:http/http.dart' as http;
 import 'package:itretail/Config/config.dart';
 
 class UploadImage extends StatefulWidget {
-  Function(String path) onChanged;
 
-  UploadImage({this.onChanged});
+  String path;
+  Function(String path) onChanged;
+  VoidCallback onDelete;
+
+  UploadImage({this.onChanged,this.path});
 
   @override
   _UploadImageState createState() => _UploadImageState();
 }
 
 class _UploadImageState extends State<UploadImage> {
+
+
   PickedFile _file;
   final picker = ImagePicker();
 
@@ -59,7 +65,7 @@ class _UploadImageState extends State<UploadImage> {
       onTap: () {
         getImage();
       },
-      child: _file != null
+      child: widget.path==null?_file != null
           ? Image.network(
               _file.path,
               height: 70,
@@ -69,7 +75,33 @@ class _UploadImageState extends State<UploadImage> {
               'assets/images/Imageupload.png',
               height: 70,
               width: 70,
+            ):Container(
+              height: 70,
+              width: 70,
+        decoration: BoxDecoration(image: DecorationImage(
+          image:CachedNetworkImageProvider(widget.path),
+        )),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: widget.onDelete??(){},
+                  child: Card(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Icon(Icons.cancel,size: 20,color: Colors.red,),
+                    ),
+                  ),
+                ),
+              ],
             ),
+          ],
+        ),
+
+      ),
     );
   }
 }

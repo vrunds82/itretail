@@ -7,11 +7,23 @@ import 'package:itretail/Screens/Questions_Screens/On_Boarding_Questionaire.dart
 import 'package:itretail/Widgets/UploadImage.dart';
 
 class Hardwarerequirnment extends StatefulWidget {
+
+  static String route ="hardwareRequirement";
   @override
   _HardwarerequirnmentState createState() => _HardwarerequirnmentState();
 }
 
 class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
+
+
+  List<String> computerPorts = new List();
+  List<String> scale = new List();
+  List<String> scanner = new List();
+  List<String> printer = new List();
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +82,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                       ),
                       Row(
                         children: [
-                          UploadImage(),
+                          UploadImage(path: "https://images.pexels.com/photos/5501867/pexels-photo-5501867.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",),
                           SizedBox(
                             width: 30,
                           ),
