@@ -9,19 +9,16 @@ class OrderstatusPage extends StatefulWidget {
 }
 
 class _OrderstatusPageState extends State<OrderstatusPage> {
-
-  final String onbordingQue = 'assets/images/Onboarding.svg';
-  final String hardwareRequirnment = 'assets/images/Hardware.svg';
-  final String product = 'assets/images/Product.svg';
-  final String store = 'assets/images/Product.svg';
-  final String training = 'assets/images/Training.svg';
-  final String merchant = 'assets/images/Training.svg';
-  final String finalpayment = 'assets/images/FinalPayment.svg';
-  final String hardwareshipped = 'assets/images/HardwareShipped.svg';
-  final String install = 'assets/images/Install.svg';
-  final String finaltraining = 'assets/images/FinalTraining.svg';
-
-
+  final String onbordingQue = 'assets/flowimages/1.png';
+  final String hardwareRequirement = 'assets/flowimages/2.png';
+  final String product = 'assets/flowimages/3.png';
+  final String store = 'assets/flowimages/4.png';
+  final String training = 'assets/flowimages/5.png';
+  final String merchant = 'assets/flowimages/6.png';
+  final String finalPayment = 'assets/flowimages/7.png';
+  final String hardwareShipped = 'assets/flowimages/8.png';
+  final String install = 'assets/flowimages/9.png';
+  final String finalTraining = 'assets/flowimages/10.png';
 
   @override
   Widget build(BuildContext context) {
@@ -30,135 +27,154 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-
               Center(
-                child: Text("Order Status",style: TextStyle(
-                    fontSize:MediaQuery.of(context).size.height*0.07
-                    ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
-                ),),
-              ),
-
-              SizedBox(height: 20,),
-
-              Text("Thanks for your order! This is what need to done.",
+                child: Text(
+                  "Order Status",
                   style: TextStyle(
-                  fontSize:MediaQuery.of(context).size.height*0.04
-                  ,fontFamily: 'GOTHAM-BLACK',color:Greycolor
-              )),
-
-              SizedBox(height: 20,),
-
+                      fontSize: MediaQuery.of(context).size.height * 0.07,
+                      fontFamily: 'GOTHAM-BLACK',
+                      color: Greencolor),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text("Thanks for your order! This is what need to done.",
+                  textAlign: TextAlign.center,style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.04,
+                      fontFamily: 'GOTHAM-BLACK',
+                      color: Greycolor)),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                  //onboarding questionnaior
-                  CustomOrderstaus(img: onbordingQue,
-                  titledone: "DONE",
-                  textclr: Greencolor,
-                  bottomtext: " Onbording\n Questionnaire",
-                  bottomtextclr: Greycolor,
-                  imgclr: Greencolor,
-                  borderclr: Greencolor,),
+                    //onboarding questionnaior
+                    CustomOrderstaus(
+                      img: onbordingQue,
+                      titledone: "DONE",
+                      textclr: Greencolor,
+                      bottomtext: " Onbording\n Questionnaire",
+                      bottomtextclr: Greycolor,
+                      imgclr: Greencolor,
+                      borderclr: Greencolor,
+                    ),
 
                     //hardware requirnment
-                    CustomOrderstaus(img: hardwareRequirnment,
+                    CustomOrderstaus(
+                      img: hardwareRequirement,
                       titledone: "DONE",
                       textclr: Greencolor,
                       bottomtext: " Hardware\n Requirnment",
                       bottomtextclr: Greycolor,
-                    imgclr: Greencolor,
-                    borderclr: Greencolor,),
+                      imgclr: Greencolor,
+                      borderclr: Greencolor,
+                    ),
 
                     //product file
-                    CustomOrderstaus(img: product,
+                    CustomOrderstaus(
+                      img: product,
                       titledone: "DONE",
                       textclr: Greencolor,
                       bottomtext: " Product File\n",
                       bottomtextclr: Greycolor,
-                    imgclr: Greencolor,
-                    borderclr: Greencolor,),
+                      imgclr: Greencolor,
+                      borderclr: Greencolor,
+                    ),
 
                     //store picture
-                    CustomOrderstaus(img: store,
+                    CustomOrderstaus(
+                      img: store,
                       titledone: "DONE",
                       textclr: Greencolor,
                       bottomtext: "Store pictures\n",
                       bottomtextclr: Greycolor,
-                    imgclr: Greencolor,
-                    borderclr: Greencolor,),
+                      imgclr: Greencolor,
+                      borderclr: Greencolor,
+                    ),
 
                     //training
-                    CustomOrderstaus(img: training,
+                    CustomOrderstaus(
+                      img: training,
                       titledone: "DONE",
                       textclr: Greencolor,
                       bottomtext: " Training\n ",
                       bottomtextclr: Greycolor,
-                    imgclr: Greencolor,
-                    borderclr: Greencolor,),
-
-                ],),
+                      imgclr: Greencolor,
+                      borderclr: Greencolor,
+                    ),
+                  ],
+                ),
               ),
-
-              SizedBox(height: MediaQuery.of(context).size.height*0.2,),
-
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  //merchnat
+                  CustomOrderstaus(
+                    img: training,
+                    titledone: "DONE",
+                    textclr: Greencolor,
+                    bottomtext: " Training\n ",
+                    bottomtextclr: Greycolor,
+                    imgclr: Greencolor,
+                    borderclr: Greencolor,
+                  ),
 
-              //merchnat
-                CustomOrderstaus(img: training,
-                  titledone: "DONE",
-                  textclr: Greencolor,
-                  bottomtext: " Training\n ",
-                  bottomtextclr: Greycolor,
-                imgclr: Greencolor,
-                borderclr: Greencolor,),
+                  //final payment
+                  CustomOrderstaus(
+                    img: finalPayment,
+                    titledone: "DONE",
+                    textclr: Greencolor,
+                    bottomtext: " Fianl\nPayment ",
+                    bottomtextclr: Greycolor,
+                    imgclr: Greencolor,
+                    borderclr: Greencolor,
+                  ),
 
-                //final payment
-                CustomOrderstaus(img: finalpayment,
-                  titledone: "DONE",
-                  textclr: Greencolor,
-                  bottomtext: " Fianl\nPayment ",
-                  bottomtextclr: Greycolor,
-                imgclr: Greencolor,
-                borderclr: Greencolor,),
+                  //hardwarre shipped
+                  CustomOrderstaus(
+                    img: hardwareShipped,
+                    titledone: "PENDING",
+                    textclr: Greencolor,
+                    bottomtext: "Hardware\nShipped",
+                    bottomtextclr: Greycolor,
+                    imgclr: Greycolor,
+                    borderclr: Greycolor,
+                  ),
 
-                //hardwarre shipped
-                CustomOrderstaus(img: hardwareshipped,
-                  titledone: "PENDING",
-                  textclr: Greencolor,
-                  bottomtext: "Hardware\nShipped",
-                  bottomtextclr: Greycolor,
-                imgclr: Greycolor,
-                borderclr: Greycolor,),
+                  //install
+                  CustomOrderstaus(
+                    img: install,
+                    titledone: "PENDING",
+                    textclr: Greencolor,
+                    bottomtext: " Install \n",
+                    bottomtextclr: Greycolor,
+                    imgclr: Greycolor,
+                    borderclr: Greycolor,
+                  ),
 
-                //install
-                CustomOrderstaus(img: install,
-                  titledone: "PENDING",
-                  textclr: Greencolor,
-                  bottomtext: " Install \n",
-                  bottomtextclr: Greycolor,
-                imgclr: Greycolor,
-                borderclr: Greycolor,),
-
-                //final training
-                CustomOrderstaus(img: finaltraining,
-                  titledone: "PENDING",
-                  textclr: Greencolor,
-                  bottomtext: "Final Training\n& Go Live",
-                  bottomtextclr: Greycolor,
-                imgclr: Greycolor,
-                borderclr: Greycolor,),
-
-
-              ],)
-
-
+                  //final training
+                  CustomOrderstaus(
+                    img: finalTraining,
+                    titledone: "PENDING",
+                    textclr: Greencolor,
+                    bottomtext: "Final Training\n& Go Live",
+                    bottomtextclr: Greycolor,
+                    imgclr: Greycolor,
+                    borderclr: Greycolor,
+                  ),
+                ],
+              )
             ],
           ),
         ),
       ),
-
     );
   }
 }

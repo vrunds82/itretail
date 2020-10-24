@@ -28,25 +28,13 @@ class CustomOrderstaus extends StatelessWidget {
 
         SizedBox(height: 15,),
 
-        Container(height:120,width: 120, padding: const EdgeInsets.all(2.0),
-          child: Container(decoration: new BoxDecoration(
-            border: Border.all(
-                width: 2.0,
-                color: borderclr
-            ),
-            borderRadius: BorderRadius.all(
-                Radius.circular(55.0) //         <--- border radius here
-            ),
-
-
-          ),
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: SvgPicture.asset(
-                img,
-                fit: BoxFit.contain,
-                color: imgclr,
-              ),
+        Container(height:100,width: 100, padding: const EdgeInsets.all(2.0),
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: Image.asset(
+              img,
+              fit: BoxFit.contain,
+              color: imgclr,
             ),
           ),
         ),
@@ -57,8 +45,8 @@ class CustomOrderstaus extends StatelessWidget {
           child: Row(crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(bottomtext,style: TextStyle(
-                color: bottomtextclr,fontSize: 24,fontWeight: FontWeight.w700,
+              Text(bottomtext,textAlign: TextAlign.center,style: TextStyle(
+                color: bottomtextclr,fontSize: 20,fontWeight: FontWeight.w700,
                 fontFamily: 'GOTHAMMEDIUM'
               ),),
             ],
