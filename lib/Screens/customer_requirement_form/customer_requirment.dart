@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Screens/Global/vars.dart';
+import 'package:itretail/Screens/Questions_Screens/Product_File.dart';
 
 class CustomerRequirement extends StatefulWidget {
   @override
@@ -10,36 +11,36 @@ class CustomerRequirement extends StatefulWidget {
 
 class _CustomerRequirementState extends State<CustomerRequirement> {
 
-  String stringOnBoardingQuestionnaire ="Onboarding Questionnaire" ;
-  String stringMerchantInfo = "Merchant Information (ISO must supply VAR Sheet or we supply (VAR Sheet)";
-  String stringHardwareInfo= "Hardware Requirements";
-  String stringContractBringYourOwnHardware= "Contract – Bring your own Hardware";
-  String stringPictureAllPorts= "Picture - Back of Computer all ports";
-  String stringPictureScale= "Picture - Scale (Model Number, Cables)";
-  String stringPictureScanner= "Picture - Scanner (Model Number, Cables)";
-  String stringPicturePrinter= "Picture - Printer (Model Number, Cables)";
-  String stringStorePicture= "Store Pictures (Examples)";
-  String stringProcessOrder= "Process Order - Order Hardware & Enter tracking info (note: from our supplier or from our office)";
-  String stringComputerInStock= "Computer (Instock)";
-  String stringPinPad= "Pin Pad & Cables (Supplier Encrypts)";
-  String stringScale= "Scale & Cables ";
-  String stringScanner= "Scanner & Cables – Hand Scanner, Cash Drawer, Mounts , Zywall instock)";
-  String stringPrinter= "Printer & Cables";
-  String stringHandScanner= "Hand Scanner";
-  String stringCashDrawer= "Cash Drawer";
-  String stringMounts= "Mounts";
-  String stringZyWall= "Zywall";
-  String stringTraining= "Training (Back office and Front End – Watch Videos)";
-  String stringBackOfficeSetup= "Back Office Setup (Taxes, Departments, Vendors, Employees, Fees  … Link to BO with User & PW,)";
-  String stringProductFile= "Product File (Emily Sends Template) Download a CSV Template with Video how to use)";
-  String stringProductTemplate= "Product Template";
-  String stringPictureUPC= "Picture - what a UPC A barcode is ";
-  String stringPictureEAN= "Picture - what a EAN barcode is ";
-  String stringPicture002= "Picture what a 002 barcode is ";
-  String stringFinalPayment= "Final Payment ";
-  String stringEquipmentPayment= "Equipment Shipped! Enter Tracking from Office to the Cust; Tracking from supplier s/b entered.";
-  String stringInstall= "Install ";
-  String stringTrainingGoLive= "Training and Go live";
+  String stringOnBoardingQuestionnaire ="1. Onboarding Questionnaire" ;
+  String stringMerchantInfo = "2. Merchant Information (ISO must supply VAR Sheet or we supply (VAR Sheet)";
+  String stringHardwareInfo= "3. Hardware Requirements";
+  String stringContractBringYourOwnHardware= "4. Contract – Bring your own Hardware";
+  String stringPictureAllPorts= "5. Picture - Back of Computer all ports";
+  String stringPictureScale= "6. Picture - Scale (Model Number, Cables)";
+  String stringPictureScanner= "7. Picture - Scanner (Model Number, Cables)";
+  String stringPicturePrinter= "8. Picture - Printer (Model Number, Cables)";
+  String stringStorePicture= "9. Store Pictures (Examples)";
+  String stringProcessOrder= "10. Process Order - Order Hardware & Enter tracking info (note: from our supplier or from our office)";
+  String stringComputerInStock= "11. Computer (Instock)";
+  String stringPinPad= "12. Pin Pad & Cables (Supplier Encrypts)";
+  String stringScale= "13. Scale & Cables ";
+  String stringScanner= "14. Scanner & Cables – Hand Scanner, Cash Drawer, Mounts , Zywall instock)";
+  String stringPrinter= "15. Printer & Cables";
+  String stringHandScanner= "16. Hand Scanner";
+  String stringCashDrawer= "17. Cash Drawer";
+  String stringMounts= "18. Mounts";
+  String stringZyWall= "19. Zywall";
+  String stringTraining= "20. Training (Back office and Front End – Watch Videos)";
+  String stringBackOfficeSetup= "21. Back Office Setup (Taxes, Departments, Vendors, Employees, Fees  … Link to BO with User & PW,)";
+  String stringProductFile= "22. Product File (Emily Sends Template) Download a CSV Template with Video how to use)";
+  String stringProductTemplate= "23. Product Template";
+  String stringPictureUPC= "24. Picture - what a UPC A barcode is ";
+  String stringPictureEAN= "25. Picture - what a EAN barcode is ";
+  String stringPicture002= "26. Picture what a 002 barcode is ";
+  String stringFinalPayment= "27. Final Payment ";
+  String stringEquipmentPayment= "28. Equipment Shipped! Enter Tracking from Office to the Cust; Tracking from supplier s/b entered.";
+  String stringInstall= "29. Install ";
+  String stringTrainingGoLive= "30. Training and Go live";
   bool onBoardingQuestionnaire=false;
   bool merchantInfo=false;
   bool hardwareInfo=false;
@@ -114,10 +115,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                 title: stringPictureScale,
                 value: pictureScale,
               ),
-              CustomCheckTile(
-                title: stringPictureScale,
-                value: pictureScale,
-              ),
+
               CustomCheckTile(
                 title: stringPictureScanner,
                 value: pictureScanner,
@@ -147,7 +145,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                 value: scale,
               ),
               CustomCheckTile(
-                title: stringPictureScanner,
+                title: stringScanner,
                 value: scanner,
               ),
               CustomCheckTile(
@@ -179,7 +177,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                 value: backOfficeSetup,
               ),
               CustomCheckTile(
-                title: stringProductTemplate,
+                title: stringProductFile,
                 value: productFile,
               ),
               CustomCheckTile(
