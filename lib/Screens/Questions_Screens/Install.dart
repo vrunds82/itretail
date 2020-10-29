@@ -1,17 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:itretail/Config/API_URLs.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/UploadImage.dart';
-import 'package:itretail/Widgets/UploadImage.dart';
-import 'package:itretail/Widgets/UploadImage.dart';
+import 'package:http/http.dart' as http;
 
 class Installpage extends StatefulWidget {
+  
+  static String route = "installPage";
+  
   @override
   _InstallpageState createState() => _InstallpageState();
 }
 
 class _InstallpageState extends State<Installpage> {
+
+
+  List<String> installPictures = new List();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,21 +63,38 @@ class _InstallpageState extends State<Installpage> {
                     SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 300,
-                          //color: Colors.red,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              UploadImage(),
-                              UploadImage(),
-                              UploadImage(),
-                            ],
+                    Container(
+                      height: 100,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ListView.builder(
+                              scrollDirection:Axis.horizontal,
+                              itemCount: installPictures.length+1,
+                              itemBuilder: (c,i){
+                                return UploadImage(path: installPictures.isEmpty?null:installPictures.length>i?installPictures[i]:null,
+                                  onChanged: (value){
+                                    print("Clicked on :!$i");
+                                    if(installPictures.isEmpty || installPictures.length<i+1){
+                                      installPictures.add(value);
+                                    }else{
+                                      installPictures[i]=value;
+                                    }
+                                    print(installPictures);
+                                    setState(() {
+
+                                    });
+                                  },onDelete: (){
+                                    print("Removing");
+                                    installPictures.removeAt(i);
+                                    setState(() {
+                                    });
+                                  },);
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -99,7 +126,7 @@ class _InstallpageState extends State<Installpage> {
                       titleclr: Whitecolor,
                       bgclr: Greencolor,
                       click: () {
-                        Navigator.of(context).pushNamed('Install_Done');
+                      postData();
                       },
                     ),
                   ],
@@ -114,4 +141,39 @@ class _InstallpageState extends State<Installpage> {
       ),
     );
   }
+
+  postData()
+  {
+    http.post("${BaseURL}addInstallPics.php",
+        body: {"uid":Global.userID??2.toString(),
+          "pics":jsonEncode(installPictures).toString()
+        }).then((value){
+
+      print(value.body);
+
+    });
+  }
+
+  getData()
+  {
+    http.post("${BaseURL}getHardware.php",
+        body: {"uid":Global.userID??2.toString()
+        }).then((value){
+      print(value.body);
+      var parsedJson = jsonDecode(value.body);
+      print(parsedJson['computerports']);
+
+      List<String> abc = jsonDecode(parsedJson['computerports']).cast<String>();
+
+      print(abc.length);
+      print(abc[1]);
+
+      var ab =jsonDecode(parsedJson['computerports']);
+
+      setState(() {
+
+      });
+    });
+  }
+  
 }

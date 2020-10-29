@@ -1,18 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:itretail/Config/API_URLs.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/CustomFiles/CustomtextWithUnderline.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/UploadImage.dart';
-import 'package:itretail/Widgets/UploadImage.dart';
+import 'package:http/http.dart' as http;
 
 class Finalpayment extends StatefulWidget {
+  
+  static String route ="finalPayment";
+  
   @override
   _FinalpaymentState createState() => _FinalpaymentState();
 }
 
 class _FinalpaymentState extends State<Finalpayment> {
+
+  List<String> paymentImages = new List();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,17 +63,38 @@ class _FinalpaymentState extends State<Finalpayment> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      UploadImage(),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      UploadImage(),
-                      SizedBox(
-                        width: 30,
-                      ),
-                    ],
+                  Container(
+                    height: 100,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            scrollDirection:Axis.horizontal,
+                            itemCount: paymentImages.length+1,
+                            itemBuilder: (c,i){
+                              return UploadImage(path: paymentImages.isEmpty?null:paymentImages.length>i?paymentImages[i]:null,
+                                onChanged: (value){
+                                  print("Clicked on :!$i");
+                                  if(paymentImages.isEmpty || paymentImages.length<i+1){
+                                    paymentImages.add(value);
+                                  }else{
+                                    paymentImages[i]=value;
+                                  }
+                                  print(paymentImages);
+                                  setState(() {
+
+                                  });
+                                },onDelete: (){
+                                  print("Removing");
+                                  paymentImages.removeAt(i);
+                                  setState(() {
+                                  });
+                                },);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -92,7 +123,7 @@ class _FinalpaymentState extends State<Finalpayment> {
                     titleclr: Whitecolor,
                     bgclr: Greencolor,
                     click: () {
-                      Navigator.of(context).pushNamed('Equipment_Shipped');
+                      postData();
                     },
                   ),
                 ],
@@ -111,4 +142,40 @@ class _FinalpaymentState extends State<Finalpayment> {
       ),
     );
   }
+
+
+  postData()
+  {
+    http.post("${BaseURL}addPayment.php",
+        body: {"uid":Global.userID??2.toString(),
+          "pics":jsonEncode(paymentImages).toString()
+        }).then((value){
+
+      print(value.body);
+
+    });
+  }
+
+  getData()
+  {
+    http.post("${BaseURL}getHardware.php",
+        body: {"uid":Global.userID??2.toString()
+        }).then((value){
+      print(value.body);
+      var parsedJson = jsonDecode(value.body);
+      print(parsedJson['computerports']);
+
+      List<String> abc = jsonDecode(parsedJson['computerports']).cast<String>();
+
+      print(abc.length);
+      print(abc[1]);
+
+      var ab =jsonDecode(parsedJson['computerports']);
+
+      setState(() {
+
+      });
+    });
+  }
+  
 }

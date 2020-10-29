@@ -59,6 +59,11 @@ class MyApp extends StatelessWidget {
         'Orderstatus':(context)=>OrderstatusPage(),
 
         Hardwarerequirnment.route:(context)=>Hardwarerequirnment(),
+        Productfile.route:(context)=>Productfile(),
+        Storepicture.route:(context)=>Storepicture(),
+        Finalpayment.route:(context)=>Finalpayment(),
+        Installpage.route:(context)=>Installpage(),
+
 
         // ADMIN PAGES
         AdminDashboard.route:(context)=>AdminDashboard(),

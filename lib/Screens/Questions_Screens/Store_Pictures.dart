@@ -1,17 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:itretail/Config/API_URLs.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/UploadImage.dart';
+import 'package:http/http.dart' as http;
 
 
 class Storepicture extends StatefulWidget {
+
+  static String route = "storePicture";
+
   @override
   _StorepictureState createState() => _StorepictureState();
 }
 
 class _StorepictureState extends State<Storepicture> {
+
+  List<String> storePictures = new List();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,26 +65,38 @@ class _StorepictureState extends State<Storepicture> {
                     ),
                     Column(
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              //color: Colors.red,
-                              width: 350,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  UploadImage(),
-                                  // SizedBox(width: 10,),
-                                  UploadImage(),
-                                  // SizedBox(width: 10,),
-                                  UploadImage(),
-                                  //SizedBox(width: 10,),
-                                  UploadImage(),
-                                ],
+                        Container(
+                          height: 100,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  scrollDirection:Axis.horizontal,
+                                  itemCount: storePictures.length+1,
+                                  itemBuilder: (c,i){
+                                    return UploadImage(path: storePictures.isEmpty?null:storePictures.length>i?storePictures[i]:null,
+                                      onChanged: (value){
+                                        print("Clicked on :!$i");
+                                        if(storePictures.isEmpty || storePictures.length<i+1){
+                                          storePictures.add(value);
+                                        }else{
+                                          storePictures[i]=value;
+                                        }
+                                        print(storePictures);
+                                        setState(() {
+
+                                        });
+                                      },onDelete: (){
+                                        print("Removing");
+                                        storePictures.removeAt(i);
+                                        setState(() {
+                                        });
+                                      },);
+                                  },
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -192,7 +215,7 @@ class _StorepictureState extends State<Storepicture> {
                       titleclr: Colors.white,
                       bgclr: Greencolor,
                       click: () {
-                        Navigator.of(context).pushNamed('watch_trainingVedio');
+                        postData();
                       },
                     ),
                   ],
@@ -207,4 +230,43 @@ class _StorepictureState extends State<Storepicture> {
       ),
     );
   }
+
+
+
+  postData()
+  {
+    http.post("${BaseURL}addStore.php",
+        body: {"uid":Global.userID??2.toString(),
+          "pics":jsonEncode(storePictures).toString()
+        }).then((value){
+
+      print(value.body);
+
+    });
+  }
+
+  getData()
+  {
+    http.post("${BaseURL}getHardware.php",
+        body: {"uid":Global.userID??2.toString()
+        }).then((value){
+      print(value.body);
+      var parsedJson = jsonDecode(value.body);
+      print(parsedJson['computerports']);
+
+      List<String> abc = jsonDecode(parsedJson['computerports']).cast<String>();
+
+      print(abc.length);
+      print(abc[1]);
+
+      var ab =jsonDecode(parsedJson['computerports']);
+
+      setState(() {
+
+      });
+    });
+  }
+
+
+
 }

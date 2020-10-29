@@ -1,7 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:itretail/Screens/Questions_Screens/Final_Payment.dart';
 import 'package:itretail/Screens/Questions_Screens/Hardware_Requiements.dart';
+import 'package:itretail/Screens/Questions_Screens/Install.dart';
+import 'package:itretail/Screens/Questions_Screens/Product_File.dart';
+import 'package:itretail/Screens/Questions_Screens/Store_Pictures.dart';
 
 class UserDashboard extends StatefulWidget {
 
@@ -17,7 +21,11 @@ class _UserDashboardState extends State<UserDashboard> {
   List<String> paths =
   [
     "onbordingque",
-    Hardwarerequirnment.route
+    Hardwarerequirnment.route,
+    Productfile.route,
+    Storepicture.route,
+    Finalpayment.route,
+    Installpage.route
 
   ];
 
