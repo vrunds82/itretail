@@ -87,7 +87,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                   "Customer Requirement Form",
                   style: TextStyle(
                       fontSize: 50,
-                      fontFamily: 'GOTHAM-BLACK',
+
                       color: Greencolor),
                 ),
               ),
