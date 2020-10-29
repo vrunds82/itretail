@@ -3,11 +3,21 @@ import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/Menu/MenuItem.dart';
 
 class Menu extends StatefulWidget {
+
+  VoidCallback callback;
+
+
+  Menu({this.callback});
+
   @override
   _MenuState createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> {
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,10 +30,11 @@ class _MenuState extends State<Menu> {
 
         child: Column(
           children: [
-            MenuItem(title: "Home",iconData: Icons.home,position: 0,),
-            MenuItem(title: "All Users",iconData: Icons.people,position: 1,),
-            MenuItem(title: "Add User",iconData: Icons.person_add,position: 2,),
-            MenuItem(title: "Reports",iconData: Icons.assignment_outlined,position: 3,),
+            MenuItem(title: "Home",iconData: Icons.home,position: 0,callback: widget.callback,),
+            MenuItem(title: "All Users",iconData: Icons.people,position: 1,callback: widget.callback,),
+            MenuItem(title: "Add User",iconData: Icons.person_add,position: 2,callback: widget.callback,),
+            MenuItem(title: "Reports",iconData: Icons.assignment_outlined,position: 3,callback: widget.callback,),
+            MenuItem(title: "Reports",iconData: Icons.assignment_outlined,position:6,callback: widget.callback,),
             Spacer(),
             GestureDetector(onTap: (){
               Navigator.pushNamedAndRemoveUntil(context, "Signin", (r) => false);
