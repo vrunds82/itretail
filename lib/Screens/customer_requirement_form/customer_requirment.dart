@@ -40,9 +40,9 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "8.3": pictureEAN,
       "8.4": picture002,
       "9": finalPayment,
-      "10": equipmentPayment,
-      "11": install,
-      "12": trainingGoLive
+      /*"10": equipmentPayment,*/
+      "10": install,
+      "11": trainingGoLive
     };
     print(CRF);
   }
@@ -90,9 +90,9 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "8.3": pictureEAN==true?0:5,
       "8.4": picture002==true?0:5,*/
       "9": finalPayment==true?0:5,
-      "10": equipmentPayment==true?0:5,
-      "11": install==true?0:5,
-      "12": trainingGoLive==true?0:5
+      /*"10": equipmentPayment==true?0:5,*/
+      "10": install==true?0:5,
+      "11": trainingGoLive==true?0:5
     };
     print(CRF);
   }
@@ -438,7 +438,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                   },
                 ),
               ),
-              Card(
+             /* Card(
                 child: CustomCheckTile(
                   title: stringEquipmentPayment,
                   value: equipmentPayment,
@@ -447,7 +447,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                     setState(() {});
                   },
                 ),
-              ),
+              ),*/
               Card(
                 child: CustomCheckTile(
                   title: stringInstall,

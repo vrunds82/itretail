@@ -35,8 +35,8 @@ String stringPicture002 = "8.4 Picture what a 002 barcode is ";
 String stringFinalPayment = "9. Final Payment ";
 String stringEquipmentPayment =
     "10. Equipment Shipped! Enter Tracking from Office to the Cust; Tracking from supplier s/b entered.";
-String stringInstall = "11. Install ";
-String stringTrainingGoLive = "12. Training and Go live";
+String stringInstall = "10. Install ";
+String stringTrainingGoLive = "11. Training and Go live";
 bool onBoardingQuestionnaire = false;
 bool merchantInfo = false;
 bool hardwareInfo = false;
