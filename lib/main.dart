@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:itretail/Screens/Questions_Screens/show_onboarding_answer.dart';
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
-import 'package:itretail/Screens/customer_requirement_form/customer_requirment.dart';
+import 'package:itretail/Screens/admin/userOnboarding/userOnborading.dart';
+
 
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
 
@@ -40,10 +41,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ShowOnBoardingAnswers(),
+
+      home: UserOnBoarding(),
+
 
       routes: {
-
         'onbordingque':(context)=>Onbordingques(),
         'merchantinfo':(context)=>Merchantinformationpage(),
         'hardware_reruirnment':(context)=>Hardwarerequirnment(),

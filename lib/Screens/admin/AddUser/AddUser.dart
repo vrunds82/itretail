@@ -287,24 +287,5 @@ class _AddUserState extends State<AddUser> {
 
   }
 
-  addUser() async {
 
-
-
-
-
-    Map<String, String> params = {
-      'name': nameController.text,
-      "email": emailController.text,
-      "password": passwordController.text,
-      "contact": numberController.text,
-      "type": "0",
-      "address": addressController.text,
-      "pincode": pincodeController.text
-    };
-
-    await http.post(APIs.addMerchant, body: params).then((value) {
-      print(value.body);
-    });
-  }
 }

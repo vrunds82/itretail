@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -76,6 +77,7 @@ class _OnbordingquesState extends State<Onbordingques> {
     });
   }
 
+  List<String> storePictures = new List();
   String storenumber;
   List<String> listitems = ['1', '2', '3', '4'];
   List<String> listfrontofthestore = ['1', '2', '3', '4'];
@@ -112,11 +114,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    UploadImage(
-                      onChanged: (value) {
-                        print(value);
-                      },
-                    ),
+
                     SizedBox(
                       height: 40,
                     ),
@@ -1079,17 +1077,36 @@ class _OnbordingquesState extends State<Onbordingques> {
 
 //upload image
 //
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 0, 20, 0),
+                          Container(
+                            height: 100,
                             child: Row(
                               children: [
-                                UploadImage(
-                                  onChanged: (value) {
-                                    print(value);
-                                  },
+                                Expanded(
+                                  child: ListView.builder(
+                                    scrollDirection:Axis.horizontal,
+                                    itemCount: storePictures.length+1,
+                                    itemBuilder: (c,i){
+                                      return UploadImage(path: storePictures.isEmpty?null:storePictures.length>i?storePictures[i]:null,
+                                        onChanged: (value){
+                                          print("Clicked on :!$i");
+                                          if(storePictures.isEmpty || storePictures.length<i+1){
+                                            storePictures.add(value);
+                                          }else{
+                                            storePictures[i]=value;
+                                          }
+                                          print(storePictures);
+                                          setState(() {
+
+                                          });
+                                        },onDelete: (){
+                                          print("Removing");
+                                          storePictures.removeAt(i);
+                                          setState(() {
+                                          });
+                                        },);
+                                    },
+                                  ),
                                 ),
-                                UploadImage(),
-                                UploadImage()
                               ],
                             ),
                           ),
@@ -1302,6 +1319,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     "q16": radioTerminal,
                                     "q17": Paymentmode.toString(),
                                     "q18": radioProductFile,
+                                    "q18_images":jsonEncode(storePictures).toString(),
                                     "q19": ans19Controller.text,
                                     "q20": ans20Controller.text,
                                     "q21": ans20Controller.text,
