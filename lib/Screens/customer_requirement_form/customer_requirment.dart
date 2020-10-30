@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
+import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Screens/Global/vars.dart';
 
@@ -42,6 +44,57 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "11": install,
       "12": trainingGoLive
     };
+    print(CRF);
+  }
+  createCRFIntMap() {
+    Map<String, int> CRF = {
+      "1": onBoardingQuestionnaire==true?0:5,
+      "2": merchantInfo==true?0:5,
+      "3": (contractBringYourOwnHardware == false ||
+          pictureAllPorts == false ||
+          pictureScale == false ||
+          pictureScanner == false ||
+          picturePrinter == false)==true?0:5,
+     /* "3.1": contractBringYourOwnHardware==true?0:5,
+      "3.2": pictureAllPorts==true?0:5,
+      "3.3": pictureScale==true?0:5,
+      "3.4": pictureScanner==true?0:5,
+      "3.5": picturePrinter==true?0:5,*/
+      "4": storePicture==true?0:5,
+      "5": (computerInStock == false ||
+          pinPad == false ||
+          scale == false ||
+          scanner == false ||
+          printer == false ||
+          handScanner == false ||
+          cashDrawer == false ||
+          mounts == false ||
+          zyWall == false)==true?0:5,
+      /*"5.1": computerInStock==true?0:5,
+      "5.2": pinPad==true?0:5,
+      "5.3": scale==true?0:5,
+      "5.4": scanner==true?0:5,
+      "5.5": printer==true?0:5,
+      "5.6": handScanner==true?0:5,
+      "5.7": cashDrawer==true?0:5,
+      "5.8": mounts==true?0:5,
+      "5.9": zyWall==true?0:5,*/
+      "6": training==true?0:5,
+      "7": backOfficeSetup==true?0:5,
+      "8": (productTemplate == false ||
+          pictureUPC == false ||
+          picture002 == false ||
+          pictureEAN == false)==true?0:5,
+      /*"8.1": productTemplate==true?0:5,
+      "8.2": pictureUPC==true?0:5,
+      "8.3": pictureEAN==true?0:5,
+      "8.4": picture002==true?0:5,*/
+      "9": finalPayment==true?0:5,
+      "10": equipmentPayment==true?0:5,
+      "11": install==true?0:5,
+      "12": trainingGoLive==true?0:5
+    };
+    print(CRF);
   }
 
   @override
@@ -415,6 +468,37 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                   },
                 ),
               ),
+              SizedBox(height: 10.0,),
+              Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Custombuttongrey(
+                      title: "CANCEL",
+                      titleclr: Whitecolor,
+                      bgclr: Lightgreycolor,
+                      click: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Custombuttongreen(
+                      title: "REGISTER CUSTOMER",
+                      titleclr: Whitecolor,
+                      bgclr: Greencolor,
+                      click: () {
+                       createMap();
+                       createCRFIntMap();
+
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 30.0,),
             ],
           ),
         ),
