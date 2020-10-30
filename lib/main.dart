@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itretail/Screens/Questions_Screens/show_onboarding_answer.dart';
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
 import 'package:itretail/Screens/customer_requirement_form/customer_requirment.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CustomerRequirement(),
+      home: ShowOnBoardingAnswers(),
 
       routes: {
 
