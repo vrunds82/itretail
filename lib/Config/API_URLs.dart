@@ -6,5 +6,7 @@ const String UploadURL = "${BaseURL}uploads/";
 
 class APIs{
   static String loginURL = BaseURL+"login.php";
-  static String addMerchant = BaseURL+"registerUser.php";
+  static String addCustomer = BaseURL+"registerUser.php";
+  static String getAllCustomer = BaseURL+"admin_getAllUsers.php";
+  static String getUserOnBoarding = BaseURL+"getOnBoarding.php";
 }
