@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:itretail/Config/API_URLs.dart';
 import 'package:itretail/Config/config.dart';
 
 class UploadImage extends StatefulWidget {
@@ -13,8 +14,9 @@ class UploadImage extends StatefulWidget {
   String path;
   Function(String path) onChanged;
   VoidCallback onDelete;
+  int id;
 
-  UploadImage({this.onChanged,this.path});
+  UploadImage({this.onChanged,this.path,this.id,this.onDelete});
 
   @override
   _UploadImageState createState() => _UploadImageState();
@@ -60,48 +62,56 @@ class _UploadImageState extends State<UploadImage> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("${widget.id} ${widget.path}");
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        getImage();
-      },
-      child: widget.path==null?_file != null
-          ? Image.network(
-              _file.path,
-              height: 70,
-              width: 70,
-            )
-          : Image.asset(
-              'assets/images/Imageupload.png',
-              height: 70,
-              width: 70,
-            ):Container(
-              height: 70,
-              width: 70,
-        decoration: BoxDecoration(image: DecorationImage(
-          image:CachedNetworkImageProvider(widget.path),
-        )),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () {
+            getImage();
+          },
+          child: widget.path==null?
+               Image.asset(
+                  'assets/images/Imageupload.png',
+                  height: 70,
+                  width: 70,
+                ):
+          Container(
+                  height: 70,
+                  width: 70,
+            decoration: BoxDecoration(image: DecorationImage(
+              image:CachedNetworkImageProvider(UploadURL+widget.path),fit: BoxFit.cover
+            )),
+            child: Column(
               children: [
-                GestureDetector(
-                  onTap: widget.onDelete??(){},
-                  child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Icon(Icons.cancel,size: 20,color: Colors.red,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: widget.onDelete??(){},
+                      child: Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: Icon(Icons.cancel,size: 20,color: Colors.red,),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
 
-      ),
+          ),
+        ),
+        SizedBox(width: 20,)
+      ],
     );
   }
 }

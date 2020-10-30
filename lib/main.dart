@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
-import 'package:itretail/Screens/customer_requirement_form/customer_requirment.dart';
+import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
+
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
 
 import 'Screens/Order_Status/Orderstatus.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CustomerRequirement(),
+      home: Signinpage(),
 
       routes: {
 
@@ -60,6 +61,11 @@ class MyApp extends StatelessWidget {
         'Orderstatus':(context)=>OrderstatusPage(),
 
         Hardwarerequirnment.route:(context)=>Hardwarerequirnment(),
+        Productfile.route:(context)=>Productfile(),
+        Storepicture.route:(context)=>Storepicture(),
+        Finalpayment.route:(context)=>Finalpayment(),
+        Installpage.route:(context)=>Installpage(),
+
 
         // ADMIN PAGES
         AdminDashboard.route:(context)=>AdminDashboard(),

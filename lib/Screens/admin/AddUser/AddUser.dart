@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:itretail/Config/API_URLs.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/Constant/Constant_Screen.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
@@ -10,6 +11,12 @@ import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:http/http.dart' as http;
 
 class AddUser extends StatefulWidget {
+
+  VoidCallback callback;
+
+
+  AddUser({this.callback});
+
   @override
   _AddUserState createState() => _AddUserState();
 }
@@ -241,7 +248,7 @@ class _AddUserState extends State<AddUser> {
                                     // If the form is valid, display a snackbar. In the real world,
                                     // you'd often call a server or save the information in a database.
                                     print("Done");
-                                    addUser();
+                                    moveToCRF();
 
                                   }
 
@@ -265,7 +272,27 @@ class _AddUserState extends State<AddUser> {
     );
   }
 
+
+  moveToCRF(){
+
+    Global.newUserName = nameController.text;
+    Global.newUserEmail = emailController.text;
+    Global.newUserPassword = passwordController.text;
+    Global.newUserAddress = addressController.text;
+    Global.newUserContact = numberController.text;
+    Global.newUserPinCode = pincodeController.text;
+
+    Global.currentMenu=6;
+    widget.callback();
+
+  }
+
   addUser() async {
+
+
+
+
+
     Map<String, String> params = {
       'name': nameController.text,
       "email": emailController.text,
