@@ -1,15 +1,18 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:itretail/Config/API_URLs.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/CustomFiles/SigninTectfield.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:http/http.dart' as http;
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
+import 'package:itretail/Screens/user/userDashboard/Order_Status/Orderstatus.dart';
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
 
 class Signinpage extends StatefulWidget {
@@ -232,8 +235,13 @@ class _SigninpageState extends State<Signinpage> {
       print(value.body);
       var parsedJson = jsonDecode(value.body);
       if (parsedJson['status'].toString() == "1") {
+
+        Global.userID=parsedJson['id'];
+        Global.name=parsedJson['name'];
+
         if (parsedJson['type'].toString() == "0") {
-          Navigator.of(context).pushNamed(UserDashboard.route);
+          Global.levels= jsonDecode(parsedJson['levels']);
+          Navigator.of(context).pushNamed(OrderstatusPage.route);
         } else if (parsedJson['type'].toString() == "1") {
           Navigator.of(context).pushNamed(AdminDashboard.route);
         }

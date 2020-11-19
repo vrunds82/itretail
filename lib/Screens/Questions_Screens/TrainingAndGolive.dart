@@ -21,7 +21,8 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
             Center(
               child: Text("Training & Go Live",style: TextStyle(
                   fontSize:MediaQuery.of(context).size.height*0.05
-                  ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
+                  //,fontFamily: 'GOTHAM-BLACK'
+                  ,color:Greencolor
               ),),
 
 

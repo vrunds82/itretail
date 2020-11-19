@@ -46,7 +46,7 @@ class _SignUpStyle2State extends State<SignUpStyle2> {
                         children: [
                           Text("Sign In",style: TextStyle(
                             fontSize:MediaQuery.of(context).size.height*0.05
-                            ,fontFamily: 'GOTHAM-BLACK',
+                            ,/*fontFamily: 'GOTHAM-BLACK',*/
                           ),),
                         ],
                       ),

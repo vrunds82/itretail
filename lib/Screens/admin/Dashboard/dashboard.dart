@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
@@ -40,7 +42,32 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
     switch(Global.currentMenu){
       case 0:
-        return Text("Home");
+
+
+
+
+
+
+
+        return GestureDetector(onTap: () async {
+          Map<String, bool> cRF ;
+
+            cRF = {
+              "1": true,
+              "2": false
+            };
+            print(cRF);
+
+
+          String abc = await jsonEncode(cRF);
+          print( abc );
+
+        var parsedJson = jsonDecode(abc);
+
+          print(parsedJson['1']);
+
+
+        },child: Text("Home"));
         break;
       case 1:
         return AllUsers(callback: callBackFunction,);

@@ -4,55 +4,63 @@ import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class CustomOrderstaus extends StatelessWidget {
 
-  final String titledone;
-  final String bottomtext;
-  final Color textclr;
+  final String titleDone;
+  final String bottomText;
+
   final String img;
-  final Color bottomtextclr;
-  final Color imgclr;
-  final Color borderclr;
 
 
-  CustomOrderstaus({this.titledone, this.bottomtext, this.textclr,this.img,this.bottomtextclr,this.imgclr,
-  this.borderclr});
+  final VoidCallback onClick;
+
+
+  CustomOrderstaus({this.titleDone,this.img,this.bottomText,this.onClick});
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-       Text(titledone,style: TextStyle(
-         fontSize: 24,color: Greencolor,
-         fontFamily: 'GOTHAM-BLACK'
-       ),),
+    return GestureDetector(
+      onTap: onClick,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+         Text(titleDone,style: TextStyle(
+           fontSize: 24,color: Greencolor,
+           fontWeight: FontWeight.bold
+           //fontFamily: 'GOTHAM-BLACK'
+         ),),
 
-        SizedBox(height: 15,),
+          SizedBox(height: 15,),
 
-        Container(height:100,width: 100, padding: const EdgeInsets.all(2.0),
-          child: Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: Image.asset(
-              img,
-              fit: BoxFit.contain,
-              color: imgclr,
+          Container(height:110,width: 110, padding: const EdgeInsets.all(4.0),
+            decoration: BoxDecoration(
+              color: titleDone=="DONE"?Greencolor:
+                titleDone=="PENDING"?Colors.white:Colors.orange,
+              borderRadius: BorderRadius.circular(200)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Image.asset(
+                img,
+                fit: BoxFit.contain,
+                color: titleDone=="PENDING"?Colors.grey:Colors.white,
+              ),
             ),
           ),
-        ),
 
-        SizedBox(height: 15,),
+          SizedBox(height: 15,),
 
-        Center(
-          child: Row(crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(bottomtext,textAlign: TextAlign.center,style: TextStyle(
-                color: bottomtextclr,fontSize: 20,fontWeight: FontWeight.w700,
-                fontFamily: 'GOTHAMMEDIUM'
-              ),),
-            ],
-          ),
-        )
-      ],
+          Center(
+            child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(bottomText,textAlign: TextAlign.center,style: TextStyle(
+                  color: Colors.grey,fontSize: 20,fontWeight: FontWeight.w700,
+                  //fontFamily: 'GOTHAMMEDIUM'
+                ),),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -45,7 +45,7 @@ class _SignUppageState extends State<SignUppage> {
                                 children: [
                                   Text("Sign Up",style: TextStyle(
                                     fontSize:MediaQuery.of(context).size.height*0.05
-                                    ,fontFamily: 'GOTHAM-BLACK',
+                                    //,fontFamily: 'GOTHAM-BLACK',
                                   ),),
                                 ],
                               ),
