@@ -22,7 +22,8 @@ class _PaymentdoneState extends State<Paymentdone> {
             Center(
               child: Text("Final Payment",style: TextStyle(
                   fontSize:MediaQuery.of(context).size.height*0.05
-                  ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
+                  //,fontFamily: 'GOTHAM-BLACK'
+                  ,color:Greencolor
               ),),
 
 
@@ -45,7 +46,7 @@ class _PaymentdoneState extends State<Paymentdone> {
               fontWeight: FontWeight.bold,
               color: Greencolor,
               fontSize: 30,
-              fontFamily: 'GOTHAM-BLACK'
+              //fontFamily: 'GOTHAM-BLACK'
             ),),
 
             SizedBox(height: MediaQuery.of(context).size.height*0.1,),

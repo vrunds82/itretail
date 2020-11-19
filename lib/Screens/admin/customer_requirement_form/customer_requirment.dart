@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:itretail/Config/API_URLs.dart';
@@ -116,8 +118,8 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "type": "0",
       "address": Global.newUserAddress,
       "pincode": Global.newUserPinCode,
-      "crf":cRF.toString(),
-      "levels":levels.toString()
+      "crf":jsonEncode(cRF),
+      "levels":jsonEncode(levels)
     };
 
     await http.post(APIs.addCustomer, body: params).then((value) {

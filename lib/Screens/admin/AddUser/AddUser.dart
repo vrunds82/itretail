@@ -48,7 +48,7 @@ class _AddUserState extends State<AddUser> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Add New Merchant",
+                          "Add New Customer",
                           style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.05,
@@ -240,7 +240,7 @@ class _AddUserState extends State<AddUser> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Custombuttongreen(
-                                title: "Add Merchant",
+                                title: "Add Customer",
                                 titleclr: Colors.white,
                                 bgclr: Greencolor,
                                 click: () {

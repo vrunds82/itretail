@@ -21,7 +21,8 @@ class _InstalldoneState extends State<Installdone> {
             Center(
               child: Text("Install",style: TextStyle(
                   fontSize:MediaQuery.of(context).size.height*0.05
-                  ,fontFamily: 'GOTHAM-BLACK',color:Greencolor
+                  ,//fontFamily: 'GOTHAM-BLACK',
+                color:Greencolor
               ),),
 
 
@@ -44,7 +45,7 @@ class _InstalldoneState extends State<Installdone> {
                   fontWeight: FontWeight.w800,
                   color: Greencolor,
                   fontSize: 30,
-                  fontFamily: 'GOTHAM-BLACK'
+                  //fontFamily: 'GOTHAM-BLACK'
               ),),
 
             SizedBox(height: MediaQuery.of(context).size.height*0.1,),

@@ -7,7 +7,7 @@ import 'package:itretail/Screens/admin/userOnboarding/userOnborading.dart';
 
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
 
-import 'Screens/Order_Status/Orderstatus.dart';
+
 import 'Screens/Questions_Screens/Back_Office_Setup.dart';
 import 'Screens/Questions_Screens/Equipment_Shipped.dart';
 import 'Screens/Questions_Screens/Final_Payment.dart';
@@ -24,6 +24,7 @@ import 'Screens/Questions_Screens/WatchTraining_Video.dart';
 import 'Screens/Sign_In/SignIn.dart';
 import 'Screens/Sign_Up/SignUp.dart';
 import 'Screens/Sign_Up/SignUp_Style2.dart';
+import 'Screens/user/userDashboard/Order_Status/Orderstatus.dart';
 
 
 void main() {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      home: UserOnBoarding(),
+      home: Signinpage(),
 
 
       routes: {
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
         Storepicture.route:(context)=>Storepicture(),
         Finalpayment.route:(context)=>Finalpayment(),
         Installpage.route:(context)=>Installpage(),
+        OrderstatusPage.route:(context)=>OrderstatusPage(),
 
 
         // ADMIN PAGES
