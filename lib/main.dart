@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
@@ -69,7 +68,6 @@ class MyApp extends StatelessWidget {
         Storepicture.route:(context)=>Storepicture(),
         Finalpayment.route:(context)=>Finalpayment(),
         Installpage.route:(context)=>Installpage(),
-
 
         // ADMIN PAGES
         AdminDashboard.route:(context)=>AdminDashboard(),
