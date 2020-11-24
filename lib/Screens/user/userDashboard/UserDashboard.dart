@@ -29,7 +29,6 @@ class _UserDashboardState extends State<UserDashboard> {
     Storepicture.route,
     Finalpayment.route,
     Installpage.route
-
   ];
 
 

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:itretail/Config/API_URLs.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/models/usersModel.dart';
 
@@ -18,6 +19,8 @@ class AllUsers extends StatefulWidget {
 class _AllUsersState extends State<AllUsers> {
 
   String users = "";
+
+  List<Color> levelStatusColor = [Colors.grey,Colors.orange,Colors.red,Colors.green];
 
   bool isLoading = true;
   List<UserModel> allUsers = new List();
@@ -72,11 +75,11 @@ class _AllUsersState extends State<AllUsers> {
                     Row(
                       children: [
                         Expanded(flex: 1,child: Text("No.",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
-                        Expanded(flex: 1,child: Text("Name",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
-                        Expanded(flex: 1,child: Text("Address",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
-                        Expanded(flex: 1,child: Text("Level",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
-                        Expanded(flex: 1,child: Text("Updated",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
-                        Expanded(flex: 1,child: Text("Actions",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
+                        Expanded(flex: 3,child: Text("Name",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
+                        Expanded(flex: 3,child: Text("Address",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
+                        Expanded(flex: 1,child: Center(child: Text("Level",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),))),
+                        Expanded(flex: 2,child: Center(child: Text("Updated",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),))),
+                        Icon(Icons.remove_red_eye,color: Colors.transparent,),
                       ],
                     ),
                     Expanded(
@@ -86,9 +89,37 @@ class _AllUsersState extends State<AllUsers> {
 
                           var data = jsonDecode(allUsers[index].crf.toString());
 
-                          return Row(
+                          return  Column(
                             children: [
-                              Text(" ${data['1']} ")
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                child: Row(
+                                  children: [
+                                    Expanded(flex: 1,child: Text("${index+1}",style: TextStyle(color: Colors.green,fontSize: 18),)),
+                                    Expanded(flex: 3,child: Text("${allUsers[index].name}",style: TextStyle(color: Colors.green,fontSize: 18),)),
+                                    Expanded(flex: 3,child: Text("${allUsers[index].address}",style: TextStyle(color: Colors.green,fontSize: 18),)),
+                                    Expanded(flex: 1,child: Center(
+                                      child: GestureDetector(
+                                         onTap: (){
+                                           Global.currentUser = allUsers[index];
+                                           Global.currentUserSelected = allUsers[index].id;
+                                           Global.currentMenu = 3;
+                                           widget.callback();
+                                         },
+                                        child: Card(
+                                          color: levelStatusColor[int.parse(allUsers[index].levelStatus)]
+                                        ,child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text("${allUsers[index].currentLevel}",style: TextStyle(color: Colors.white,fontSize: 18),),
+                                        )),
+                                      ),
+                                    )),
+                                    Expanded(flex: 2,child: Center(child: Text("Updated",style: TextStyle(color: Colors.green,fontSize: 18),))),
+                                    Icon(Icons.remove_red_eye),
+                                  ],
+                                ),
+                              ),
+                              Divider(height: 0,thickness: 2,)
                             ],
                           );
                         },

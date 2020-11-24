@@ -9,6 +9,7 @@ class UserModel {
   String crf;
   String currentLevel;
   String levelStatus;
+  String levels;
   String submitted;
   String reviewed;
 
@@ -21,6 +22,7 @@ class UserModel {
         this.address,
         this.pincode,
         this.crf,
+        this.levels,
         this.currentLevel,
         this.levelStatus,
         this.submitted,
@@ -35,6 +37,7 @@ class UserModel {
     address = json['address'];
     pincode = json['pincode'];
     crf = json['crf'];
+    levels = json['levels'];
     currentLevel = json['current_level'];
     levelStatus = json['level_status'];
     submitted = json['submitted'];
@@ -55,6 +58,7 @@ class UserModel {
     data['level_status'] = this.levelStatus;
     data['submitted'] = this.submitted;
     data['reviewed'] = this.reviewed;
+    data['levels']=this.levels;
     return data;
   }
 }

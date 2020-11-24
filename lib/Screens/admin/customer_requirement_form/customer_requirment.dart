@@ -18,6 +18,7 @@ class CustomerRequirement extends StatefulWidget {
 class _CustomerRequirementState extends State<CustomerRequirement> {
   Map<String, bool> cRF ;
   Map<String, int> levels ;
+  List<int> levs ;
   
   
   createMap() {
@@ -59,26 +60,26 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
    levels = {
       "1": onBoardingQuestionnaire==true?0:5,
       "2": merchantInfo==true?0:5,
-      "3": (contractBringYourOwnHardware == false ||
-          pictureAllPorts == false ||
-          pictureScale == false ||
-          pictureScanner == false ||
-          picturePrinter == false)==true?0:5,
+      "3": (contractBringYourOwnHardware||
+          pictureAllPorts||
+          pictureScale||
+          pictureScanner||
+          picturePrinter)?0:5,
       /* "3.1": contractBringYourOwnHardware==true?0:5,
       "3.2": pictureAllPorts==true?0:5,
       "3.3": pictureScale==true?0:5,
       "3.4": pictureScanner==true?0:5,
       "3.5": picturePrinter==true?0:5,*/
       "4": storePicture==true?0:5,
-      "5": (computerInStock == false ||
-          pinPad == false ||
-          scale == false ||
-          scanner == false ||
-          printer == false ||
-          handScanner == false ||
-          cashDrawer == false ||
-          mounts == false ||
-          zyWall == false)==true?0:5,
+      "5": (computerInStock  ||
+          pinPad||
+          scale||
+          scanner||
+          printer||
+          handScanner||
+          cashDrawer||
+          mounts||
+          zyWall)?0:5,
       /*"5.1": computerInStock==true?0:5,
       "5.2": pinPad==true?0:5,
       "5.3": scale==true?0:5,
@@ -90,10 +91,10 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "5.9": zyWall==true?0:5,*/
       "6": training==true?0:5,
       "7": backOfficeSetup==true?0:5,
-      "8": (productTemplate == false ||
-          pictureUPC == false ||
-          picture002 == false ||
-          pictureEAN == false)==true?0:5,
+      "8": (productTemplate||
+          pictureUPC||
+          picture002||
+          pictureEAN)?0:5,
       /*"8.1": productTemplate==true?0:5,
       "8.2": pictureUPC==true?0:5,
       "8.3": pictureEAN==true?0:5,
@@ -104,7 +105,45 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "11": trainingGoLive==true?0:5
     };
     print(levels);
+
+    levs = [
+      onBoardingQuestionnaire==true?0:5,
+      merchantInfo==true?0:5,
+      (contractBringYourOwnHardware == false ||
+          pictureAllPorts == false ||
+          pictureScale == false ||
+          pictureScanner == false ||
+          picturePrinter == false)==true?0:5,
+      storePicture==true?0:5,
+      (computerInStock == false ||
+          pinPad == false ||
+          scale == false ||
+          scanner == false ||
+          printer == false ||
+          handScanner == false ||
+          cashDrawer == false ||
+          mounts == false ||
+          zyWall == false)==true?0:5,
+
+      training==true?0:5,
+      backOfficeSetup==true?0:5,
+       (productTemplate == false ||
+          pictureUPC == false ||
+          picture002 == false ||
+          pictureEAN == false)==true?0:5,
+      finalPayment==true?0:5,
+
+      install==true?0:5,
+      trainingGoLive==true?0:5
+
+    ];
+
+
   }
+
+
+
+
 
   addUser() async {
     await createMap();
@@ -119,7 +158,10 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "address": Global.newUserAddress,
       "pincode": Global.newUserPinCode,
       "crf":jsonEncode(cRF),
-      "levels":jsonEncode(levels)
+      "levels":jsonEncode(levels),
+      "current_level":(levs.indexOf(0)+1).toString(),
+      "level_status":0.toString()
+
     };
 
     await http.post(APIs.addCustomer, body: params).then((value) {

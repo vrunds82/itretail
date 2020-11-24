@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/Constant/Constant_Screen.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRadiobuttonText.dart';
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
@@ -15,6 +16,9 @@ import 'package:http/http.dart' as http;
 import 'package:itretail/Widgets/UploadImage.dart';
 
 class Onbordingques extends StatefulWidget {
+
+  static String route = "onBoarding";
+
   @override
   _OnbordingquesState createState() => _OnbordingquesState();
 }
@@ -104,6 +108,7 @@ class _OnbordingquesState extends State<Onbordingques> {
       body: SingleChildScrollView(
         child: Row(
           children: [
+
             SizedBox(
               width: MediaQuery.of(context).size.width * .15,
             ),
@@ -118,6 +123,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                     SizedBox(
                       height: 40,
                     ),
+
                     Pagebar(),
                     SizedBox(
                       height: 40,
@@ -1294,10 +1300,11 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     "giftcardVal": giftcardVal.toString(),
                                     "paperfoodstampVal":
                                         paperfoodstampVal.toString(),
+                                    "checkVal":checkVal.toString()
                                   };
 
                                   Map<String, String> data = {
-                                    "uid": "0",
+                                    "uid": Global.userID,
                                     "q": "0",
                                     "q1": ans1Controller.text,
                                     "q2": ans2Controller.text,
@@ -1317,7 +1324,7 @@ class _OnbordingquesState extends State<Onbordingques> {
                                     "q14": radioQuickBooks,
                                     "q15": _currentselectedterminal,
                                     "q16": radioTerminal,
-                                    "q17": Paymentmode.toString(),
+                                    "q17": jsonEncode(Paymentmode).toString(),
                                     "q18": radioProductFile,
                                     "q18_images":jsonEncode(storePictures).toString(),
                                     "q19": ans19Controller.text,

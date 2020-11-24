@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/CustomFiles/Custom_OrderStatus_textimage.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:itretail/Screens/Questions_Screens/On_Boarding_Questionaire.dart';
 
 class OrderstatusPage extends StatefulWidget {
 
@@ -22,6 +24,70 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
   final String hardwareShipped = 'assets/flowimages/8.png';
   final String install = 'assets/flowimages/9.png';
   final String finalTraining = 'assets/flowimages/10.png';
+
+
+  List<String> names;
+  List<String> images;
+  List<Widget> firstRow = new List();
+  List<Widget> secondRow = new List();
+  List<String> routes = [
+    "",
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+    Onbordingques.route,
+  ];
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    images = [
+      "",
+      onbordingQue,
+      merchant,
+      hardwareRequirement,
+      store,
+      hardwareShipped,
+      training,
+      product,
+      finalPayment,
+      install,
+      finalTraining,
+      finalTraining
+    ];
+
+    names  = [
+      "",
+      "Onbording\nQuestionnaire",
+      "Merchant\nInformation",
+      "Hardware\nRequirement",
+      "Store\nPictures",
+      "Tracking\nInfo.",
+      "Training",
+      "Back Office\nSetup",
+      "Product",
+      "Final Payment",
+      "Install",
+      "Training\nand Go Live",
+
+    ];
+
+
+    addWidgets();
+
+
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +127,7 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
                 ),
                 child: Column(
                   children: [
-                    Row(
+                 /*   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //onboarding questionnaior
@@ -115,11 +181,21 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
 
                         ),
                       ],
+                    ),*/
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: firstRow
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: secondRow
+                    ),
+                    /*Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //merchnat
@@ -135,7 +211,7 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
                         //final payment
                         CustomOrderstaus(
                           img: finalPayment,
-                          titleDone: "DONE",
+                          titleDone: "Rejected",
 
                           bottomText: " Final\nPayment ",
 
@@ -168,7 +244,7 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
 
                         ),
                       ],
-                    ),
+                    ),*/
                   ],
                 ),
               )
@@ -178,4 +254,56 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
       ),
     );
   }
+
+
+
+  addWidgets(){
+
+    for(int i=1;i<12;i++){
+      print(Global.levels!=null?Global.levels.length.toString():"asdfasdf");
+
+      if(Global.levels[i.toString()]!=5){
+        print("$i  ${Global.levels[i.toString()]??"NA"}");
+
+        Widget singleLevel = CustomOrderstaus(
+          img: training,
+          level: i,
+          levelStatus: Global.levels[i.toString()],
+          bottomText: names[i]??"NA",
+          onClick: (){
+            Global.selectedLevel = i;
+            Navigator.of(context).pushNamed(routes[i]);
+          },
+
+        );
+        if(firstRow.length<5){
+
+
+
+          firstRow.add(singleLevel);
+
+        }else
+          {
+
+            print("Namd on $i  ${names.length>i?names[i]:"Bhai yhi locha kr rha hai"}");
+
+            secondRow.add(singleLevel);
+
+          }
+
+      }else{
+        print("$i  ${Global.levels[i.toString()]}");
+      }
+
+
+    }
+
+    setState(() {
+
+    });
+
+
+  }
+
+
 }

@@ -3,6 +3,7 @@ import 'package:itretail/Screens/Questions_Screens/show_onboarding_answer.dart';
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
 import 'package:itretail/Screens/admin/userOnboarding/userOnborading.dart';
+import 'package:itretail/Screens/user/editCustomerDetails/editCustomerDetails.dart';
 
 
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
@@ -65,9 +66,9 @@ class MyApp extends StatelessWidget {
         'Signup_style2':(context)=>SignUpStyle2(),
         'Orderstatus':(context)=>OrderstatusPage(),
 
-        Hardwarerequirnment.route:(context)=>Hardwarerequirnment(),
-        Productfile.route:(context)=>Productfile(),
-        Storepicture.route:(context)=>Storepicture(),
+
+
+
         Finalpayment.route:(context)=>Finalpayment(),
         Installpage.route:(context)=>Installpage(),
         OrderstatusPage.route:(context)=>OrderstatusPage(),
@@ -75,7 +76,16 @@ class MyApp extends StatelessWidget {
 
         // ADMIN PAGES
         AdminDashboard.route:(context)=>AdminDashboard(),
-        UserDashboard.route:(context)=>UserDashboard()
+        UserDashboard.route:(context)=>UserDashboard(),
+
+
+        //
+        Onbordingques.route:(context)=>Onbordingques(),
+        EditCustomerDetails.route:(context)=>EditCustomerDetails(),
+        Hardwarerequirnment.route:(context)=>Hardwarerequirnment(),
+        Storepicture.route:(context)=>Storepicture(),
+        Productfile.route:(context)=>Productfile(),
+
 
       },
     );

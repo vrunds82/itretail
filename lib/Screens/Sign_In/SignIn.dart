@@ -22,8 +22,8 @@ class Signinpage extends StatefulWidget {
 
 class _SigninpageState extends State<Signinpage> {
   bool keepmelogiin = false;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: "nov@gmail.com");
+  TextEditingController passwordController = TextEditingController(text: "12345678");
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -225,13 +225,13 @@ class _SigninpageState extends State<Signinpage> {
     ));
   }
 
-  signInAPICall() {
+  signInAPICall() async {
     Map<String, String> params = {
       "email": emailController.text,
       "password": passwordController.text
     };
 
-    http.post(APIs.loginURL, body: params).then((value) {
+   await http.post(APIs.loginURL, body: params).then((value) {
       print(value.body);
       var parsedJson = jsonDecode(value.body);
       if (parsedJson['status'].toString() == "1") {
@@ -240,7 +240,37 @@ class _SigninpageState extends State<Signinpage> {
         Global.name=parsedJson['name'];
 
         if (parsedJson['type'].toString() == "0") {
-          Global.levels= jsonDecode(parsedJson['levels']);
+          Global.levelStatus=parsedJson['level_status'];
+          Global.currentLevel=parsedJson['current_level'];
+
+          var levels = jsonDecode(parsedJson['levels']);
+
+     Global.levels = {
+      "1": levels['1'],
+      "2": levels['2'],
+      "3": levels['3'],
+      "4": levels['4'],
+      "5": levels['5'],
+      "6": levels['6'],
+      "7": levels['7'],
+      "8": levels['8'],
+      "9": levels['9'],
+      "10": levels['10'],
+      "11": levels['11'],
+      };
+
+     int totalLevel=0;
+
+          for(int i=1;i<12;i++){
+            if(Global.levels[i.toString()]<5){
+              totalLevel++;
+            }
+          }
+
+          Global.totalLevels = totalLevel;
+
+
+
           Navigator.of(context).pushNamed(OrderstatusPage.route);
         } else if (parsedJson['type'].toString() == "1") {
           Navigator.of(context).pushNamed(AdminDashboard.route);
