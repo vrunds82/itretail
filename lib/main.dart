@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itretail/Screens/Questions_Screens/equipment_shipped_form.dart';
 import 'package:itretail/Screens/Questions_Screens/show_onboarding_answer.dart';
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
@@ -39,12 +40,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      home: Signinpage(),
+      home: EquipmentShippedForm(),
 
 
       routes: {
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         'ProductFile':(context)=>Productfile(),
         'FinalPayment':(context)=>Finalpayment(),
         'FinalPaymentDone':(context)=>Paymentdone(),
-        'Equipment_Shipped':(context)=>Equipmentshipped(),
+        'Equipment_Shipped':(context)=>EquipmentShipped(),
         'Install':(context)=>Installpage(),
         'Install_Done':(context)=>Installdone(),
         'Training_Go_AndLive':(context)=>Trainingandgolive(),
@@ -72,7 +72,6 @@ class MyApp extends StatelessWidget {
         Finalpayment.route:(context)=>Finalpayment(),
         Installpage.route:(context)=>Installpage(),
         OrderstatusPage.route:(context)=>OrderstatusPage(),
-
 
         // ADMIN PAGES
         AdminDashboard.route:(context)=>AdminDashboard(),

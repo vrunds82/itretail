@@ -5,12 +5,12 @@ import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 
-class Equipmentshipped extends StatefulWidget {
+class EquipmentShipped extends StatefulWidget {
   @override
-  _EquipmentshippedState createState() => _EquipmentshippedState();
+  _EquipmentShippedState createState() => _EquipmentShippedState();
 }
 
-class _EquipmentshippedState extends State<Equipmentshipped> {
+class _EquipmentShippedState extends State<EquipmentShipped> {
   double gap = 180;
 
   @override
