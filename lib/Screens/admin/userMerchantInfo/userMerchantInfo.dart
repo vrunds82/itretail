@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:itretail/Config/API_URLs.dart';
@@ -14,31 +15,40 @@ import 'package:itretail/Widgets/dialogs/progressDialog.dart';
 import 'package:itretail/Widgets/viewImages.dart';
 import 'package:itretail/models/onBoardingModel.dart';
 
-class UserOnBoarding extends StatefulWidget {
+class UserMerchantInfo extends StatefulWidget {
 
   VoidCallback callback;
 
 
-  UserOnBoarding({this.callback});
+  UserMerchantInfo({this.callback});
 
   @override
-  _UserOnBoardingState createState() => _UserOnBoardingState();
+  _UserMerchantInfoState createState() => _UserMerchantInfoState();
 }
 
-class _UserOnBoardingState extends State<UserOnBoarding> {
+class _UserMerchantInfoState extends State<UserMerchantInfo> {
   bool isLoading = true;
   bool isError = false;
-  OnBoardingModel userOnBoardingModel;
+
+  String companyName;
+  String personName;
+  String number;
+
+
+
   Widget myBody;
   List<String> storePictures = new List();
   getUserOnBoarding() async {
-    await http.post(APIs.getUserOnBoarding,
-        body: {"uid": Global.currentUserSelected}).then((response) {
+    await http.post(APIs.getMerchantInfo,
+        body: {"uid": Global.currentUserSelected??18.toString()}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);
       if (parsedJson['status'] == 1) {
-        userOnBoardingModel = OnBoardingModel.fromJson(parsedJson);
+        companyName=parsedJson['company_name'];
+        personName=parsedJson['person_name'];
+        number = parsedJson['number'].toString();
+
       } else {
         isError = true;
       }
@@ -99,9 +109,9 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "OnBoarding Form",
+                        "Merchant Information",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.height * 0.05,
+                            fontSize: MediaQuery.of(context).size.height * 0.04,
                             color: Whitecolor),
                       ),
                     ),
@@ -117,85 +127,19 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               QAWidget(
-                                question: onbording_Que1,
-                                answer: userOnBoardingModel.q1.toString().substring(0,10),
+                                question: "Company Name",
+                                answer: companyName??"--",
+                                Q: false,
                               ),
                               QAWidget(
-                                question: onbording_Que2,
-                                answer: userOnBoardingModel.q2,
+                                question: "Person Name",
+                                answer:personName??"--",
+                                Q: false,
                               ),
                               QAWidget(
-                                question: onbording_Que3,
-                                answer: userOnBoardingModel.q3,
-                              ),
-                              QAWidget(
-                                question: onbording_Que4,
-                                answer: userOnBoardingModel.q4,
-                              ),
-                              QAWidget(
-                                question: onbording_Que5,
-                                answer: userOnBoardingModel.q5,
-                              ),
-                              QAWidget(
-                                question: onbording_Que6,
-                                answer: userOnBoardingModel.q6,
-                              ),
-                              QAWidget(
-                                question: onbording_Que7,
-                                answer: userOnBoardingModel.q7,
-                              ),
-                              QAWidget(
-                                question: onbording_Que8,
-                                answer: userOnBoardingModel.q8,
-                              ),
-                              QAWidget(
-                                question: onbording_Que9,
-                                answer: userOnBoardingModel.q9,
-                              ),
-                              QAWidget(
-                                question: onbording_Que10,
-                                answer: userOnBoardingModel.q10,
-                              ),
-                              QAWidget(
-                                question: onbording_Que11,
-                                answer: userOnBoardingModel.q11,
-                              ),
-                              QAWidget(
-                                question: onbording_Que12,
-                                answer: userOnBoardingModel.q12,
-                              ),
-                              QAWidget(
-                                question: onbording_Que13,
-                                answer: userOnBoardingModel.q13,
-                              ),
-                              QAWidget(
-                                question: onbording_Que14,
-                                answer: userOnBoardingModel.q14,
-                              ),
-                              QAWidget(
-                                question: onbording_Que15,
-                                answer: userOnBoardingModel.q15,
-                              ),
-                              QAWidget(
-                                question: onbording_Que16,
-                                answer: userOnBoardingModel.q16,
-                              ),
-                              QAWidgetPayment(
-                                question: onbording_Que17,
-                                answer: userOnBoardingModel.q17,
-                              ),
-                              QAWidget(
-                                question: onbording_Que18,
-                                answer: userOnBoardingModel.q18,
-                              ),
-                              ViewImages(images: userOnBoardingModel.q18Images),
-                              QAWidget(
-                                question: onbording_Que19,
-                                answer: userOnBoardingModel.q19,
-                              ),
-                              QAWidget(
-                                question: onbording_Que20,
-                                answer: userOnBoardingModel.q20,
+                                question: "Contact Number",
+                                answer: number??"--",
+                                Q: false,
                               ),
                             ],
                           ),
@@ -234,7 +178,7 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Text(
-                              "User: " + Global.currentUser.name,
+                              "User: " + (Global.currentUser!=null? Global.currentUser.name:""),
                               style:
                                   TextStyle(color: Colors.green, fontSize: 20),
                             ),
@@ -245,7 +189,7 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                               child: Column(
                                 children: [
                                   Text("Comments :"),
-                                  Expanded(child: ChatHistory(level: Global.currentLevel,uid: Global.currentUser.id,))
+                                  Expanded(child: ChatHistory(level: Global.currentLevel??2.toString(),uid:Global.currentUser!=null? Global.currentUser.id:18.toString(),))
                                 ],
                               ),
                             ),
@@ -341,19 +285,15 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                                               for(int i=0;i<storePictures.length;i++){
                                                 images = images+"\n\n"+UploadURL+storePictures[i];
                                               }
-
-                                              ProgressDialog.showProgressDialog(context:  context);
-
-                                          await APIs.rejectLevel(
+                                              ProgressDialog.showProgressDialog(context: context);
+                                         await  APIs.rejectLevel(
                                              commentsController.text,
                                              jsonEncode(storePictures)
                                            );
-
-                                           Navigator.of(context).pop();
                                               Navigator.of(context).pop();
-                                           Global.currentMenu=0;
+                                              Navigator.of(context).pop();
+                                              Global.currentMenu=0;
                                               widget.callback();
-
                                             });
                                           },
                                           titleclr: Colors.white,
@@ -368,9 +308,8 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                                           bgclr: Colors.green,
                                           click: () async {
                                             print("Asking to Approve");
-
                                             ProgressDialog.showProgressDialog(context: context);
-                                            await APIs.approveLevel();
+                                           await APIs.approveLevel();
                                             Navigator.of(context).pop();
 
                                             Global.currentMenu=0;
@@ -398,5 +337,4 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
     );
   }
 }
-
 

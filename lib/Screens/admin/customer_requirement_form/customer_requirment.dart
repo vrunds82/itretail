@@ -9,8 +9,16 @@ import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Screens/Global/vars.dart';
 import 'package:http/http.dart' as http;
+import 'package:itretail/Widgets/dialogs/progressDialog.dart';
+import 'package:itretail/models/crfModel.dart';
 
 class CustomerRequirement extends StatefulWidget {
+
+  VoidCallback callback;
+
+
+  CustomerRequirement({this.callback});
+
   @override
   _CustomerRequirementState createState() => _CustomerRequirementState();
 }
@@ -19,6 +27,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
   Map<String, bool> cRF ;
   Map<String, int> levels ;
   List<int> levs ;
+  CRFModel crfModel;
   
   
   createMap() {
@@ -26,11 +35,10 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "1": onBoardingQuestionnaire,
       "2": merchantInfo,
       "3": hardwareInfo,
-      "3.1": contractBringYourOwnHardware,
-      "3.2": pictureAllPorts,
-      "3.3": pictureScale,
-      "3.4": pictureScanner,
-      "3.5": picturePrinter,
+      "3.1": pictureAllPorts,
+      "3.2": pictureScale,
+      "3.3": pictureScanner,
+      "3.4": picturePrinter,
       "4": storePicture,
       "5": processOrder,
       "5.1": computerInStock,
@@ -41,19 +49,48 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "5.6": handScanner,
       "5.7": cashDrawer,
       "5.8": mounts,
-      "5.9": zyWall,
-      "6": training,
+      "5.9": zyxel,
+      "6": productFile,
+      "6.1": pictureUPC,
+      "6.2": pictureEAN,
+      "6.3": picture002,
       "7": backOfficeSetup,
-      "8": productFile,
-      "8.1": productTemplate,
-      "8.2": pictureUPC,
-      "8.3": pictureEAN,
-      "8.4": picture002,
-      "9": finalPayment,
-      /*"10": equipmentPayment,*/
-      "10": install,
-      "11": trainingGoLive
+      "8": training,
+      "9": install,
+      "10": trainingGoLive
     };
+
+
+  crfModel= CRFModel(
+       l1: onBoardingQuestionnaire,
+       l2: merchantInfo,
+       l3: hardwareInfo,
+       l31: pictureAllPorts,
+       l32: pictureScale,
+       l33: pictureScanner,
+       l34: picturePrinter,
+       l4: storePicture,
+       l5: processOrder,
+       l51: computerInStock,
+       l52: pinPad,
+       l53: scale,
+       l54: scanner,
+       l55: printer,
+       l56: handScanner,
+       l57: cashDrawer,
+       l58: mounts,
+       l59: zyxel,
+       l6: productFile,
+       l61:  pictureUPC,
+       l62:  pictureEAN,
+       l63: picture002,
+       l7: backOfficeSetup,
+       l8: training,
+       l9: install,
+       l10: trainingGoLive
+   );
+
+
     print(cRF);
   }
   createCRFIntMap() {
@@ -79,7 +116,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
           handScanner||
           cashDrawer||
           mounts||
-          zyWall)?0:5,
+          zyxel)?0:5,
       /*"5.1": computerInStock==true?0:5,
       "5.2": pinPad==true?0:5,
       "5.3": scale==true?0:5,
@@ -99,16 +136,16 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "8.2": pictureUPC==true?0:5,
       "8.3": pictureEAN==true?0:5,
       "8.4": picture002==true?0:5,*/
-      "9": finalPayment==true?0:5,
+     // "9": finalPayment==true?0:5,
       /*"10": equipmentPayment==true?0:5,*/
-      "10": install==true?0:5,
-      "11": trainingGoLive==true?0:5
+      "9": install==true?0:5,
+      "10": trainingGoLive==true?0:5
     };
     print(levels);
 
     levs = [
-      onBoardingQuestionnaire==true?0:5,
-      merchantInfo==true?0:5,
+      onBoardingQuestionnaire==true?0:5, //1
+      merchantInfo==true?0:5, //2
       (contractBringYourOwnHardware == false ||
           pictureAllPorts == false ||
           pictureScale == false ||
@@ -123,7 +160,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
           handScanner == false ||
           cashDrawer == false ||
           mounts == false ||
-          zyWall == false)==true?0:5,
+          zyxel == false)==true?0:5,
 
       training==true?0:5,
       backOfficeSetup==true?0:5,
@@ -131,7 +168,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
           pictureUPC == false ||
           picture002 == false ||
           pictureEAN == false)==true?0:5,
-      finalPayment==true?0:5,
+//      finalPayment==true?0:5,
 
       install==true?0:5,
       trainingGoLive==true?0:5
@@ -146,6 +183,9 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
 
 
   addUser() async {
+
+    ProgressDialog.showProgressDialog(context: context);
+
     await createMap();
     await createCRFIntMap();
     
@@ -157,7 +197,9 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "type": "0",
       "address": Global.newUserAddress,
       "pincode": Global.newUserPinCode,
-      "crf":jsonEncode(cRF),
+      "loginID":Global.newUserLoginID,
+      "loginPassword":Global.newUserLoginPassword,
+      "crf":jsonEncode(crfModel),
       "levels":jsonEncode(levels),
       "current_level":(levs.indexOf(0)+1).toString(),
       "level_status":0.toString()
@@ -166,6 +208,9 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
 
     await http.post(APIs.addCustomer, body: params).then((value) {
       print(value.body);
+      Navigator.of(context).pop();
+      Global.currentMenu=0;
+      widget.callback();
     });
   }
 
@@ -242,14 +287,14 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                         setState(() {});
                       },
                     ),
-                    CustomSubCheckTile(
+                  /*  CustomSubCheckTile(
                       title: stringContractBringYourOwnHardware,
                       value: contractBringYourOwnHardware,
                       onChanged: (value) {
                         contractBringYourOwnHardware = value;
                         setState(() {});
                       },
-                    ),
+                    ),*/
                     CustomSubCheckTile(
                       title: stringPictureAllPorts,
                       value: pictureAllPorts,
@@ -313,7 +358,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                           handScanner = true;
                           cashDrawer = true;
                           mounts = true;
-                          zyWall = true;
+                          zyxel = true;
                           requirementList.add(stringComputerInStock);
                           requirementList.add(stringPinPad);
                           requirementList.add(stringScale);
@@ -322,7 +367,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                           requirementList.add(stringHandScanner);
                           requirementList.add(stringCashDrawer);
                           requirementList.add(stringMounts);
-                          requirementList.add(stringZyWall);
+                          requirementList.add(stringZyxel);
                         } else if (processOrder == false) {
                           computerInStock = false;
                           pinPad = false;
@@ -332,7 +377,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                           handScanner = false;
                           cashDrawer = false;
                           mounts = false;
-                          zyWall = false;
+                          zyxel = false;
                           requirementList.add(stringComputerInStock);
                           requirementList.add(stringPinPad);
                           requirementList.add(stringScale);
@@ -341,7 +386,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                           requirementList.add(stringHandScanner);
                           requirementList.add(stringCashDrawer);
                           requirementList.add(stringMounts);
-                          requirementList.add(stringZyWall);
+                          requirementList.add(stringZyxel);
                         }
 
                         setState(() {});
@@ -412,34 +457,14 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                       },
                     ),
                     CustomSubCheckTile(
-                      title: stringZyWall,
-                      value: zyWall,
+                      title: stringZyxel,
+                      value: zyxel,
                       onChanged: (value) {
-                        zyWall = value;
+                        zyxel = value;
                         setState(() {});
                       },
                     ),
                   ],
-                ),
-              ),
-              Card(
-                child: CustomCheckTile(
-                  title: stringTraining,
-                  value: training,
-                  onChanged: (value) {
-                    training = value;
-                    setState(() {});
-                  },
-                ),
-              ),
-              Card(
-                child: CustomCheckTile(
-                  title: stringBackOfficeSetup,
-                  value: backOfficeSetup,
-                  onChanged: (value) {
-                    backOfficeSetup = value;
-                    setState(() {});
-                  },
                 ),
               ),
               Card(
@@ -502,6 +527,28 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
               ),
               Card(
                 child: CustomCheckTile(
+                  title: stringBackOfficeSetup,
+                  value: backOfficeSetup,
+                  onChanged: (value) {
+                    backOfficeSetup = value;
+                    setState(() {});
+                  },
+                ),
+              ),
+              Card(
+                child: CustomCheckTile(
+                  title: stringTraining,
+                  value: training,
+                  onChanged: (value) {
+                    training = value;
+                    setState(() {});
+                  },
+                ),
+              ),
+
+
+              /*Card(
+                child: CustomCheckTile(
                   title: stringFinalPayment,
                   value: finalPayment,
                   onChanged: (value) {
@@ -509,7 +556,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
                     setState(() {});
                   },
                 ),
-              ),
+              ),*/
               /* Card(
                 child: CustomCheckTile(
                   title: stringEquipmentPayment,
@@ -703,7 +750,7 @@ class _CustomSubCheckTileState extends State<CustomSubCheckTile> {
                         handScanner == false ||
                         cashDrawer == false ||
                         mounts == false ||
-                        zyWall == false) {
+                        zyxel == false) {
                       processOrder = false;
                     }
 

@@ -14,6 +14,8 @@ import 'package:http/http.dart' as http;
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 import 'package:itretail/Screens/user/userDashboard/Order_Status/Orderstatus.dart';
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
+import 'package:itretail/models/crfModel.dart';
+import 'package:itretail/models/usersModel.dart';
 
 class Signinpage extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class Signinpage extends StatefulWidget {
 
 class _SigninpageState extends State<Signinpage> {
   bool keepmelogiin = false;
-  TextEditingController emailController = TextEditingController(text: "nov@gmail.com");
+  TextEditingController emailController = TextEditingController(text: "arun1711996@gmail.com");
   TextEditingController passwordController = TextEditingController(text: "12345678");
   final _formKey = GlobalKey<FormState>();
 
@@ -233,8 +235,14 @@ class _SigninpageState extends State<Signinpage> {
 
    await http.post(APIs.loginURL, body: params).then((value) {
       print(value.body);
+
+      Global.currentMenu=0;
+
       var parsedJson = jsonDecode(value.body);
       if (parsedJson['status'].toString() == "1") {
+        
+        Global.loggedUser=UserModel.fromJson(parsedJson['data']);
+
 
         Global.userID=parsedJson['id'];
         Global.name=parsedJson['name'];
@@ -243,6 +251,9 @@ class _SigninpageState extends State<Signinpage> {
           Global.levelStatus=parsedJson['level_status'];
           Global.currentLevel=parsedJson['current_level'];
 
+          print(parsedJson['crf']);
+
+          Global.crfModel = CRFModel.fromJson(jsonDecode(parsedJson['crf']));
           var levels = jsonDecode(parsedJson['levels']);
 
      Global.levels = {
@@ -255,13 +266,13 @@ class _SigninpageState extends State<Signinpage> {
       "7": levels['7'],
       "8": levels['8'],
       "9": levels['9'],
-      "10": levels['10'],
-      "11": levels['11'],
+      "10": levels['10']
+
       };
 
      int totalLevel=0;
 
-          for(int i=1;i<12;i++){
+          for(int i=1;i<11;i++){
             if(Global.levels[i.toString()]<5){
               totalLevel++;
             }
@@ -271,11 +282,13 @@ class _SigninpageState extends State<Signinpage> {
 
 
 
-          Navigator.of(context).pushNamed(OrderstatusPage.route);
+          Navigator.of(context).pushNamed(UserDashboard.route);
         } else if (parsedJson['type'].toString() == "1") {
+          Global.currentMenu=0;
           Navigator.of(context).pushNamed(AdminDashboard.route);
         }
-      } else {
+      }
+      else {
         Fluttertoast.showToast(msg: "Invalid ID or Password");
       }
     });

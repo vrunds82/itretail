@@ -3,20 +3,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
-import 'package:itretail/models/usersModel.dart';
 
 class CustomOrderstaus extends StatelessWidget {
 
 
-  List<String> status = ['PENDING','IN REVIEW','REJECTED','DONE','START','SCHEDULING','SCHEDULED'];
-  List<Color> levelStatusColor = [Colors.grey,Colors.orange,Colors.red,Colors.green,Colors.green.shade300,Colors.orange.withOpacity(0.6),Colors.green];
+  List<String> status = ['PENDING','IN REVIEW','REJECTED','DONE','START'];
+  List<Color> levelStatusColor = [Colors.grey,Colors.orange,Colors.red,Colors.green,Colors.green.shade300];
 
   final int level;
-   int levelStatus;
+  final int levelStatus;
   final String bottomText;
   final String img;
   final VoidCallback onClick;
-
 
 
   CustomOrderstaus({this.level,this.img,this.bottomText,this.onClick,this.levelStatus});
@@ -24,27 +22,26 @@ class CustomOrderstaus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    if([8,9,10].contains(level) && [0,1].contains(levelStatus)){
-      levelStatus=5;
-    }
-    if([8,9,10].contains(level) && [3].contains(levelStatus)){
-      levelStatus=6;
-    }
-
-    Color currentColor = levelStatusColor[levelStatus];
-
-
+    Color currentColor = level.toString()==Global.currentLevel?levelStatusColor[int.parse(Global.levelStatus)==0?4:int.parse(Global.levelStatus)]:level<int.parse(Global.currentLevel)?levelStatusColor[3]:Colors.grey.shade500;
 
     return GestureDetector(
-      onTap:
-      onClick,
+      onTap: level>int.parse(Global.currentLevel)?(){
+        Fluttertoast.showToast(msg: "Please Completed level One by One");
+      }
+      :onClick,
       child: Container(
         width: MediaQuery.of(context).size.width*.15,
 
         child: Column(crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-           Text( status[levelStatus],style: TextStyle(
+           Text( status[
+             Global.currentLevel==level.toString() && Global.levelStatus=="0" ?
+             4:
+             int.parse(Global.currentLevel)>level ?
+             3:int.parse(Global.currentLevel)<level ?0:int.parse(Global.levelStatus)
+
+           ],style: TextStyle(
              fontSize: 24,
                color: currentColor,
              fontWeight: FontWeight.bold
@@ -80,24 +77,7 @@ class CustomOrderstaus extends StatelessWidget {
                   ),),
                 ],
               ),
-            ),
-            levelStatus==6?Column(
-              children: [
-                Text( "on",style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold
-                  //fontFamily: 'GOTHAM-BLACK'
-                ),),
-                Text( level==8?"${Global.loggedUser.training}":level==9?"${Global.loggedUser.install}":"${Global.loggedUser.golive}",style: TextStyle(
-                    fontSize: 24,
-                    color: currentColor,
-                    fontWeight: FontWeight.bold
-                  //fontFamily: 'GOTHAM-BLACK'
-                ),),
-              ],
-            ):SizedBox(),
-
+            )
 
 
           ],

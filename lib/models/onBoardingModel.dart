@@ -4,7 +4,7 @@ class OnBoardingModel {
   int status;
   String msg;
   String id;
-  String q1;
+  DateTime q1;
   String q2;
   String q3;
   String q4;
@@ -60,7 +60,7 @@ class OnBoardingModel {
     status = json['status'];
     msg = json['msg'];
     id = json['id'];
-    q1 = json['q1'];
+    q1 = json['q1'].toDateTime();
     q2 = json['q2'];
     q3 = json['q3'];
     q4 = json['q4'];

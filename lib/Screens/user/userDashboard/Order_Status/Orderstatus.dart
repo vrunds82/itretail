@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/CustomFiles/Custom_OrderStatus_textimage.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
@@ -7,7 +8,13 @@ import 'package:itretail/Screens/Questions_Screens/On_Boarding_Questionaire.dart
 
 class OrderstatusPage extends StatefulWidget {
 
+
+  VoidCallback callback;
+
   static String route = "orderStatusPage";
+
+
+  OrderstatusPage({this.callback});
 
   @override
   _OrderstatusPageState createState() => _OrderstatusPageState();
@@ -91,9 +98,18 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 3,
+                blurRadius: 2)
+          ]),
+      child: Center(
+        child: Material(
           child: Column(
             children: [
               SizedBox(
@@ -127,124 +143,124 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
                 ),
                 child: Column(
                   children: [
-                 /*   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        //onboarding questionnaior
-                        CustomOrderstaus(
-                          onClick: (){
-                            Navigator.of(context).pushNamed("onbordingque");
-                          },
-                          img: onbordingQue,
-                          titleDone: "DONE",
+                    /*   Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          //onboarding questionnaior
+                          CustomOrderstaus(
+                            onClick: (){
+                              Navigator.of(context).pushNamed("onbordingque");
+                            },
+                            img: onbordingQue,
+                            titleDone: "DONE",
 
-                          bottomText: " Onbording\n Questionnaire",
+                            bottomText: " Onbording\n Questionnaire",
 
-                        ),
+                          ),
 
-                        //hardware requirnment
-                        CustomOrderstaus(
-                          onClick: (){
-                            Navigator.of(context).pushNamed("hardware_reruirnment");
-                          },
-                          img: hardwareRequirement,
-                          titleDone: "DONE",
+                          //hardware requirnment
+                          CustomOrderstaus(
+                            onClick: (){
+                              Navigator.of(context).pushNamed("hardware_reruirnment");
+                            },
+                            img: hardwareRequirement,
+                            titleDone: "DONE",
 
-                          bottomText: " Hardware\n Requirnment",
+                            bottomText: " Hardware\n Requirnment",
 
-                        ),
+                          ),
 
-                        //product file
-                        CustomOrderstaus(
-                          img: product,
-                          titleDone: "DONE",
+                          //product file
+                          CustomOrderstaus(
+                            img: product,
+                            titleDone: "DONE",
 
-                          bottomText: " Product File\n",
+                            bottomText: " Product File\n",
 
-                        ),
+                          ),
 
-                        //store picture
-                        CustomOrderstaus(
-                          img: store,
-                          titleDone: "DONE",
+                          //store picture
+                          CustomOrderstaus(
+                            img: store,
+                            titleDone: "DONE",
 
-                          bottomText: "Store pictures\n",
+                            bottomText: "Store pictures\n",
 
-                        ),
+                          ),
 
-                        //training
-                        CustomOrderstaus(
-                          img: training,
-                          titleDone: "DONE",
+                          //training
+                          CustomOrderstaus(
+                            img: training,
+                            titleDone: "DONE",
 
-                          bottomText: " Training\n ",
+                            bottomText: " Training\n ",
 
-                        ),
-                      ],
-                    ),*/
+                          ),
+                        ],
+                      ),*/
                     Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: firstRow
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: firstRow
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: secondRow
                     ),
                     /*Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        //merchnat
-                        CustomOrderstaus(
-                          img: training,
-                          titleDone: "DONE",
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          //merchnat
+                          CustomOrderstaus(
+                            img: training,
+                            titleDone: "DONE",
 
-                          bottomText: " Training\n ",
+                            bottomText: " Training\n ",
 
-                        ),
+                          ),
 
 
-                        //final payment
-                        CustomOrderstaus(
-                          img: finalPayment,
-                          titleDone: "Rejected",
+                          //final payment
+                          CustomOrderstaus(
+                            img: finalPayment,
+                            titleDone: "Rejected",
 
-                          bottomText: " Final\nPayment ",
+                            bottomText: " Final\nPayment ",
 
-                        ),
+                          ),
 
-                        //hardwarre shipped
-                        CustomOrderstaus(
-                          img: hardwareShipped,
-                          titleDone: "PENDING",
+                          //hardwarre shipped
+                          CustomOrderstaus(
+                            img: hardwareShipped,
+                            titleDone: "PENDING",
 
-                          bottomText: "Hardware\nShipped",
+                            bottomText: "Hardware\nShipped",
 
-                        ),
+                          ),
 
-                        //install
-                        CustomOrderstaus(
-                          img: install,
-                          titleDone: "PENDING",
+                          //install
+                          CustomOrderstaus(
+                            img: install,
+                            titleDone: "PENDING",
 
-                          bottomText: " Install \n",
+                            bottomText: " Install \n",
 
-                        ),
+                          ),
 
-                        //final training
-                        CustomOrderstaus(
-                          img: finalTraining,
-                          titleDone: "PENDING",
+                          //final training
+                          CustomOrderstaus(
+                            img: finalTraining,
+                            titleDone: "PENDING",
 
-                          bottomText: "Final Training\n& Go Live",
+                            bottomText: "Final Training\n& Go Live",
 
-                        ),
-                      ],
-                    ),*/
+                          ),
+                        ],
+                      ),*/
                   ],
                 ),
               )
@@ -272,7 +288,10 @@ class _OrderstatusPageState extends State<OrderstatusPage> {
           bottomText: names[i]??"NA",
           onClick: (){
             Global.selectedLevel = i;
-            Navigator.of(context).pushNamed(routes[i]);
+            Global.currentMenu=i;
+            widget.callback();
+            Fluttertoast.showToast(msg: "Selected Level : "+Global.selectedLevel.toString(),toastLength: Toast.LENGTH_LONG);
+            //Navigator.of(context).pushNamed(routes[i]);
           },
 
         );

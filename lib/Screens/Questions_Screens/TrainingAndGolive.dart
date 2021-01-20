@@ -4,13 +4,19 @@ import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class Trainingandgolive extends StatefulWidget {
+
+  VoidCallback callback;
+
+
+  Trainingandgolive({this.callback});
+
   @override
   _TrainingandgoliveState createState() => _TrainingandgoliveState();
 }
 
 class _TrainingandgoliveState extends State<Trainingandgolive> {
 
-  final String installDone = 'assets/images/Store.svg';
+  final String installDone = 'assets/images/FinalTraining.png';
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +36,24 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.1,),
 
-            SvgPicture.asset(
+            Image.asset(
               installDone,
               color: Greencolor,
               height: 200,
               width: 200,
             ),
 
-            SizedBox(height: 10,),
+            SizedBox(height: 30,),
 
-            Text("FINAL TRAINING COMPLETE",
+            Text("FINAL TRAINING COMPLETE STORE IS LIVE",
               style: TextStyle(
                   decoration: TextDecoration.underline,
                   fontWeight: FontWeight.bold,
                   color: Greencolor,
-                  fontSize: 30,
+                  fontSize: 40,
                   fontFamily: 'GOTHAMMEDIUM'
               ),),
-            Text("STORE IS LIVE",
-              style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold,
-                  color: Greencolor,
-                  fontSize: 30,
-                  fontFamily: 'GOTHAMMEDIUM'
-              ),),
+
 
             SizedBox(height: MediaQuery.of(context).size.height*0.1,),
             Center(

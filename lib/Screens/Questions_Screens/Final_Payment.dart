@@ -10,11 +10,16 @@ import 'package:itretail/Screens/CustomFiles/CustomtextWithUnderline.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/UploadImage.dart';
 import 'package:http/http.dart' as http;
+import 'package:itretail/Widgets/chatHistory/chatHistory.dart';
+import 'package:itretail/Widgets/dialogs/progressDialog.dart';
 
 class Finalpayment extends StatefulWidget {
-  
+  VoidCallback callback;
   static String route ="finalPayment";
-  
+
+
+  Finalpayment({this.callback});
+
   @override
   _FinalpaymentState createState() => _FinalpaymentState();
 }
@@ -22,131 +27,235 @@ class Finalpayment extends StatefulWidget {
 class _FinalpaymentState extends State<Finalpayment> {
 
   List<String> paymentImages = new List();
-  
+
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    checkForDetails();
+    super.initState();
+  }
+
+  checkForDetails()
+  async {
+
+    if(int.parse(Global.currentLevel)==4 && int.parse(Global.levelStatus)==0){
+      isLoading =false;
+      setState(() {
+
+      });
+
+    }else{
+      print("Getting Store Details");
+   //   await getData();
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                "Final Payment",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 35,
+    return Material(
+      child: Row(
+        children: [
+          Expanded(
+            flex: 7,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 3,
+                        blurRadius: 2)
+                  ]),
+              child: isLoading?Center(child: SizedBox(height: 50,width: 50,child: CircularProgressIndicator())): Column(
 
-                  fontWeight: FontWeight.bold,
-                  //fontFamily: 'GOTHAM-BLACK',
-                  color: Greencolor,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                  MediaQuery.of(context).size.width * .15,
-                  0,
-                  MediaQuery.of(context).size.width * .15,
-                  0),
-              child: Column(
                 children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      CustomText(
-                        title: "Upload the picture of payment",
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Container(
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            scrollDirection:Axis.horizontal,
-                            itemCount: paymentImages.length+1,
-                            itemBuilder: (c,i){
-                              return UploadImage(path: paymentImages.isEmpty?null:paymentImages.length>i?paymentImages[i]:null,
-                                onChanged: (value){
-                                  print("Clicked on :!$i");
-                                  if(paymentImages.isEmpty || paymentImages.length<i+1){
-                                    paymentImages.add(value);
-                                  }else{
-                                    paymentImages[i]=value;
-                                  }
-                                  print(paymentImages);
-                                  setState(() {
-
-                                  });
-                                },onDelete: (){
-                                  print("Removing");
-                                  paymentImages.removeAt(i);
-                                  setState(() {
-                                  });
-                                },);
-                            },
-                          ),
+                    decoration: BoxDecoration(
+                        color: Greencolor,
+                        borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(10))),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Final Payment",
+                          style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.height * 0.04,
+                              color: Whitecolor),
                         ),
-                      ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child:Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                CustomText(
+                                  title: "Upload the picture of payment",
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              height: 100,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: ListView.builder(
+                                      scrollDirection:Axis.horizontal,
+                                      itemCount: paymentImages.length+1,
+                                      itemBuilder: (c,i){
+                                        return UploadImage(path: paymentImages.isEmpty?null:paymentImages.length>i?paymentImages[i]:null,
+                                          onChanged: (value){
+                                            print("Clicked on :!$i");
+                                            if(paymentImages.isEmpty || paymentImages.length<i+1){
+                                              paymentImages.add(value);
+                                            }else{
+                                              paymentImages[i]=value;
+                                            }
+                                            print(paymentImages);
+                                            setState(() {
+
+                                            });
+                                          },onDelete: (){
+                                            print("Removing");
+                                            paymentImages.removeAt(i);
+                                            setState(() {
+                                            });
+                                          },);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-            ),
-            Center(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Custombuttongrey(
-                    title: "BACK",
-                    titleclr: Whitecolor,
-                    bgclr: Lightgreycolor,
-                    click: () {
-                      Navigator.of(context).pop();
-                    },
+          ),
+          SizedBox(width: 20,),
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 3,
+                              blurRadius: 2)
+                        ]),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Column(
+                              children: [
+
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Greencolor,
+                                            borderRadius:
+                                            BorderRadius.vertical(top: Radius.circular(10))),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Comments",
+                                              style: TextStyle(
+                                                  fontSize: MediaQuery.of(context).size.height * 0.04,
+                                                  color: Whitecolor),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10,),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal
+                                              : 20),
+                                          child: Column(
+                                            children: [
+                                              Expanded(child: ChatHistory(level:  Global.selectedLevel.toString(),uid: Global.userID,)),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                int.parse(Global.currentLevel)>9?SizedBox():Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child:
+                                        int.parse(Global.currentLevel)==9 && int.parse(Global.levelStatus)==0?
+
+                                        Custombuttongrey(
+                                          title: "Submit",
+                                          bgclr: Colors.green,
+                                          click: () {
+                                            postData();
+                                          },
+                                          titleclr: Colors.white,
+                                        ):Custombuttongrey(
+                                          title: "Re Submit",
+                                          bgclr: Colors.green,
+                                          click: () {
+                                            update();
+
+                                          },
+                                          titleclr: Colors.white,
+                                        )
+
+
+                                        ,
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Custombuttongreen(
-                    title: "NEXT",
-                    titleclr: Whitecolor,
-                    bgclr: Greencolor,
-                    click: () {
-                      postData();
-                    },
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
-            SizedBox(
-              height: 20,
-            ),
-            CustomTextUnderline(
-              title: "Upload Picture Of The Payment To Next",
-              titleclr: Colors.black.withOpacity(0.6),
-              underlineclr: Colors.black.withOpacity(0.6),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
 
-
   postData()
-  {
-    http.post("${BaseURL}addPayment.php",
+  async {
+    ProgressDialog.showProgressDialog(context: context);
+    await  http.post(APIs.addPaymentImages,
         body: {"uid":Global.userID??2.toString(),
           "pics":jsonEncode(paymentImages).toString()
         }).then((value){
@@ -154,28 +263,58 @@ class _FinalpaymentState extends State<Finalpayment> {
       print(value.body);
 
     });
+
+    await APIs.getUserDetails();
+
+    Navigator.of(context).pop();
+    Global.currentMenu=0;
+    widget.callback();
   }
 
   getData()
-  {
-    http.post("${BaseURL}getHardware.php",
+  async {
+    await http.post(APIs.getPaymentImages,
         body: {"uid":Global.userID??2.toString()
         }).then((value){
-      print(value.body);
+      print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);
-      print(parsedJson['computerports']);
 
-      List<String> abc = jsonDecode(parsedJson['computerports']).cast<String>();
-
-      print(abc.length);
-      print(abc[1]);
-
-      var ab =jsonDecode(parsedJson['computerports']);
+      print(parsedJson['status']);
+      if(parsedJson['status']==1.toString()){
+        print(parsedJson['images']);
+        paymentImages =jsonDecode(parsedJson['images']).cast<String>();
+      }
 
       setState(() {
 
       });
     });
   }
-  
+
+  update() async {
+    ProgressDialog.showProgressDialog(context: context);
+    await http.post(APIs.updatePaymentImages,
+        body: {"uid":Global.userID??2.toString(),
+          "pics":jsonEncode(paymentImages).toString()
+
+        }).then((value) async {
+
+      print(value.body);
+      var parsedData = jsonDecode(value.body);
+      if(parsedData['status']==1){
+        Navigator.of(context).pop();
+        Global.currentMenu=0;
+        await APIs.getUserDetails();
+        widget.callback();
+      }else{
+
+      }
+    });
+
+  }
+
+
+
+
+
 }

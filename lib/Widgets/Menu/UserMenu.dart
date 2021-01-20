@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/Menu/MenuItem.dart';
 
-class Menu extends StatefulWidget {
+class UserMenu extends StatefulWidget {
 
   VoidCallback callback;
 
 
-  Menu({this.callback});
+  UserMenu({this.callback});
 
   @override
-  _MenuState createState() => _MenuState();
+  _UserMenuState createState() => _UserMenuState();
 }
 
-class _MenuState extends State<Menu> {
+class _UserMenuState extends State<UserMenu> {
 
 
 
@@ -24,15 +24,13 @@ class _MenuState extends State<Menu> {
 
         height: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: Greencolor,
-          boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 5)]
+            color: Greencolor,
+            boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 5)]
         ),
 
         child: Column(
           children: [
             MenuItem(title: "Home",iconData: Icons.home,position: 0,callback: widget.callback,),
-       /*     MenuItem(title: "All Users",iconData: Icons.people,position: 14,callback: widget.callback,),*/
-            MenuItem(title: "Add User",iconData: Icons.person_add,position: 13,callback: widget.callback,),
             Spacer(),
             GestureDetector(onTap: (){
               Navigator.pushNamedAndRemoveUntil(context, "Signin", (r) => false);

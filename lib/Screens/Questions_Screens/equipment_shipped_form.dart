@@ -7,6 +7,9 @@ import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 
 class EquipmentShippedForm extends StatefulWidget {
+
+  static String route = "equipmentShippedForm";
+
   @override
   _EquipmentShippedFormState createState() => _EquipmentShippedFormState();
 }

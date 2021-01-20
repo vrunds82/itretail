@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:itretail/Config/API_URLs.dart';
-import 'dart:html' as html;
+//import 'dart:html' as html;
 
 class ViewImages extends StatelessWidget {
 
   List<String> images;
+  double height ;
 
 
-  ViewImages({this.images});
+  ViewImages({this.images,this.height});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 800,
-      height: 120,
+      color: Colors.white,
+
+      height: height??120,
       child: Row(
         children: [
           Expanded(
@@ -32,11 +34,12 @@ class ViewImages extends StatelessWidget {
                     _showMyDialog(context,UploadURL+images[index]);
                   },
                   child: Container(
-                    height: 100,
-                    width: 100,
+                    height: height??100,
+                    width: height??100,
 
                     decoration: BoxDecoration(
                       boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2),spreadRadius: 3,blurRadius: 3)],
+                      borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(UploadURL+images[index]),fit: BoxFit.cover
                       )
@@ -85,7 +88,7 @@ class ViewImages extends StatelessWidget {
                          Spacer(),
                          GestureDetector(onTap: () async{
 
-                           html.window.open(image, 'PlaceholderName');
+                         //  html.window.open(image, 'PlaceholderName');
                            Navigator.of(context).pop();
 
 

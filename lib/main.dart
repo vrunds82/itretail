@@ -3,8 +3,10 @@ import 'package:itretail/Screens/Questions_Screens/equipment_shipped_form.dart';
 import 'package:itretail/Screens/Questions_Screens/show_onboarding_answer.dart';
 import 'package:itretail/Screens/admin/Dashboard/dashboard.dart';
 import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
+import 'package:itretail/Screens/admin/userMerchantInfo/userMerchantInfo.dart';
 import 'package:itretail/Screens/admin/userOnboarding/userOnborading.dart';
 import 'package:itretail/Screens/user/editCustomerDetails/editCustomerDetails.dart';
+import 'package:itretail/Screens/user/userDashboard/Order_Status/OrderstatusNew.dart';
 
 
 import 'package:itretail/Screens/user/userDashboard/UserDashboard.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      home: EquipmentShippedForm(),
+      home: Signinpage(),
 
 
       routes: {
@@ -52,13 +54,13 @@ class MyApp extends StatelessWidget {
         'merchantinfo':(context)=>Merchantinformationpage(),
         'hardware_reruirnment':(context)=>Hardwarerequirnment(),
         'store_picture':(context)=>Storepicture(),
-        'watch_trainingVedio':(context)=>Watchtrainingvediopage(),
+        'watch_trainingVedio':(context)=>WatchTrainingVideo(),
         'backOffice_setup':(context)=>BackOfficeSetup(),
         'ProductFile':(context)=>Productfile(),
         'FinalPayment':(context)=>Finalpayment(),
         'FinalPaymentDone':(context)=>Paymentdone(),
         'Equipment_Shipped':(context)=>EquipmentShipped(),
-        'Install':(context)=>Installpage(),
+
         'Install_Done':(context)=>Installdone(),
         'Training_Go_AndLive':(context)=>Trainingandgolive(),
         'Signin':(context)=>Signinpage(),
@@ -70,12 +72,14 @@ class MyApp extends StatelessWidget {
 
 
         Finalpayment.route:(context)=>Finalpayment(),
-        Installpage.route:(context)=>Installpage(),
+
         OrderstatusPage.route:(context)=>OrderstatusPage(),
+        OrderStatusPageNew.route:(context)=>OrderStatusPageNew(),
 
         // ADMIN PAGES
         AdminDashboard.route:(context)=>AdminDashboard(),
         UserDashboard.route:(context)=>UserDashboard(),
+        EquipmentShippedForm.route:(context)=>EquipmentShippedForm(),
 
 
         //
@@ -84,6 +88,8 @@ class MyApp extends StatelessWidget {
         Hardwarerequirnment.route:(context)=>Hardwarerequirnment(),
         Storepicture.route:(context)=>Storepicture(),
         Productfile.route:(context)=>Productfile(),
+
+
 
 
       },

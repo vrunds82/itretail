@@ -28,6 +28,8 @@ class _AddUserState extends State<AddUser> {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController pincodeController = new TextEditingController();
   TextEditingController numberController = new TextEditingController();
+  TextEditingController idController = new TextEditingController();
+  TextEditingController loginPasswordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -234,6 +236,79 @@ class _AddUserState extends State<AddUser> {
                         SizedBox(
                           height: 30,
                         ),
+                        Row(
+                          children: [
+                            Expanded(child: VerticalDivider()),
+                            CustomText(
+                              title: "Login Credentials for IT RETAIL",textcolor: Colors.green,
+                            ),
+                            Expanded(child: VerticalDivider()),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      CustomText(
+                                        title: "Login ID",
+                                      ),
+                                    ],
+                                  ),
+                                  CustomTextField(
+                                    hintTitle: "Your Answer Here...",
+                                    textController: idController,
+
+                                    validator: (value) {
+                                      if (value == "") {
+                                        return 'Please enter Login ID';
+                                      }
+                                     else
+                                      return null;
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            //mobile number
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      CustomText(
+                                        title: "Password",
+                                      ),
+                                    ],
+                                  ),
+                                  CustomTextField(
+                                    hintTitle: "Your Answer Here...",
+                                    textController: loginPasswordController,
+                                    validator: (value) {
+                                      if (value == "") {
+                                        return 'Please enter password';
+                                      }
+                                      else
+                                        return null;
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ), //buttons
+                        SizedBox(
+                          height: 30,
+                        ),
                         Center(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -281,8 +356,10 @@ class _AddUserState extends State<AddUser> {
     Global.newUserAddress = addressController.text;
     Global.newUserContact = numberController.text;
     Global.newUserPinCode = pincodeController.text;
+    Global.newUserLoginID = idController.text;
+    Global.newUserLoginPassword = passwordController.text;
 
-    Global.currentMenu=6;
+    Global.currentMenu=14;
     widget.callback();
 
   }
