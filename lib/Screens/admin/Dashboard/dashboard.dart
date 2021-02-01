@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:itretail/Config/config.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
+import 'package:itretail/Screens/Questions_Screens/TrainingAndGolive.dart';
 import 'package:itretail/Screens/Questions_Screens/equipment_shipped_form.dart';
 import 'package:itretail/Screens/admin/AddUser/AddUser.dart';
 import 'package:itretail/Screens/admin/allUsers/AllUsers.dart';
@@ -15,6 +16,7 @@ import 'package:itretail/Screens/admin/userOnboarding/userOnborading.dart';
 import 'package:itretail/Screens/admin/userProductFile/userproductFile.dart';
 import 'package:itretail/Screens/admin/userStoreImages/userStoreImages.dart';
 import 'package:itretail/Screens/admin/userStoreInstalled/userStoreInstalled.dart';
+import 'package:itretail/Screens/admin/videos/videos.dart';
 
 import 'package:itretail/Widgets/Menu/Menu.dart';
 
@@ -103,6 +105,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
         break;
       case 14:
         return CustomerRequirement(callback: callBackFunction,);
+        break;
+      case 15:
+        return TrainingVideos(callback: callBackFunction,);
         break;
 
     }

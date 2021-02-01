@@ -314,13 +314,13 @@ class _StorepictureState extends State<Storepicture> {
                                     ],
                                   ),
                                 ),
-                                int.parse(Global.currentLevel)>4?SizedBox():Padding(
+                               Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Row(
                                     children: [
                                       Expanded(
                                         child:
-                                        int.parse(Global.currentLevel)==4 && int.parse(Global.levelStatus)==0?
+                                        Global.loggedUser.allLevel.l4=="0"?
 
                                         Custombuttongrey(
                                           title: "Submit",

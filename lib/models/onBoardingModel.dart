@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 class OnBoardingModel {
   int status;
   String msg;
@@ -25,6 +27,8 @@ class OnBoardingModel {
   List<String> q18Images;
   String q19;
   String q20;
+  String q21;
+  String q22;
   String timestamp;
   String levelStatus;
 
@@ -53,6 +57,8 @@ class OnBoardingModel {
         this.q18Images,
         this.q19,
         this.q20,
+        this.q21,
+        this.q22,
         this.timestamp,
         this.levelStatus});
 
@@ -60,7 +66,7 @@ class OnBoardingModel {
     status = json['status'];
     msg = json['msg'];
     id = json['id'];
-    q1 = json['q1'].toDateTime();
+    q1 = DateFormat("yyyy-MM-dd hh:mm:ss").parse(json['q1']);
     q2 = json['q2'];
     q3 = json['q3'];
     q4 = json['q4'];
@@ -81,6 +87,8 @@ class OnBoardingModel {
     q18Images = jsonDecode(json['q18_images']).cast<String>();
     q19 = json['q19'];
     q20 = json['q20'];
+    q21 = json['q21'];
+    q22 = json['q22'];
     timestamp = json['timestamp'];
     levelStatus = json['level_status'];
   }
@@ -111,6 +119,8 @@ class OnBoardingModel {
     data['q18_images'] = this.q18Images.toString();
     data['q19'] = this.q19;
     data['q20'] = this.q20;
+    data['q21'] = this.q21;
+    data['q22'] = this.q22;
     data['timestamp'] = this.timestamp;
     data['level_status'] = this.levelStatus;
     return data;

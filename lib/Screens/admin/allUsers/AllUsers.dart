@@ -9,6 +9,7 @@ import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:itretail/Widgets/dialogs/setTime.dart';
 import 'package:itretail/models/crfModel.dart';
 import 'package:itretail/models/usersModel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AllUsers extends StatefulWidget {
   VoidCallback callback;
@@ -80,12 +81,18 @@ class _AllUsersState extends State<AllUsers> {
                         children: [
                           Row(
                             children: [
-                              Expanded(flex: 1,child: Text("No.",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
+                              SizedBox(width: 20,),
+                              Text("No.",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),),
+                              SizedBox(width: 30,),
                               Expanded(flex: 3,child: Text("Name",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
-                              Expanded(flex: 3,child: Text("Address",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
+                              Expanded(flex: 5,child: Row(
+                                children: [
+                                  SizedBox(width: 30,),
+                                  Text("Date Time for Calls",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),),
+                                ],
+                              )),
                               Expanded(flex: 4,child: Center(child: Text("Level",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),))),
-
-                              Icon(Icons.remove_red_eye,color: Colors.transparent,),
+                              Expanded(flex: 1,child: Center(child: Text("File",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),))),
                             ],
                           ),
                           Expanded(
@@ -98,26 +105,27 @@ class _AllUsersState extends State<AllUsers> {
                                       padding: const EdgeInsets.symmetric(vertical: 10),
                                       child: Row(
                                         children: [
-                                          Expanded(flex: 1,child: Text("${index+1}",style: TextStyle(color: Colors.green,fontSize: 18),)),
+                                          SizedBox(width: 50,),
+                                          Text("${index+1}",style: TextStyle(color: Colors.green,fontSize: 18),),
+                                          SizedBox(width: 30,),
                                           Expanded(flex: 3,child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text("${allUsers[index].name}",style: TextStyle(color: Colors.green,fontSize: 18),),
+                                              Text("Name: ${allUsers[index].name}",style: TextStyle(color: Colors.green,fontSize: 18),),
+                                              SizedBox(height: 5,),
                                               Row(
                                                 children: [
-                                                  Text("${allUsers[index].email} ",style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                                  Text("Mail: ${allUsers[index].email} ",style: TextStyle(color: Colors.grey,fontSize: 14),),
                                                   SizedBox(width: 15,),
                                                   Icon(Icons.phone,size: 14,),
                                                   SizedBox(width: 5,),
                                                   Text("${allUsers[index].contact}",style: TextStyle(color: Colors.grey,fontSize: 14),),
                                                 ],
                                               ),
-                                            ],
-                                          )),
-                                          Expanded(flex: 3,child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text("${allUsers[index].address} ",style: TextStyle(color: Colors.green,fontSize: 14),),
+                                              SizedBox(height: 5,),
+                                              Text("------------------------------",style: TextStyle(color: Colors.green,fontSize: 18),),
+                                              SizedBox(height: 5,),
+                                              Text("IT Retail Back Office Login",style: TextStyle(color: Colors.green,fontSize: 14),),
                                               SizedBox(height: 5,),
                                               Row(
                                                 children: [
@@ -128,11 +136,173 @@ class _AllUsersState extends State<AllUsers> {
                                                   Icon(Icons.lock,size: 14,),
                                                   SizedBox(width: 5,),
                                                   Text("${allUsers[index].loginPassword}",style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                                  SizedBox(width: 15,),
+                                                  Icon(Icons.attach_file_outlined,size: 14,),
+                                                  SizedBox(width: 5,),
+                                                  Text("${allUsers[index].pin}",style: TextStyle(color: Colors.grey,fontSize: 14),),
                                                 ],
                                               ),
                                             ],
                                           )),
+
+
+                                          Expanded(flex: 5,child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                                                  child: Row(
+                                                    children: [
+                                                      Text("One to One Training : ",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                                                      Text(allUsers[index].oneToOne!=null && allUsers[index].oneToOne!=""?allUsers[index].oneToOne.substring(0,16):"NA",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                                      Spacer(),
+                                                      GestureDetector(
+                                                      onTap: (){
+                                                        SetTime.dateTimePicker(context,onSelected: (date,time) async {
+
+                                                          print(date.toString());
+                                                          print(time.toString());
+                                                          print(time.hour);
+                                                          date = date.add(Duration(hours: time.hour));
+                                                          print(date);
+                                                          date = date.add(Duration(minutes: time.minute));
+                                                          print(date);
+
+                                                        await  APIs.updateDate(
+                                                            context: context,
+                                                            uid: allUsers[index].id,
+                                                            level: 8.toString(),
+                                                            date: date.toString()
+
+                                                          );
+                                                          getAllUsers();
+
+
+
+                                                        },initialDate: allUsers[index].oneToOne!=null && allUsers[index].oneToOne!=""?DateTime.parse(allUsers[index].oneToOne):DateTime.now());
+                                                      },child: Icon(Icons.calendar_today_outlined,)),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+
+                                              Container(
+                                                color:Colors.green.withOpacity(0.1),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                                                  child: Row(
+                                                    children: [
+                                                      Text("Call with Deployment Team on : ",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                                                      Text(allUsers[index].deploymentCall!=null && allUsers[index].deploymentCall!=""?allUsers[index].deploymentCall.substring(0,16):"NA",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                                      Spacer(),
+                                                      GestureDetector(onTap:(){
+                                                        SetTime.dateTimePicker(context,onSelected: (date,time) async {
+
+                                                          print(date.toString());
+                                                          print(time.toString());
+                                                          print(time.hour);
+                                                          date = date.add(Duration(hours: time.hour));
+                                                          print(date);
+                                                          date = date.add(Duration(minutes: time.minute));
+                                                          print(date);
+
+                                                          await  APIs.updateDate(
+                                                              context: context,
+                                                              uid: allUsers[index].id,
+                                                              level: 91.toString(),
+                                                              date: date.toString()
+
+                                                          );
+                                                          getAllUsers();
+
+
+
+                                                        },initialDate: allUsers[index].deploymentCall!=null && allUsers[index].deploymentCall!=""?DateTime.parse(allUsers[index].deploymentCall):DateTime.now());
+                                                      }, child: Icon(Icons.calendar_today_outlined)),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+
+                                              Container(
+
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                                                  child: Row(
+                                                    children: [
+                                                      Text("Installation Date : ",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                                                      Text(allUsers[index].install!=null && allUsers[index].install!=""?allUsers[index].install.substring(0,10):"NA",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                                      Spacer(),
+                                                      GestureDetector(onTap:(){
+                                                        SetTime.datePicker(context,onSelected: (date) async {
+
+
+
+                                                          await  APIs.updateDate(
+                                                              context: context,
+                                                              uid: allUsers[index].id,
+                                                              level: 9.toString(),
+                                                              date: date.toString()
+
+                                                          );
+
+
+                                                          getAllUsers();
+
+                                                        },initialDate: allUsers[index].install!=null && allUsers[index].install!=""?DateTime.parse(allUsers[index].install):DateTime.now());
+                                                      }, child: Icon(Icons.calendar_today_outlined)),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+
+                                              Container(
+                                                color:Colors.green.withOpacity(0.1),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                                                  child: Row(
+                                                    children: [
+                                                      Text("Go Live Date : ",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                                                      Text(allUsers[index].golive!=null && allUsers[index].golive!=""?allUsers[index].golive.substring(0,10):"NA",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                                      Spacer(),
+                                                      GestureDetector(onTap:(){
+                                                        SetTime.datePicker(context,onSelected: (date) async {
+
+
+
+                                                          await  APIs.updateDate(
+                                                              context: context,
+                                                              uid: allUsers[index].id,
+                                                              level: 10.toString(),
+                                                              date: date.toString(),
+
+
+
+                                                          );
+                                                          getAllUsers();
+
+
+
+
+                                                        },initialDate: allUsers[index].golive!=null && allUsers[index].golive!=""?DateTime.parse(allUsers[index].golive):DateTime.now());
+                                                      }, child: Icon(Icons.calendar_today_outlined)),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+
+
+
+                                            ],
+                                          )),
+
+                                          SizedBox(width: 30,),
+
+
                                           Expanded(flex: 4,child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               allUsers[index].allLevel.l1=="5"?SizedBox() : LevelWidget(level: 1,levelStatus: allUsers[index].allLevel.l1,onClick: (){widget.callback();},user: allUsers[index],),
                                               allUsers[index].allLevel.l2=="5"?SizedBox() : LevelWidget(level: 2,levelStatus: allUsers[index].allLevel.l2,onClick: (){widget.callback();},user: allUsers[index],),
@@ -146,6 +316,25 @@ class _AllUsersState extends State<AllUsers> {
                                               allUsers[index].allLevel.l10=="5"?SizedBox() : LevelWidget(level: 10,levelStatus: allUsers[index].allLevel.l10,onClick: (){getAllUsers();},user: allUsers[index],),
                                             ],
                                           ),),
+                                          Expanded(flex: 1,child:
+
+                                             allUsers[index].csv!=null && allUsers[index].csv!="" ?
+
+                                          Center(
+                                            child: Column(
+                                              children: [
+                                                GestureDetector(onTap: () async {
+                                                  String url = '${BaseURL}docs/${allUsers[index].csv}';
+                                                  if (await canLaunch(url)) {
+                                                  await launch(url);
+                                                  } else {
+                                                  throw 'Could not launch $url';
+                                                  }
+                                                },child: Icon(Icons.insert_drive_file,size: 35,color: Colors.green,)),
+
+                                              ],
+                                            ),
+                                          ):SizedBox(),),
 
                                         ],
                                       ),
@@ -276,7 +465,7 @@ class LevelWidget extends StatelessWidget {
             user: user
 
           );*/
-          SetTime.datePicker(context);
+          //SetTime.datePicker(context);
         }else if(levelStatus=="0"){
           Fluttertoast.showToast(msg: "No details submitted yet.");
         }else {

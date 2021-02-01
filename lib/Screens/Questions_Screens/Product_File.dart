@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:itretail/Config/API_URLs.dart';
 import 'package:itretail/Config/config.dart';
@@ -12,6 +13,7 @@ import 'package:itretail/Widgets/UploadImage.dart';
 import 'package:http/http.dart' as http;
 import 'package:itretail/Widgets/chatHistory/chatHistory.dart';
 import 'package:itretail/Widgets/dialogs/progressDialog.dart';
+import 'package:itretail/Widgets/uploadCSV.dart';
 
 
 class Productfile extends StatefulWidget {
@@ -29,6 +31,7 @@ class _ProductfileState extends State<Productfile> {
   List<String> EAN = new List();
   List<String> _002 = new List();
   bool isLoading = true;
+  String csvPath;
 
   @override
   void initState() {
@@ -117,22 +120,31 @@ class _ProductfileState extends State<Productfile> {
                               children: [
                                 Expanded(
                                   child: CustomTextUnderline(
-                                    title: "1. How To Download The Product Template",
+                                    title: "1.  Understanding Product Input",
                                     titleclr: Greencolor,
                                     underlineclr: Greencolor,
+                                    url: "https://knowledgebase.itretail.com/knowledge-base/add-an-item/",
+
+
                                   ),
                                 ),
                               ],
                             ),
+
                             SizedBox(
                               height: 20,
                             ),
                             Row(
                               children: [
-                                CustomTextUnderline(
-                                  title: "2. How to Use The Product Template",
-                                  titleclr: Greencolor,
-                                  underlineclr: Greencolor,
+                                Expanded(
+                                  child: CustomTextUnderline(
+                                    title: "2.  Knowledge Base link to Adding Products",
+                                    titleclr: Greencolor,
+                                    underlineclr: Greencolor,
+                                    url: "https://knowledgebase.itretail.com/knowledge-base/add-an-item/",
+
+
+                                  ),
                                 ),
                               ],
                             ),
@@ -142,16 +154,72 @@ class _ProductfileState extends State<Productfile> {
                             ),
                             Row(
                               children: [
-                                CustomTextUnderline(
-                                  title: "3. How to send us picture",
-                                  titleclr: Greencolor,
-                                  underlineclr: Greencolor,
+                                Expanded(
+                                  child: CustomTextUnderline(
+                                    title: "3.  What is a check digit? ",
+                                    titleclr: Greencolor,
+                                    underlineclr: Greencolor,
+                                    url: "https://knowledgebase.itretail.com/knowledge-base/what-is-a-check-digit/",
+
+
+                                  ),
                                 ),
                               ],
                             ),
 
                             SizedBox(
-                              height: 40,
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomTextUnderline(
+                                    title: "4.  UPC and EAN Barcode Symbology",
+                                    titleclr: Greencolor,
+                                    underlineclr: Greencolor,
+                                    url: "https://knowledgebase.itretail.com/knowledge-base/upc-and-ean-barcode-symbology/",
+
+
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomTextUnderline(
+                                    title: "5.  Product Import Tool Checklist",
+                                    titleclr: Greencolor,
+                                    underlineclr: Greencolor,
+                                    url: "https://knowledgebase.itretail.com/knowledge-base/import-help-document/",
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomTextUnderline(
+                                    title: "6.  Product Import Template Example .csv file",
+                                    titleclr: Greencolor,
+                                    underlineclr: Greencolor,
+                                    url: "https://knowledgebase.itretail.com/knowledge-base/import-help-document/",
+                                  ),
+                                ),
+                              ],
+                            ),
+
+
+                            SizedBox(
+                              height: 20,
                             ),
 
                             Row(
@@ -223,7 +291,7 @@ class _ProductfileState extends State<Productfile> {
                                 Row(
                                   children: [
                                     CustomText(
-                                      title: "2.EAN BARCODE",
+                                      title: "2. EAN BARCODE",
                                     ),
                                   ],
                                 ),
@@ -275,7 +343,7 @@ class _ProductfileState extends State<Productfile> {
                                 Row(
                                   children: [
                                     CustomText(
-                                      title: "3.002 BARCODE",
+                                      title: "3. 002 BARCODE",
                                     ),
                                   ],
                                 ),
@@ -317,6 +385,36 @@ class _ProductfileState extends State<Productfile> {
                                 ),
                               ],
                             ),
+
+                            Row(
+                              children: [
+                                Text("Upload your own Product file below",style: TextStyle(color: Colors.green,fontSize: 25,fontWeight: FontWeight.bold),),
+                              ],
+                            ),
+                            SizedBox(height: 15,),
+
+                            UploadCSV(onChanged: (path){
+
+                              csvPath=path;
+                              setState(() {
+
+                              });
+
+                          },path: csvPath,
+                            onDelete: (){
+                              print(csvPath);
+
+                              if(csvPath==null){
+                                print("Path is NUll");
+                              }else if(csvPath==""){
+                                print("Path is empty");
+                              }else
+
+                                csvPath="";
+                              setState(() {
+
+                              });
+                            },)
                           ],
                         ),
                       ),
@@ -383,13 +481,13 @@ class _ProductfileState extends State<Productfile> {
                                     ],
                                   ),
                                 ),
-                                int.parse(Global.levelStatus)==3?SizedBox():Padding(
+                               Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Row(
                                     children: [
                                       Expanded(
                                         child:
-                                        int.parse(Global.levelStatus)==0?
+                                        Global.loggedUser.allLevel.l6=="0"?
 
                                         Custombuttongrey(
                                           title: "Submit",
@@ -399,7 +497,7 @@ class _ProductfileState extends State<Productfile> {
                                           },
                                           titleclr: Colors.white,
                                         ):Custombuttongrey(
-                                          title: "Re Submit",
+                                          title: "Submit",
                                           bgclr: Colors.green,
                                           click: () {
 
@@ -714,7 +812,8 @@ class _ProductfileState extends State<Productfile> {
         body: {"uid":Global.userID??2.toString(),
           "upca":jsonEncode(UPCA).toString(),
           "ean":jsonEncode(EAN).toString(),
-          "002":jsonEncode(_002).toString()
+          "002":jsonEncode(_002).toString(),
+          "csv":csvPath??""
         }).then((value) async {
       print(value.body);
       await APIs.getUserDetails();
@@ -741,6 +840,7 @@ class _ProductfileState extends State<Productfile> {
         UPCA =jsonDecode(parsedJson['upca']).cast<String>();
         EAN =jsonDecode(parsedJson['ean']).cast<String>();
         _002 =jsonDecode(parsedJson['barcode002']).cast<String>();
+        csvPath = parsedJson['csv'];
       }
 
       isLoading = false;

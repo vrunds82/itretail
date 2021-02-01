@@ -9,6 +9,7 @@ import 'package:itretail/Screens/Questions_Screens/Equipment_Shipped.dart';
 import 'package:itretail/Screens/Questions_Screens/Final_Payment.dart';
 import 'package:itretail/Screens/Questions_Screens/Hardware_Requiements.dart';
 import 'package:itretail/Screens/Questions_Screens/Install.dart';
+import 'package:itretail/Screens/Questions_Screens/Install_Done.dart';
 import 'package:itretail/Screens/Questions_Screens/Merchant_Information.dart';
 import 'package:itretail/Screens/Questions_Screens/On_Boarding_Questionaire.dart';
 import 'package:itretail/Screens/Questions_Screens/Product_File.dart';
@@ -105,10 +106,10 @@ class _UserDashboardState extends State<UserDashboard> {
         return WatchTrainingVideo(callback: callBack,);
         break;
       case 9:
-        return Finalpayment(callback: callBack,);
+        return Installdone(callback: callBack,);
         break;
       case 10:
-        return InstalledStoreImages(callback: callBack,);
+        return Trainingandgolive(callback: callBack,);
         break;
       case 11:
         return Trainingandgolive(callback: callBack,);

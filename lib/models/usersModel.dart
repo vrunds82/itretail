@@ -8,6 +8,7 @@ class UserModel {
   String pincode;
   String loginID;
   String loginPassword;
+  String pin;
   String crf;
   String levels;
   String currentLevel;
@@ -16,9 +17,12 @@ class UserModel {
   String reviewed;
   AllLevel allLevel;
   String shipping;
+  String oneToOne;
+  String deploymentCall;
   String training;
   String install;
   String golive;
+  String csv;
 
   UserModel(
       {this.id,
@@ -30,6 +34,7 @@ class UserModel {
         this.pincode,
         this.loginID,
         this.loginPassword,
+        this.pin,
         this.crf,
         this.levels,
         this.currentLevel,
@@ -41,6 +46,9 @@ class UserModel {
       this.install,
       this.shipping,
       this.training,
+        this.csv,
+        this.deploymentCall,
+        this.oneToOne
       });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -53,6 +61,7 @@ class UserModel {
     pincode = json['pincode'];
     loginID = json['loginID'];
     loginPassword = json['loginPassword'];
+    pin = json['pin'];
     crf = json['crf'];
     levels = json['levels'];
     currentLevel = json['current_level'];
@@ -66,6 +75,9 @@ class UserModel {
     install = json['install'];
     shipping = json['shipping'];
     training = json['training'];
+    csv = json['csv'];
+    deploymentCall = json['deploymentCall'];
+    oneToOne = json['oneToOne'];
   }
 
   Map<String, dynamic> toJson() {
@@ -77,6 +89,9 @@ class UserModel {
     data['contact'] = this.contact;
     data['address'] = this.address;
     data['pincode'] = this.pincode;
+    data['loginPassword']=this.loginPassword;
+    data['loginID']=this.loginID;
+    data['pin'] = this.pin;
     data['crf'] = this.crf;
     data['levels'] = this.levels;
     data['current_level'] = this.currentLevel;
@@ -90,8 +105,11 @@ class UserModel {
     data['install'] = this.install;
     data['shipping'] = this.shipping;
     data['training'] = this.training;
-    data['loginPassword']=this.loginPassword;
-    data['loginID']=this.loginID;
+    data['csv'] = this.csv;
+    data['deploymentCall'] = this.deploymentCall;
+    data['oneToOne'] = this.oneToOne;
+
+
     return data;
   }
 }

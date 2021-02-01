@@ -30,6 +30,7 @@ class _AddUserState extends State<AddUser> {
   TextEditingController numberController = new TextEditingController();
   TextEditingController idController = new TextEditingController();
   TextEditingController loginPasswordController = new TextEditingController();
+  TextEditingController pinController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -189,8 +190,8 @@ class _AddUserState extends State<AddUser> {
                                       if (value.length == 0) {
                                         return 'Please enter pin code';
                                       }
-                                      else if (value.length != 6) {
-                                        return 'Pin must be 6 digit';
+                                      else if (value.length != 5) {
+                                        return 'Pin must be 5 digit';
                                       }
                                       return null;
                                     },
@@ -240,7 +241,7 @@ class _AddUserState extends State<AddUser> {
                           children: [
                             Expanded(child: VerticalDivider()),
                             CustomText(
-                              title: "Login Credentials for IT RETAIL",textcolor: Colors.green,
+                              title: "Login Credentials for IT RETAIL Cloud Back Office",textcolor: Colors.green,
                             ),
                             Expanded(child: VerticalDivider()),
                           ],
@@ -256,7 +257,7 @@ class _AddUserState extends State<AddUser> {
                                   Row(
                                     children: [
                                       CustomText(
-                                        title: "Login ID",
+                                        title: "Username",
                                       ),
                                     ],
                                   ),
@@ -276,7 +277,6 @@ class _AddUserState extends State<AddUser> {
                               ),
                             ),
 
-                            //mobile number
                             SizedBox(
                               width: 30,
                             ),
@@ -296,6 +296,36 @@ class _AddUserState extends State<AddUser> {
                                     validator: (value) {
                                       if (value == "") {
                                         return 'Please enter password';
+                                      }
+                                      else
+                                        return null;
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      CustomText(
+                                        title: "Pin",
+                                      ),
+                                    ],
+                                  ),
+                                  CustomTextField(
+                                    hintTitle: "PIN here",
+                                    textController: pinController,
+                                    inputFormat: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                    validator: (value) {
+                                      if (value == "") {
+                                        return 'Please enter Pin';
                                       }
                                       else
                                         return null;
@@ -358,6 +388,7 @@ class _AddUserState extends State<AddUser> {
     Global.newUserPinCode = pincodeController.text;
     Global.newUserLoginID = idController.text;
     Global.newUserLoginPassword = passwordController.text;
+    Global.newUserPin = pinController.text;
 
     Global.currentMenu=14;
     widget.callback();

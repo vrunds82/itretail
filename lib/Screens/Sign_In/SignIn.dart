@@ -24,7 +24,7 @@ class Signinpage extends StatefulWidget {
 
 class _SigninpageState extends State<Signinpage> {
   bool keepmelogiin = false;
-  TextEditingController emailController = TextEditingController(text: "arun1711996@gmail.com");
+  TextEditingController emailController = TextEditingController(text: "march@gmail.com");
   TextEditingController passwordController = TextEditingController(text: "12345678");
   final _formKey = GlobalKey<FormState>();
 
@@ -242,6 +242,8 @@ class _SigninpageState extends State<Signinpage> {
       if (parsedJson['status'].toString() == "1") {
         
         Global.loggedUser=UserModel.fromJson(parsedJson['data']);
+
+        print(jsonEncode(Global.loggedUser));
 
 
         Global.userID=parsedJson['id'];

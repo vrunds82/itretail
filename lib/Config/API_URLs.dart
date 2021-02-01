@@ -11,9 +11,14 @@ import 'package:itretail/models/usersModel.dart';
 
 const String BaseURL = "https://admin.itretail.saurabhenterprise.com/";
 const String UploadURL = "${BaseURL}uploads/";
+const String UploadedDocsURL = "${BaseURL}docs/";
 
 
 class APIs{
+
+  static String imageUploadURL = BaseURL+"addimage.php";
+  static String docUploadURL = BaseURL+"addDoc.php";
+
   static String loginURL = BaseURL+"login.php";
   static String addCustomer = BaseURL+"registerUser.php";
   static String addOnBoarding = BaseURL+"addOnBording.php";
@@ -53,6 +58,15 @@ class APIs{
   static String updateBackOfficeSetup = BaseURL+"updateBackOfficeSetup.php";
 
   static String updateDates = BaseURL+"updateDates.php";
+
+
+  static String addVideo = BaseURL+"addVideo.php";
+  static String deleteVideo = BaseURL+"deleteVideo.php";
+  static String getAllVideo = BaseURL+"getAllVideos.php";
+
+
+
+
 
 
 
@@ -220,7 +234,7 @@ class APIs{
 
   static updateDate({String date,BuildContext context,String level,String uid}) async {
 
-    ProgressDialog();
+    ProgressDialog.showProgressDialog(context: context);
 
     print("UID : $uid");
     print("level : $level");

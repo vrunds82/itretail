@@ -22,6 +22,13 @@ class OrderStatusPageNew extends StatefulWidget {
 }
 
 class _OrderStatusPageNewState extends State<OrderStatusPageNew> {
+
+
+  List<String> names;
+  List<String> images;
+  List<Widget> firstRow = new List();
+  List<Widget> secondRow = new List();
+
   final String onbordingQue = 'assets/flowimages/1.png';
   final String hardwareRequirement = 'assets/flowimages/2.png';
   final String product = 'assets/flowimages/3.png';
@@ -34,10 +41,6 @@ class _OrderStatusPageNewState extends State<OrderStatusPageNew> {
   final String finalTraining = 'assets/flowimages/10.png';
 
 
-  List<String> names;
-  List<String> images;
-  List<Widget> firstRow = new List();
-  List<Widget> secondRow = new List();
   List<String> routes = [
     "",
     Onbordingques.route,
@@ -58,6 +61,9 @@ class _OrderStatusPageNewState extends State<OrderStatusPageNew> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+
+
     images = [
       "",
       onbordingQue,
@@ -181,7 +187,7 @@ class _OrderStatusPageNewState extends State<OrderStatusPageNew> {
         print("$i  ${Global.levels[i.toString()]??"NA"}");
 
         Widget singleLevel = CustomOrderstaus(
-          img: training,
+          img: images[i],
           level: i,
           levelStatus: Global.levels[i.toString()],
           bottomText: names[i]??"NA",
@@ -228,11 +234,27 @@ class _OrderStatusPageNewState extends State<OrderStatusPageNew> {
 
 class ModifiedLevelStatus extends StatelessWidget {
 
+  List<String> images = [
+  "",
+
+    'assets/flowimages/1.png',
+    'assets/flowimages/6.png',
+    'assets/flowimages/3.png',
+    'assets/flowimages/7.png',
+    'assets/flowimages/8.png',
+    'assets/flowimages/2.png',
+    'assets/flowimages/7.png',
+    'assets/flowimages/5.png',
+    'assets/flowimages/9.png',
+    'assets/flowimages/10.png',
+  ];
+
+
   int level;
   int levelStatus;
   VoidCallback callback;
 
-  final String training = 'assets/flowimages/5.png';
+
   List<String> names  = [
   "",
   "Onbording\nQuestionnaire",
@@ -256,7 +278,7 @@ class ModifiedLevelStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     return levelStatus==5?SizedBox(): CustomOrderstaus(
 
-      img: training,
+      img: images[level],
       level: level,
       levelStatus:levelStatus,
       bottomText: names[level]??"NA",

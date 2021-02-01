@@ -11,6 +11,8 @@ class SetTime {
 
   static datePicker(context,{Function(DateTime) onSelected,DateTime initialDate}) async {
     final choice = await showDatePicker(
+
+        initialDatePickerMode: DatePickerMode.day,
         context: context,
         firstDate: DateTime.now(),
         lastDate: DateTime(2030),
@@ -26,6 +28,53 @@ class SetTime {
     onSelected(choice);
 
   }
+
+
+  static dateTimePicker(context,{Function(DateTime,TimeOfDay) onSelected,DateTime initialDate}) async {
+    final choice = await showDatePicker(
+
+        initialDatePickerMode: DatePickerMode.day,
+        context: context,
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2030),
+        initialDate: initialDate??DateTime.now(),
+        builder: (BuildContext context, Widget child) {
+          return Center(
+              child: SizedBox(
+                width: 400.0,
+                height: 500.0,
+                child: child,
+              ));
+        });
+
+
+    if(choice!=null) {
+      final time = await showTimePicker(
+
+          context: context,
+          initialTime: TimeOfDay(hour: initialDate.hour,minute: initialDate.minute),
+          builder: (BuildContext context, Widget child) {
+            return Center(
+                child: SizedBox(
+                  width: 600.0,
+                  height: 800.0,
+                  child: child,
+                ));
+          });
+
+
+      if(time !=null){
+        onSelected(choice,time);
+      }
+
+    }
+
+
+
+
+
+  }
+
 
   static Future<void>  showTime({BuildContext context,String msg,int level,VoidCallback onFinish,UserModel user}) async {
     TextEditingController controller = TextEditingController(text: msg);

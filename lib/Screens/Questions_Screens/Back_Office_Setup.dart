@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:itretail/Config/API_URLs.dart';
 import 'package:itretail/Config/config.dart';
@@ -25,6 +27,8 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    print(jsonEncode(Global.loggedUser));
     if(Global.loggedUser.allLevel.l7=="0"){
       updateLevelStatus("1");
 
@@ -80,8 +84,62 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                             SizedBox(
                               height: 20,
                             ),
+
+                            Row(
+                              children: [
+                                CustomText(
+                                  title: "Get a jump start on organizing your Back Office!",
+                                ),
+                                SizedBox(width: 10,),
+                                CustomTextUnderline(
+                                  title: "Login Now",
+                                  titleclr: Greencolor,
+                                  underlineclr: Greencolor,
+                                  url: "https://retailnext.itretail.com/",
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
+
+                            Row(
+                              children: [
+                                Icon(Icons.person),
+                                CustomText(
+                                  title: "Username : ${Global.loggedUser.loginID}",
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.lock),
+                                CustomText(
+                                  title: "Password : ${Global.loggedUser.loginPassword}",
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.attach_file),
+                                CustomText(
+                                  title: "Pin : ${Global.loggedUser.pin}",
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
                             CustomText(
-                              title: "Click on the topic you want to watch the video.",
+                              title: "Click on the topic you want for How To steps.",
                             ),
                             SizedBox(
                               height: 20,
@@ -89,9 +147,10 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                             Row(
                               children: [
                                 CustomTextUnderline(
-                                  title: "1. How to setup taxes",
+                                  title: "1. How to setup vendors",
                                   titleclr: Greencolor,
                                   underlineclr: Greencolor,
+                                  url: "https://knowledgebase.itretail.com/knowledge-base/vendors/",
                                 ),
                               ],
                             ),
@@ -104,6 +163,7 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                                   title: "2. How to setup Departments",
                                   titleclr: Greencolor,
                                   underlineclr: Greencolor,
+                                  url: "https://knowledgebase.itretail.com/knowledge-base/department-setup/",
                                 ),
                               ],
                             ),
@@ -113,9 +173,10 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                             Row(
                               children: [
                                 CustomTextUnderline(
-                                  title: "3. How to setup vendors",
+                                  title: "3. How to setup employees",
                                   titleclr: Greencolor,
                                   underlineclr: Greencolor,
+                                  url: "https://knowledgebase.itretail.com/knowledge-base/employee-maintenance/",
                                 ),
                               ],
                             ),
@@ -125,9 +186,10 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                             Row(
                               children: [
                                 CustomTextUnderline(
-                                  title: "4. How to setup Employees",
+                                  title: "4. How to setup sections",
                                   titleclr: Greencolor,
                                   underlineclr: Greencolor,
+                                  url: "https://knowledgebase.itretail.com/knowledge-base/setup-sections/",
                                 ),
                               ],
                             ),
@@ -137,9 +199,10 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                             Row(
                               children: [
                                 CustomTextUnderline(
-                                  title: "5. How to setup Fees",
+                                  title: "5. How to setup taxes",
                                   titleclr: Greencolor,
                                   underlineclr: Greencolor,
+                                  url: "https://knowledgebase.itretail.com/knowledge-base/set-up-taxes/",
                                 ),
                               ],
                             ),

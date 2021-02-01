@@ -125,7 +125,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "5.6": handScanner==true?0:5,
       "5.7": cashDrawer==true?0:5,
       "5.8": mounts==true?0:5,
-      "5.9": zyWall==true?0:5,*/
+      "5.9": zyxel==true?0:5,*/
       "6": training==true?0:5,
       "7": backOfficeSetup==true?0:5,
       "8": (productTemplate||
@@ -199,6 +199,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "pincode": Global.newUserPinCode,
       "loginID":Global.newUserLoginID,
       "loginPassword":Global.newUserLoginPassword,
+      "pin":Global.newUserPin,
       "crf":jsonEncode(crfModel),
       "levels":jsonEncode(levels),
       "current_level":(levs.indexOf(0)+1).toString(),

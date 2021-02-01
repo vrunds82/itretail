@@ -160,7 +160,7 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                                 question: onbording_Que11,
                                 answer: userOnBoardingModel.q11,
                               ),
-                              QAWidget(
+                              QAWidgetPayment(
                                 question: onbording_Que12,
                                 answer: userOnBoardingModel.q12,
                               ),
@@ -176,7 +176,7 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                                 question: onbording_Que15,
                                 answer: userOnBoardingModel.q15,
                               ),
-                              QAWidget(
+                       /*       QAWidget(
                                 question: onbording_Que16,
                                 answer: userOnBoardingModel.q16,
                               ),
@@ -196,7 +196,30 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
                               QAWidget(
                                 question: onbording_Que20,
                                 answer: userOnBoardingModel.q20,
+                              ),*/
+
+                              SizedBox(
+                                height: 30,
                               ),
+
+                              Text("Acknowledgments",style: TextStyle(color: Colors.green,fontSize: 25,fontWeight: FontWeight.bold),),
+
+                              SizedBox(
+                                height: 30,
+                              ),
+                              QAWidget(
+                                question: onbording_ack_Que1,
+                                answer: userOnBoardingModel.q20,
+                              ),
+                              QAWidget(
+                                question: onbording_ack_Que2,
+                                answer: userOnBoardingModel.q21,
+                              ),
+                              QAWidget(
+                                question: onbording_ack_Que3,
+                                answer: userOnBoardingModel.q22,
+                              ),
+
                             ],
                           ),
                         ),

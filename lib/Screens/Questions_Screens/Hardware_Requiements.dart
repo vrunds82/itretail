@@ -518,13 +518,13 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                                     ],
                                   ),
                                 ),
-                                int.parse(Global.levelStatus)==3?SizedBox():Padding(
+                               Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Row(
                                     children: [
                                       Expanded(
                                         child:
-                                        int.parse(Global.levelStatus)==0?
+                                        Global.loggedUser.allLevel.l3=="0"?
                                         Custombuttongrey(
                                           title: "Submit",
                                           bgclr: Colors.green,
@@ -533,7 +533,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
                                           },
                                           titleclr: Colors.white,
                                         ):Custombuttongrey(
-                                          title: "Re Submit",
+                                          title: "Submit",
                                           bgclr: Colors.green,
                                           click: () {
                                             update();

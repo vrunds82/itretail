@@ -44,7 +44,7 @@ class CustomOrderstaus extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-           Text( status[levelStatus],style: TextStyle(
+           Text( level==3 && Global.crfModel.l31==false && Global.crfModel.l32==false && Global.crfModel.l33==false && Global.crfModel.l34==false ?"Not Needed":status[levelStatus],style: TextStyle(
              fontSize: 24,
                color: currentColor,
              fontWeight: FontWeight.bold
@@ -89,8 +89,12 @@ class CustomOrderstaus extends StatelessWidget {
                     fontWeight: FontWeight.bold
                   //fontFamily: 'GOTHAM-BLACK'
                 ),),
-                Text( level==8?"${Global.loggedUser.training}":level==9?"${Global.loggedUser.install}":"${Global.loggedUser.golive}",style: TextStyle(
-                    fontSize: 24,
+                Text(
+
+                  level==8?"${Global.loggedUser.oneToOne!=null && Global.loggedUser.oneToOne!=""?Global.loggedUser.oneToOne.substring(0,16):""}":
+                  level==9?"${Global.loggedUser.install!=null && Global.loggedUser.install!=""?Global.loggedUser.install.substring(0,10):""}"
+                      :"${Global.loggedUser.golive!=null && Global.loggedUser.golive!=""?Global.loggedUser.golive.substring(0,10):""}",style: TextStyle(
+                    fontSize: 18,
                     color: currentColor,
                     fontWeight: FontWeight.bold
                   //fontFamily: 'GOTHAM-BLACK'

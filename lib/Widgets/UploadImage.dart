@@ -52,7 +52,7 @@ class _UploadImageState extends State<UploadImage> {
   uploadFile(String image64) async {
     String Url;
     print("calling API");
-    await http.post("https://admin.itretail.saurabhenterprise.com/addimage.php",
+    await http.post(APIs.imageUploadURL,
         body: {"image": image64}).then((value) {
       Url = value.body;
       widget.onChanged(Url);

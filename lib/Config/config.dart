@@ -22,6 +22,7 @@ class Global{
   static String newUserPinCode;
   static String newUserLoginID;
   static String newUserLoginPassword;
+  static String newUserPin;
 
 
 
@@ -261,6 +262,22 @@ class QAWidgetPayment extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              activeColor: Greencolor,
+                              value: parsedData['ewic'] ==
+                                  true.toString(),
+                              onChanged: (bool value) {},
+                            ),
+                            Text(
+                              "EWIC",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ],

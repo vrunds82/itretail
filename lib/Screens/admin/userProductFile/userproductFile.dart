@@ -15,6 +15,7 @@ import 'package:itretail/Widgets/dialogs/progressDialog.dart';
 import 'package:itretail/Widgets/viewImages.dart';
 import 'package:itretail/models/modelHardwareImages.dart';
 import 'package:itretail/models/onBoardingModel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserProductFile extends StatefulWidget {
 
@@ -31,6 +32,7 @@ class _UserProductFileState extends State<UserProductFile> {
   List<String> UPCA = new List();
   List<String> EAN = new List();
   List<String> _002 = new List();
+  String csvPath;
 
 
   HardwareImagesModel hardwareImagesModel;
@@ -134,6 +136,20 @@ class _UserProductFileState extends State<UserProductFile> {
                                   ViewImages(images: _002,),
                                 ],
                               ):SizedBox(),
+
+                              SizedBox(height: 30,),
+
+
+                              csvPath!=null?GestureDetector(onTap:() async {
+                                String url = BaseURL+"docs/$csvPath";
+                                if (await canLaunch(url)) {
+                                await launch(url);
+                                } else {
+                                throw 'Could not launch $url';
+                                }
+
+                              },child: Text("View Product File CSV/Xls.",style: TextStyle(color: Colors.green,fontSize: 20,fontWeight: FontWeight.bold),)):
+                              Text("Product File Not Uploaded",style: TextStyle(color: Colors.green,fontSize: 20,fontWeight: FontWeight.bold),)
 
 
 
@@ -352,6 +368,7 @@ class _UserProductFileState extends State<UserProductFile> {
         UPCA =jsonDecode(parsedJson['upca']).cast<String>();
         EAN =jsonDecode(parsedJson['ean']).cast<String>();
         _002 =jsonDecode(parsedJson['barcode002']).cast<String>();
+        csvPath = parsedJson['csv'];
       }
 
       isLoading = false;

@@ -32,9 +32,9 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
   bool isLoading = true;
   bool isError = true;
   
-  TextEditingController companyName = TextEditingController();
-  TextEditingController personName = TextEditingController();
-  TextEditingController number = TextEditingController();
+  TextEditingController companyName = TextEditingController(text: "Arun's asd");
+  TextEditingController personName = TextEditingController(text: "arewdfg'erdg");
+  TextEditingController number = TextEditingController(text: "9876543210");
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -246,13 +246,13 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                                     ],
                                   ),
                                 ),
-                                int.parse(Global.currentLevel)>2?SizedBox():Padding(
+                                Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Row(
                                     children: [
                                       Expanded(
                                         child:
-                                        int.parse(Global.currentLevel)==2 && int.parse(Global.levelStatus)==0?
+                                        Global.loggedUser.allLevel.l2=="0"?
 
                                         Custombuttongrey(
                                           title: "Submit",
@@ -262,7 +262,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
                                           },
                                           titleclr: Colors.white,
                                         ):Custombuttongrey(
-                                          title: "Re Submit",
+                                          title: "Submit",
                                           bgclr: Colors.green,
                                           click: () {
                                             update();
@@ -297,10 +297,12 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
 
       ProgressDialog.showProgressDialog(msg: "Submitting Data",context: context);
 
+
+      print(companyName.text.replaceAll("'", "\\'"));
       await http.post(APIs.addMerchantInfo,
           body:{
-        "cname":companyName.text,
-            "pname":personName.text,
+            "cname":companyName.text.replaceAll("'", "\\'"),
+            "pname":personName.text.replaceAll("'", "\\'"),
             "phone":number.text.toString(),
             "uid":Global.userID
 

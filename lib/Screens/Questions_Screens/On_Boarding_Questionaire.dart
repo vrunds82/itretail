@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:itretail/Config/API_URLs.dart';
 import 'package:itretail/Config/config.dart';
@@ -15,6 +16,7 @@ import 'package:itretail/Screens/CustomFiles/CustomeTextfeild.dart';
 import 'package:itretail/Screens/CustomFiles/Customtext.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 import 'package:http/http.dart' as http;
+import 'package:itretail/Screens/Global/vars.dart';
 import 'package:itretail/Widgets/UploadImage.dart';
 import 'package:itretail/Widgets/chatHistory/chatHistory.dart';
 import 'package:itretail/Widgets/dialogs/messageDialog.dart';
@@ -48,11 +50,13 @@ class _OnbordingquesState extends State<Onbordingques> {
   String radioHandScanner;
   String radioQuickBooks;
   String radioTerminal;
+  String radioNewStore;
   String radioShelfLabels;
   String radioUniqueCoupon;
   String radioPrinterConnected;
   String radioHaveDesktop;
   String radioRandomWeights;
+  String radioBackOffice;
   String radioProductFile;
   DateTime liveDate;
 
@@ -61,16 +65,23 @@ class _OnbordingquesState extends State<Onbordingques> {
   TextEditingController ans3Controller = TextEditingController();
   TextEditingController ans4Controller = TextEditingController();
   TextEditingController ans5Controller = TextEditingController();
-  TextEditingController ans12Controller = TextEditingController();
-  TextEditingController ans19Controller = TextEditingController();
-  TextEditingController ans20Controller = TextEditingController();
+  TextEditingController ans6Controller = TextEditingController();
+  TextEditingController ans9Controller = TextEditingController();
+  TextEditingController ans14Controller = TextEditingController();
+  TextEditingController ans15Controller = TextEditingController();
+
+  TextEditingController ack1Controller = TextEditingController();
+  TextEditingController ack2Controller = TextEditingController();
+  TextEditingController ack3Controller = TextEditingController();
 
   List<String> storePictures = new List();
   String storenumber;
   List<String> listitems = ['1', '2', '3', '4'];
+  List<String> listOfRegisters = ['1', '2', '3', '4','5','6+'];
   List<String> listfrontofthestore = ['1', '2', '3', '4'];
   List<String> terminals = ['1', '2', '3', '4'];
 
+  var _currentSelectedREgistersItems = "1";
   var _currentSelectedStoreItems = "1";
   var _currentSelectedStoreoftheFront = "1";
   var _currentselectedterminal = "1";
@@ -83,6 +94,7 @@ class _OnbordingquesState extends State<Onbordingques> {
   bool checkVal = false;
   bool giftcardVal = false;
   bool paperfoodstampVal = false;
+  bool ewic = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -110,27 +122,41 @@ class _OnbordingquesState extends State<Onbordingques> {
       if (parsedJson['status'] == 1) {
         userOnBoardingModel = OnBoardingModel.fromJson(parsedJson);
         liveDate= userOnBoardingModel.q1;
-        ans2Controller.text= userOnBoardingModel.q2;
+        radioNewStore=userOnBoardingModel.q2;
         ans3Controller.text= userOnBoardingModel.q3;
         ans4Controller.text= userOnBoardingModel.q4;
-        ans5Controller.text= userOnBoardingModel.q5;
+        _currentSelectedREgistersItems = userOnBoardingModel.q5;
+        ans6Controller.text= userOnBoardingModel.q6;
+        radioRandomWeights = userOnBoardingModel.q7;
+        radioBackOffice = userOnBoardingModel.q8;
+        ans9Controller.text= userOnBoardingModel.q9;
+        radioShelfLabels = userOnBoardingModel.q10;
+        radioQuickBooks = userOnBoardingModel.q11;
+        radioProductFile = userOnBoardingModel.q13;
+        ans14Controller.text= userOnBoardingModel.q14;
+        ans15Controller.text= userOnBoardingModel.q15;
+
+        ack1Controller.text = userOnBoardingModel.q20;
+        ack2Controller.text = userOnBoardingModel.q21;
+        ack3Controller.text = userOnBoardingModel.q22;
+
         radioHandScanner = userOnBoardingModel.q6;
         _currentSelectedStoreItems = userOnBoardingModel.q7;
-        radioRandomWeights = userOnBoardingModel.q8;
+
         _currentSelectedStoreoftheFront = userOnBoardingModel.q9;
         radioHaveDesktop=userOnBoardingModel.q10;
         radioPrinterConnected = userOnBoardingModel.q11;
 
-        if(userOnBoardingModel.q12.substring(0,2)=="NO"){
+    /*    if(userOnBoardingModel.q12.substring(0,2)=="NO"){
           radioUniqueCoupon="No";
           ans12Controller.text = userOnBoardingModel.q12.length<5?userOnBoardingModel.q12:userOnBoardingModel.q12.substring(4,userOnBoardingModel.q12.length);
         }else{
           radioUniqueCoupon="Yes";
           ans12Controller.text = userOnBoardingModel.q12.length<6?userOnBoardingModel.q12:userOnBoardingModel.q12.substring(5,userOnBoardingModel.q12.length);
         }
+*/
 
-        radioShelfLabels = userOnBoardingModel.q13;
-        radioQuickBooks = userOnBoardingModel.q14;
+
         _currentselectedterminal = userOnBoardingModel.q15;
         radioTerminal = userOnBoardingModel.q16;
 
@@ -143,11 +169,12 @@ class _OnbordingquesState extends State<Onbordingques> {
         checkVal = parsedData['checkVal'] == true.toString();
         giftcardVal = parsedData['giftcardVal'] == true.toString();
         paperfoodstampVal = parsedData['paperfoodstampVal'] == true.toString();
+        ewic = parsedData['ewic'] == true.toString();
 
         radioProductFile = userOnBoardingModel.q18;
         storePictures = userOnBoardingModel.q18Images;
-        ans19Controller.text = userOnBoardingModel.q19;
-        ans20Controller.text = userOnBoardingModel.q20;
+       /* ans19Controller.text = userOnBoardingModel.q19;
+        ans20Controller.text = userOnBoardingModel.q20;*/
 
       } else {
         isError = true;
@@ -171,6 +198,8 @@ class _OnbordingquesState extends State<Onbordingques> {
     radioHaveDesktop = "No";
     radioRandomWeights = "No";
     radioProductFile = "No";
+    radioBackOffice = "No";
+
 
     checkForDetails();
 
@@ -306,7 +335,6 @@ setState(() {
                                         SizedBox(
                                           height: 15,
                                         ),
-
                                         Row(
                                           children: [
                                             GestureDetector(
@@ -349,17 +377,37 @@ setState(() {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        CustomTextField(
-                                          hintTitle: "Your Answer Here....",
-                                          textController: ans2Controller,
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter answer';
-                                            }
-                                            return null;
-                                          },
+                                        Row(
+                                          children: <Widget>[
+                                            SizedBox(
+                                              width: 30,
+                                            ),
+                                            Radio(
+                                              value: "Yes",
+                                              groupValue: radioNewStore,
+                                              activeColor: Greencolor,
+                                              onChanged: (val) {
+                                                radioNewStore = val;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            new Customradiotext(
+                                              title: "Yes",
+                                            ),
+                                            Radio(
+                                              value: "No",
+                                              groupValue: radioNewStore,
+                                              activeColor: Colors.green,
+                                              onChanged: (val) {
+                                                radioNewStore = val;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            new Customradiotext(
+                                              title: "No",
+                                            ),
+                                          ],
                                         ),
-
                                         //Quesiton 3
                                         //Write your name and date to acknowledge that you are aware if you purchased a
                                         //Scanner-Scale that you are responsible to get it certified by Weights and Measures.
@@ -382,7 +430,6 @@ setState(() {
                                             return null;
                                           },
                                         ),
-
                                         //Please write your name and the date below to acknowledge that you will not pre-cut
                                         //any holes in your counter
                                         SizedBox(
@@ -413,72 +460,6 @@ setState(() {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        CustomTextField(
-                                          hintTitle: "Your Answer Here....",
-                                          textController: ans5Controller,
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter answer';
-                                            }
-                                            return null;
-                                          },
-                                        ),
-
-                                        //Do you have your own Hand Scanners?
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-                                        CustomText(
-                                          title: onbording_Que6,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Radio(
-                                              value: "Yes",
-                                              groupValue: radioHandScanner,
-                                              activeColor: Greencolor,
-                                              onChanged: (val) {
-                                                radioHandScanner = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "Yes",
-                                            ),
-                                            Radio(
-                                              value: "No",
-                                              groupValue: radioHandScanner,
-                                              activeColor: Colors.green,
-                                              onChanged: (val) {
-                                                radioHandScanner = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "No",
-                                            ),
-                                          ],
-                                        ),
-
-                                        //How many registers does your store have ?
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-                                        CustomText(
-                                          title: onbording_Que7,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
                                         Row(
                                           children: <Widget>[
                                             SizedBox(
@@ -512,22 +493,22 @@ setState(() {
                                                           ),
                                                         ),
                                                         //isExpanded: true,
-                                                        items: listitems.map((val) {
+                                                        items: listOfRegisters.map((val) {
                                                           return DropdownMenuItem(
                                                             value: val,
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets.all(10.0),
+                                                              const EdgeInsets.all(10.0),
                                                               child: CustomText(
                                                                 title: val,
                                                               ),
                                                             ),
                                                           );
                                                         }).toList(),
-                                                        value: _currentSelectedStoreItems,
+                                                        value: _currentSelectedREgistersItems,
                                                         onChanged: (value) {
                                                           setState(() {
-                                                            _currentSelectedStoreItems =
+                                                            _currentSelectedREgistersItems =
                                                                 value;
                                                           });
                                                         },
@@ -538,13 +519,39 @@ setState(() {
                                           ],
                                         ),
 
-//Does your store sell Random Weight or Deli Items?
+                                        //Do you have your own Hand Scanners?
                                         SizedBox(
                                           height: 40,
                                         ),
-                                        CustomText(title: onbording_Que8),
+                                        CustomText(
+                                          title: onbording_Que6,
+                                        ),
                                         SizedBox(
                                           height: 10,
+                                        ),
+                                        CustomTextField(
+                                            hintTitle: "Your Answer Here...",
+                                            textController: ans6Controller,
+                                            validator: (value) {
+
+                                                if (value.isEmpty) {
+                                                  return 'Please enter answer';
+                                                }else
+                                                return null;
+
+                                            }),
+
+
+                                        //How many registers does your store have ?
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        CustomText(
+                                          title: onbording_Que7,
+                                        ),
+
+                                        SizedBox(
+                                          height: 20,
                                         ),
                                         Row(
                                           children: <Widget>[
@@ -578,6 +585,46 @@ setState(() {
                                           ],
                                         ),
 
+//Does your store sell Random Weight or Deli Items?
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        CustomText(title: onbording_Que8),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: <Widget>[
+                                            SizedBox(
+                                              width: 30,
+                                            ),
+                                            Radio(
+                                              value: "Yes",
+                                              groupValue: radioBackOffice,
+                                              activeColor: Greencolor,
+                                              onChanged: (val) {
+                                                radioBackOffice = val;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            new Customradiotext(
+                                              title: "Yes",
+                                            ),
+                                            Radio(
+                                              value: "No",
+                                              groupValue: radioBackOffice,
+                                              activeColor: Colors.green,
+                                              onChanged: (val) {
+                                                radioBackOffice = val;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            new Customradiotext(
+                                              title: "No",
+                                            ),
+                                          ],
+                                        ),
+
 //Front of StoreWhat are the locations of your registers?
                                         SizedBox(
                                           height: 30,
@@ -589,60 +636,15 @@ setState(() {
                                         SizedBox(
                                           height: 20,
                                         ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 50,
-                                            ),
-                                            Container(
-                                                decoration: BoxDecoration(
-                                                  color: Lightgreycolor,
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(5.0),
-                                                  ),
-                                                  border: Border.all(
-                                                      width: 0.5, color: Greycolor),
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.fromLTRB(
-                                                          10, 5, 5, 5),
-                                                      child: DropdownButton(
-                                                        hint: CustomText(
-                                                          title: "Front Of The Store",
-                                                        ),
-                                                        underline: SizedBox(),
-                                                        icon: Padding(
-                                                          padding: const EdgeInsets.only(
-                                                              right: 15, left: 20),
-                                                          child: Icon(
-                                                            Icons.keyboard_arrow_down,
-                                                            size: 25.09,
-                                                          ),
-                                                        ),
-                                                        //isExpanded: true,
-                                                        items: listfrontofthestore.map((val) {
-                                                          return DropdownMenuItem(
-                                                            value: val,
-                                                            child: CustomText(
-                                                              title: val,
-                                                            ),
-                                                          );
-                                                        }).toList(),
-                                                        value:
-                                                            _currentSelectedStoreoftheFront,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            _currentSelectedStoreoftheFront =
-                                                                value;
-                                                          });
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ],
+                                        CustomTextField(
+                                          hintTitle: "Your Answer Here....",
+                                          textController: ans9Controller,
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return 'Please enter answer';
+                                            }
+                                            return null;
+                                          },
                                         ),
 
                                         //Do you have a laptop or desktop that you can use to do back-office Functions?
@@ -662,10 +664,10 @@ setState(() {
                                             ),
                                             Radio(
                                               value: "Yes",
-                                              groupValue: radioHaveDesktop,
+                                              groupValue: radioShelfLabels,
                                               activeColor: Greencolor,
                                               onChanged: (val) {
-                                                radioHaveDesktop = val;
+                                                radioShelfLabels = val;
                                                 setState(() {});
                                               },
                                             ),
@@ -674,10 +676,10 @@ setState(() {
                                             ),
                                             Radio(
                                               value: "No",
-                                              groupValue: radioHaveDesktop,
+                                              groupValue: radioShelfLabels,
                                               activeColor: Colors.green,
                                               onChanged: (val) {
-                                                radioHaveDesktop = val;
+                                                radioShelfLabels = val;
                                                 setState(() {});
                                               },
                                             ),
@@ -704,10 +706,10 @@ setState(() {
                                             ),
                                             Radio(
                                               value: "Yes",
-                                              groupValue: radioPrinterConnected,
+                                              groupValue: radioQuickBooks,
                                               activeColor: Greencolor,
                                               onChanged: (val) {
-                                                radioPrinterConnected = val;
+                                                radioQuickBooks = val;
                                                 setState(() {});
                                               },
                                             ),
@@ -716,10 +718,10 @@ setState(() {
                                             ),
                                             Radio(
                                               value: "No",
-                                              groupValue: radioPrinterConnected,
+                                              groupValue: radioQuickBooks,
                                               activeColor: Colors.green,
                                               onChanged: (val) {
-                                                radioPrinterConnected = val;
+                                                radioQuickBooks = val;
                                                 setState(() {});
                                               },
                                             ),
@@ -733,259 +735,8 @@ setState(() {
                                         SizedBox(
                                           height: 30,
                                         ),
-                                        CustomText(title: onbording_Que12),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Radio(
-                                              value: "Yes",
-                                              groupValue: radioUniqueCoupon,
-                                              activeColor: Greencolor,
-                                              onChanged: (val) {
-                                                radioUniqueCoupon = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "Yes",
-                                            ),
-                                            Radio(
-                                              value: "No",
-                                              groupValue: radioUniqueCoupon,
-                                              activeColor: Colors.green,
-                                              onChanged: (val) {
-                                                radioUniqueCoupon = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "No",
-                                            ),
-                                          ],
-                                        ),
-                                        CustomTextField(
-                                            hintTitle: "Your Answer Here...",
-                                            textController: ans12Controller,
-                                            validator: (value) {
-                                              if (radioUniqueCoupon == "Yes") {
-                                                if (value.isEmpty) {
-                                                  return 'Please enter answer';
-                                                }
-                                                return null;
-                                              }
-                                              return null;
-                                            }),
-
-                                        //Will you be doing shelf labels?
-                                        SizedBox(
-                                          height: 30,
-                                        ),
                                         CustomText(
-                                          title: onbording_Que13,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Radio(
-                                              value: "Yes",
-                                              groupValue: radioShelfLabels,
-                                              activeColor: Greencolor,
-                                              onChanged: (val) {
-                                                radioShelfLabels = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "Yes",
-                                            ),
-                                            Radio(
-                                              value: "No",
-                                              groupValue: radioShelfLabels,
-                                              activeColor: Colors.green,
-                                              onChanged: (val) {
-                                                radioShelfLabels = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "No",
-                                            ),
-                                          ],
-                                        ),
-
-                                        //Will you be doing Quickbooks?
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            CustomText(
-                                              title: onbording_Que14,
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Radio(
-                                              value: "Yes",
-                                              groupValue: radioQuickBooks,
-                                              activeColor: Greencolor,
-                                              onChanged: (val) {
-                                                radioQuickBooks = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "Yes",
-                                            ),
-                                            Radio(
-                                              value: "No",
-                                              groupValue: radioQuickBooks,
-                                              activeColor: Colors.green,
-                                              onChanged: (val) {
-                                                radioQuickBooks = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "No",
-                                            ),
-                                          ],
-                                        ),
-
-                                        //How many terminals were you originally set up with on your account?
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        CustomText(
-                                          title: onbording_Que15,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 50,
-                                            ),
-                                            Container(
-                                                decoration: BoxDecoration(
-                                                  color: Lightgreycolor,
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(5.0),
-                                                  ),
-                                                  border: Border.all(
-                                                      width: 0.5, color: Greycolor),
-                                                ),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Padding(
-                                                      padding: const EdgeInsets.fromLTRB(
-                                                          10, 5, 5, 5),
-                                                      child: DropdownButton(
-                                                        hint: CustomText(
-                                                          title: "1",
-                                                        ),
-                                                        underline: SizedBox(),
-                                                        icon: Padding(
-                                                          padding: const EdgeInsets.only(
-                                                              right: 15, left: 20),
-                                                          child: Icon(
-                                                            Icons.keyboard_arrow_down,
-                                                            size: 25.09,
-                                                          ),
-                                                        ),
-                                                        //isExpanded: true,
-                                                        items: terminals.map((val) {
-                                                          return DropdownMenuItem(
-                                                            value: val,
-                                                            child: CustomText(
-                                                              title: val,
-                                                            ),
-                                                          );
-                                                        }).toList(),
-                                                        value: _currentselectedterminal,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            _currentselectedterminal = value;
-                                                          });
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ],
-                                        ),
-
-                                        //Are we adding or removing terminals?
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-                                        CustomText(
-                                          title: onbording_Que16,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Radio(
-                                              value: "Yes",
-                                              groupValue: radioTerminal,
-                                              activeColor: Greencolor,
-                                              onChanged: (val) {
-                                                radioTerminal = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "Yes",
-                                            ),
-                                            Radio(
-                                              value: "No",
-                                              groupValue: radioTerminal,
-                                              activeColor: Colors.green,
-                                              onChanged: (val) {
-                                                radioTerminal = val;
-                                                setState(() {});
-                                              },
-                                            ),
-                                            new Customradiotext(
-                                              title: "No",
-                                            ),
-                                          ],
-                                        ),
-
-                                        //Please select the types of Payments you will be accepting.
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        CustomText(
-                                          title: onbording_Que17,
+                                          title: onbording_Que12,
                                         ),
                                         SizedBox(
                                           height: 20,
@@ -1107,6 +858,29 @@ setState(() {
                                                   Checkbox(
                                                     checkColor: Colors.white,
                                                     activeColor: Greencolor,
+                                                    value: checkVal,
+                                                    onChanged: (bool value) {
+                                                      setState(() {
+                                                        checkVal = value;
+                                                      });
+                                                    },
+                                                  ),
+                                                  Text(
+                                                    "Check",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+
+
+
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    checkColor: Colors.white,
+                                                    activeColor: Greencolor,
                                                     value: giftcardVal,
                                                     onChanged: (bool value) {
                                                       setState(() {
@@ -1143,252 +917,219 @@ setState(() {
                                                   ),
                                                 ],
                                               ),
+
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    checkColor: Colors.white,
+                                                    activeColor: Greencolor,
+                                                    value: ewic,
+                                                    onChanged: (bool value) {
+                                                      setState(() {
+                                                        ewic = value;
+                                                      });
+                                                    },
+                                                  ),
+                                                  Text(
+                                                    "EWIC",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.w500),
+                                                  ),
+                                                ],
+                                              ),
+
                                               (creditcardVal == false &&
-                                                      cashVal == false &&
-                                                      debitcardVal == false &&
-                                                      ebtcashVal == false &&
-                                                      ebtfoodVal == false &&
-                                                      giftcardVal == false &&
-                                                      paperfoodstampVal == false)
+                                                  cashVal == false &&
+                                                  debitcardVal == false &&
+                                                  ebtcashVal == false &&
+                                                  ebtfoodVal == false &&
+                                                  giftcardVal == false &&
+                                                  checkVal == false &&
+                                                  ewic == false &&
+                                                  paperfoodstampVal == false)
                                                   ? Text(
-                                                      "Please select atleast one option from payment.",
-                                                      style: TextStyle(color: Colors.red),
-                                                    )
+                                                "Please select atleast one option from payment.",
+                                                style: TextStyle(color: Colors.red),
+                                              )
                                                   : Text(""),
 
                                               //Do you have a product file? (A list of all products, with their description, UPC,cost, & price).
                                               SizedBox(
                                                 height: 30,
                                               ),
-                                              CustomText(
-                                                title: onbording_Que18,
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  SizedBox(
-                                                    width: 30,
-                                                  ),
-                                                  Radio(
-                                                    value: "Yes",
-                                                    groupValue: radioProductFile,
-                                                    activeColor: Greencolor,
-                                                    onChanged: (val) {
-                                                      radioProductFile = val;
-                                                      setState(() {});
-                                                    },
-                                                  ),
-                                                  new Customradiotext(
-                                                    title: "Yes",
-                                                  ),
-                                                  Radio(
-                                                    value: "No",
-                                                    groupValue: radioProductFile,
-                                                    activeColor: Colors.green,
-                                                    onChanged: (val) {
-                                                      radioProductFile = val;
-                                                      setState(() {});
-                                                    },
-                                                  ),
-                                                  new Customradiotext(
-                                                    title: "No",
-                                                  ),
-                                                ],
-                                              ),
 
-                                              //What is the number one feature you need for this software?
-                                              //Please draw a picture of your current network and email it or attach below.
-                                              SizedBox(
-                                                height: 30,
-                                              ),
-                                              CustomText(
-                                                title:
-                                                    "What is the number one feature you need for this software?Please draw a picture of your current network and email it or attach below.",
-                                              ),
-                                              SizedBox(
-                                                height: 20,
-                                              ),
-                                          /*    Text(
-                                                "egoodwin@itretail.com. Below is a example.",
-                                                style: TextStyle(
-                                                  color: Colors.blueAccent,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
-                                                  decoration: TextDecoration.underline,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 40,
-                                              ),*/
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                                child: Image.asset(
-                                                  'assets/images/cloud.png',
-                                                  height: MediaQuery.of(context).size.height *
-                                                      0.4,
-                                                  //width: MediaQuery.of(context).size.width*04,
-                                                ),
-                                              )
                                             ],
                                           ),
                                         ),
+
+                                        //Will you be doing shelf labels?
                                         SizedBox(
                                           height: 30,
                                         ),
-
-//upload image
-//
-                                        Container(
-                                          height: 100,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: ListView.builder(
-                                                  scrollDirection:Axis.horizontal,
-                                                  itemCount: storePictures.length+1,
-                                                  itemBuilder: (c,i){
-                                                    return UploadImage(path: storePictures.isEmpty?null:storePictures.length>i?storePictures[i]:null,
-                                                      onChanged: (value){
-                                                        print("Clicked on :!$i");
-                                                        if(storePictures.isEmpty || storePictures.length<i+1){
-                                                          storePictures.add(value);
-                                                        }else{
-                                                          storePictures[i]=value;
-                                                        }
-                                                        print(storePictures);
-                                                        setState(() {
-
-                                                        });
-                                                      },onDelete: (){
-                                                        print("Removing");
-                                                        storePictures.removeAt(i);
-                                                        setState(() {
-                                                        });
-                                                      },);
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                "Upload Images Your Here",
-                                                style: TextStyle(
-                                                    //fontFamily: 'GOTHAMBOLDITALIC',
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w700,
-                                                    color: Greycolor,
-                                                    decoration: TextDecoration.underline),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-
-                                        //Is there anything else we should know about your store?
-                                        SizedBox(
-                                          height: 40,
-                                        ),
                                         CustomText(
-                                          title: onbording_Que19,
+                                          title: onbording_Que13,
                                         ),
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        CustomTextField(
-                                          hintTitle: "Your Answer Here....",
-                                          textController: ans19Controller,
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter answer';
-                                            }
-                                            return null;
-                                          },
+                                        Row(
+                                          children: <Widget>[
+                                            SizedBox(
+                                              width: 30,
+                                            ),
+                                            Radio(
+                                              value: "Yes",
+                                              groupValue: radioProductFile,
+                                              activeColor: Greencolor,
+                                              onChanged: (val) {
+                                                radioProductFile = val;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            new Customradiotext(
+                                              title: "Yes",
+                                            ),
+                                            Radio(
+                                              value: "No",
+                                              groupValue: radioProductFile,
+                                              activeColor: Colors.green,
+                                              onChanged: (val) {
+                                                radioProductFile = val;
+                                                setState(() {});
+                                              },
+                                            ),
+                                            new Customradiotext(
+                                              title: "No",
+                                            ),
+                                          ],
                                         ),
 
-//What would make this project successful in your eyes?
+                                        //Will you be doing Quickbooks?
                                         SizedBox(
-                                          height: 40,
+                                          height: 30,
                                         ),
-                                        CustomText(
-                                          title: onbording_Que20,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        CustomTextField(
-                                          hintTitle: "Your Answer Here....",
-                                          textController: ans20Controller,
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter answer';
-                                            }
-                                            return null;
-                                          },
-                                        ),
-
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-                                        Column(
+                                        Row(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             CustomText(
-                                              title:
-                                                  "We are so excited to  bring  you  on! We  also  love  giving  our  software away for free! ",
+                                              title: onbording_Que14,
                                             ),
-                                            CustomText(
-                                                title:
-                                                    "If you give us a referral & if we are able to close we will give you one month free."),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                           /* Row(
-                                              children: [
-                                                Expanded(
-                                                  child: RichText(
-                                                    text: TextSpan(
-                                                        text:
-                                                            "Please email this form and all other photos or files to",
-                                                        style: TextStyle(
-                                                          fontSize: 20,
-                                                          decoration:
-                                                              TextDecoration.underline,
-                                                        ),
-                                                        children: <TextSpan>[
-                                                          TextSpan(
-                                                            text: " egoodwin@itretail.com",
-                                                            style: TextStyle(
-                                                              color: Colors.blue,
-                                                              fontSize: 20,
-                                                              decoration:
-                                                                  TextDecoration.underline,
-                                                              //fontFamily: 'GOTHAMBOLDITALIC'
-                                                            ),
-                                                          )
-                                                        ]),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),*/
                                           ],
                                         ),
-
                                         SizedBox(
-                                          height: 40,
+                                          height: 10,
                                         ),
+                                        CustomTextField(
+                                            hintTitle: "Your Answer Here...",
+                                            textController: ans14Controller,
+                                            validator: (value) {
+
+                                              if (value.isEmpty) {
+                                                return 'Please enter answer';
+                                              }else
+                                                return null;
+
+                                            }),
+                                        //How many terminals were you originally set up with on your account?
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        CustomText(
+                                          title: onbording_Que15,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        CustomTextField(
+                                            hintTitle: "Your Answer Here...",
+                                            textController: ans15Controller,
+                                            validator: (value) {
+
+                                              if (value.isEmpty) {
+                                                return 'Please enter answer';
+                                              }else
+                                                return null;
+
+                                            }),
+
+
 
                                         Text("Acknowledgments",style: TextStyle(color: Colors.green,fontSize: 25,fontWeight: FontWeight.bold),),
+
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        CustomText(
+                                          title: onbording_ack_Que1,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        CustomTextField(
+                                            hintTitle: "Your Answer Here...",
+                                            textController: ack1Controller,
+                                            validator: (value) {
+
+                                              if (value.isEmpty) {
+                                                return 'Please enter answer';
+                                              }else
+                                                return null;
+
+                                            }),
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        CustomText(
+                                          title: onbording_ack_Que2,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        CustomTextField(
+                                            hintTitle: "Your Answer Here...",
+                                            textController: ack2Controller,
+                                            validator: (value) {
+
+                                              if (value.isEmpty) {
+                                                return 'Please enter answer';
+                                              }else
+                                                return null;
+
+                                            }),
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        CustomText(
+                                          title: onbording_ack_Que3,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        CustomTextField(
+                                            hintTitle: "Your Answer Here...",
+                                            textController: ack3Controller,
+                                            validator: (value) {
+
+                                              if (value.isEmpty) {
+                                                return 'Please enter answer';
+                                              }else
+                                                return null;
+
+                                            }),
 
 
 
@@ -1464,13 +1205,13 @@ setState(() {
                                           ],
                                         ),
                                       ),
-                                     int.parse(Global.levelStatus)==3?SizedBox():Padding(
+                                    Padding(
                                         padding: const EdgeInsets.all(15.0),
                                         child: Row(
                                           children: [
                                             Expanded(
                                               child:
-              int.parse(Global.currentLevel)==1 && int.parse(Global.levelStatus)==0?
+                                        Global.loggedUser.allLevel.l1=="0"?
 
     Custombuttongrey(
     title: "Submit",
@@ -1514,15 +1255,21 @@ setState(() {
   }
 
   SubmitData() async {
-    if (_formKey.currentState.validate()) {
-      if (creditcardVal == true ||
-          cashVal == true ||
-          debitcardVal == true ||
-          ebtcashVal == true ||
-          ebtfoodVal == true ||
-          giftcardVal == true ||
-          paperfoodstampVal == true) {
-       /* print("Done");
+
+    print("Submitting");
+    
+    if(liveDate ==null){
+     Fluttertoast.showToast(msg: "Select Go Live Date in Question 1.");
+    }else {
+      if (_formKey.currentState.validate() && liveDate != null) {
+        if (creditcardVal == true ||
+            cashVal == true ||
+            debitcardVal == true ||
+            ebtcashVal == true ||
+            ebtfoodVal == true ||
+            giftcardVal == true ||
+            paperfoodstampVal == true) {
+          /* print("Done");
 
         print("_currentSelectedStoreItems " +
             _currentSelectedStoreItems);
@@ -1573,79 +1320,73 @@ setState(() {
             "  paperfoodstampVal ${paperfoodstampVal.toString()}");
         print("  checkVal ${checkVal.toString()}");*/
 
-        Map<String, String> Paymentmode = {
-          "cashval": cashVal.toString(),
-          "debitcardVal": debitcardVal.toString(),
-          "creditcardVal": creditcardVal.toString(),
-          "ebtfoodVal": ebtfoodVal.toString(),
-          "ebtcashVal": ebtcashVal.toString(),
-          "giftcardVal": giftcardVal.toString(),
-          "paperfoodstampVal":
-          paperfoodstampVal.toString(),
-          "checkVal":checkVal.toString()
-        };
+          Map<String, String> Paymentmode = {
+            "cashval": cashVal.toString(),
+            "debitcardVal": debitcardVal.toString(),
+            "creditcardVal": creditcardVal.toString(),
+            "ebtfoodVal": ebtfoodVal.toString(),
+            "ebtcashVal": ebtcashVal.toString(),
+            "giftcardVal": giftcardVal.toString(),
+            "paperfoodstampVal":
+            paperfoodstampVal.toString(),
+            "checkVal": checkVal.toString()
+          };
 
-        Map<String, String> data = {
-          "uid": Global.userID,
-          "q": "0",
-          "q1": liveDate.toString(),
-          "q2": ans2Controller.text,
-          "q3": ans3Controller.text,
-          "q4": ans4Controller.text,
-          "q5": ans5Controller.text,
-          "q6": _currentSelectedStoreItems,
-          "q7": _currentSelectedStoreItems,
-          "q8": radioRandomWeights.toString(),
-          "q9": _currentSelectedStoreoftheFront,
-          "q10": radioHaveDesktop,
-          "q11": radioPrinterConnected,
-          "q12": radioUniqueCoupon+","+ans12Controller.text,
-          "q13": radioShelfLabels,
-          "q14": radioQuickBooks,
-          "q15": _currentselectedterminal,
-          "q16": radioTerminal,
-          "q17": jsonEncode(Paymentmode).toString(),
-          "q18": radioProductFile,
-          "q18_images":jsonEncode(storePictures).toString(),
-          "q19": ans19Controller.text,
-          "q20": ans20Controller.text,
-          "q21": ans20Controller.text,
-          "q22": ans20Controller.text
-        };
+          Map<String, String> data = {
+            "uid": Global.userID,
+            "q": "0",
+            "q1": liveDate.toString(),
+            "q2": radioNewStore,
+            "q3": ans3Controller.text,
+            "q4": ans4Controller.text,
+            "q5": _currentSelectedREgistersItems,
+            "q6": ans6Controller.text,
+            "q7": radioRandomWeights,
+            "q8": radioBackOffice,
+            "q9": ans9Controller.text,
+            "q10": radioShelfLabels,
+            "q11": radioQuickBooks,
+            "q12": jsonEncode(Paymentmode).toString(),
+            "q13": radioProductFile,
+            "q14": ans14Controller.text,
+            "q15": ans15Controller.text,
+            "q16": radioTerminal,
+            "q17": jsonEncode(Paymentmode).toString(),
+            "q18": radioProductFile,
+            "q18_images": jsonEncode(storePictures).toString(),
+            "q19": ack1Controller.text,
+            "q20": ack1Controller.text,
+            "q21": ack2Controller.text,
+            "q22": ack3Controller.text
+          };
 
-        ProgressDialog.showProgressDialog(context: context,msg: "Submitting Data");
+          ProgressDialog.showProgressDialog(
+              context: context, msg: "Submitting Data");
 
-      await  http
-            .post(
-          APIs.addOnBoarding,
-            body: data)
-            .then((response) async {
-          print(response.statusCode);
-          print(response.body);
-          var parsedData = jsonDecode(response.body);
-          if(parsedData['status']==1){
-            Navigator.of(context).pop();
-            Global.currentMenu=0;
-            await APIs.getUserDetails();
-            widget.callback();
+          await http
+              .post(
+              APIs.addOnBoarding,
+              body: data)
+              .then((response) async {
+            print(response.statusCode);
+            print(response.body);
+            var parsedData = jsonDecode(response.body);
+            if (parsedData['status'] == 1) {
+              Navigator.of(context).pop();
+              Global.currentMenu = 0;
+              await APIs.getUserDetails();
+              widget.callback();
+            } else {
 
-
-          }else{
-
-          }
-
-
-        });
+            }
+          });
 
 
+          setState(() {});
 
 
-
-        setState(() {});
-
-
-
-        //Navigator.of(context).pushNamed('merchantinfo');
+          //Navigator.of(context).pushNamed('merchantinfo');
+        }
       }
     }
   }
@@ -1725,29 +1466,29 @@ setState(() {
         Map<String, String> data = {
           "uid": Global.userID,
           "q": "0",
-          "q1": ans1Controller.text,
-          "q2": ans2Controller.text,
+          "q1": liveDate.toString(),
+          "q2": radioNewStore,
           "q3": ans3Controller.text,
           "q4": ans4Controller.text,
-          "q5": ans5Controller.text,
-          "q6": _currentSelectedStoreItems,
-          "q7": _currentSelectedStoreItems,
-          "q8": radioRandomWeights.toString(),
-          "q9": _currentSelectedStoreoftheFront,
-          "q10": radioHaveDesktop,
-          "q11": radioPrinterConnected,
-          "q12": radioUniqueCoupon+","+ans12Controller.text,
-          "q13": radioShelfLabels,
-          "q14": radioQuickBooks,
-          "q15": _currentselectedterminal,
+          "q5": _currentSelectedREgistersItems,
+          "q6": ans6Controller.text,
+          "q7": radioRandomWeights,
+          "q8": radioBackOffice,
+          "q9": ans9Controller.text,
+          "q10": radioShelfLabels,
+          "q11": radioQuickBooks,
+          "q12": jsonEncode(Paymentmode).toString(),
+          "q13": radioProductFile,
+          "q14": ans14Controller.text,
+          "q15": ans15Controller.text,
           "q16": radioTerminal,
           "q17": jsonEncode(Paymentmode).toString(),
           "q18": radioProductFile,
           "q18_images":jsonEncode(storePictures).toString(),
-          "q19": ans19Controller.text,
-          "q20": ans20Controller.text,
-          "q21": ans20Controller.text,
-          "q22": ans20Controller.text
+          "q19": ack1Controller.text,
+          "q20": ack1Controller.text,
+          "q21": ack2Controller.text,
+          "q22": ack3Controller.text
         };
 
         ProgressDialog.showProgressDialog(context: context,msg: "Submitting Data");
