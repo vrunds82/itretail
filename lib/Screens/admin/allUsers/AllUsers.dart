@@ -123,6 +123,14 @@ class _AllUsersState extends State<AllUsers> {
                                                 ],
                                               ),
                                               SizedBox(height: 5,),
+                                              Row(
+                                                children: [
+                                                  Text("Password: ${allUsers[index].password} ",style: TextStyle(color: Colors.grey,fontSize: 14),),
+                                                  
+                                                ],
+                                              ),
+                                              SizedBox(height: 5,),
+
                                               Text("------------------------------",style: TextStyle(color: Colors.green,fontSize: 18),),
                                               SizedBox(height: 5,),
                                               Text("IT Retail Back Office Login",style: TextStyle(color: Colors.green,fontSize: 14),),

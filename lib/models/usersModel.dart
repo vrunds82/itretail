@@ -23,6 +23,7 @@ class UserModel {
   String install;
   String golive;
   String csv;
+  String password;
 
   UserModel(
       {this.id,
@@ -48,7 +49,8 @@ class UserModel {
       this.training,
         this.csv,
         this.deploymentCall,
-        this.oneToOne
+        this.oneToOne,
+        this.password
       });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -78,6 +80,7 @@ class UserModel {
     csv = json['csv'];
     deploymentCall = json['deploymentCall'];
     oneToOne = json['oneToOne'];
+    password = json['password'];
   }
 
   Map<String, dynamic> toJson() {
@@ -108,6 +111,7 @@ class UserModel {
     data['csv'] = this.csv;
     data['deploymentCall'] = this.deploymentCall;
     data['oneToOne'] = this.oneToOne;
+    data['password'] = this.password;
 
 
     return data;
