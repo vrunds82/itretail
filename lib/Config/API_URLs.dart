@@ -64,6 +64,8 @@ class APIs{
   static String deleteVideo = BaseURL+"deleteVideo.php";
   static String getAllVideo = BaseURL+"getAllVideos.php";
 
+  static String forgotPassword = BaseURL+"forgotPassword.php";
+
 
 
 

@@ -24,8 +24,8 @@ class Signinpage extends StatefulWidget {
 
 class _SigninpageState extends State<Signinpage> {
   bool keepmelogiin = false;
-  TextEditingController emailController = TextEditingController(text: "march@gmail.com");
-  TextEditingController passwordController = TextEditingController(text: "12345678");
+  TextEditingController emailController = TextEditingController(text: "");
+  TextEditingController passwordController = TextEditingController(text: "");
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -125,9 +125,32 @@ class _SigninpageState extends State<Signinpage> {
                                                 0.07,
                                       ),
                                       Spacer(),
-                                      CustomText(
-                                        textcolor: Greencolor,
-                                        title: 'Forgot Password',
+                                      GestureDetector(
+                                        onTap: () async {
+                                          if(emailController.text=="" || emailController.text==null){
+                                            Fluttertoast.showToast(msg: "Please enter registered email address and click on Forgot Password");
+                                          }else{
+
+                                            await http.post(APIs.forgotPassword, body: {"email":emailController.text}).then((value) {
+
+                                              var parsedJson = jsonDecode(value.body);
+                                              if (parsedJson['status'].toString() == "1") {
+
+                                                Fluttertoast.showToast(msg: "Please check your mail inbox for password.");
+
+                                              }
+                                              else {
+                                                Fluttertoast.showToast(msg: "No account is linked with this email address");
+                                              }
+                                            });
+
+
+                                          }
+                                        },
+                                        child: CustomText(
+                                          textcolor: Greencolor,
+                                          title: 'Forgot Password',
+                                        ),
                                       )
                                     ],
                                   ),
@@ -295,4 +318,7 @@ class _SigninpageState extends State<Signinpage> {
       }
     });
   }
+
+
+
 }
