@@ -120,7 +120,7 @@ class _OrderStatusPageNewState extends State<OrderStatusPageNew> {
               SizedBox(
                 height: 20,
               ),
-              Text("Thanks for your order! This is what need to done.",
+              Text("Thanks for your Order! This is what needs to be done.",
                   textAlign: TextAlign.center,style: TextStyle(
                       fontSize: MediaQuery.of(context).size.height * 0.04,
                       //fontFamily: 'GOTHAM-BLACK',
