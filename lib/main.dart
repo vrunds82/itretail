@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         'backOffice_setup':(context)=>BackOfficeSetup(),
         'ProductFile':(context)=>Productfile(),
         'FinalPayment':(context)=>Finalpayment(),
-        'FinalPaymentDone':(context)=>Paymentdone(),
+//        'FinalPaymentDone':(context)=>Paymentdone(),
         'Equipment_Shipped':(context)=>EquipmentShipped(),
 
         'Install_Done':(context)=>Installdone(),

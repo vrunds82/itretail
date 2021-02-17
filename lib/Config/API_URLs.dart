@@ -9,7 +9,7 @@ import 'package:itretail/models/commentsModel.dart';
 import 'package:itretail/models/crfModel.dart';
 import 'package:itretail/models/usersModel.dart';
 
-const String BaseURL = "https://admin.itretail.saurabhenterprise.com/";
+const String BaseURL = "https://admin.itretail.saurabhenterprise.com/api/";
 const String UploadURL = "${BaseURL}uploads/";
 const String UploadedDocsURL = "${BaseURL}docs/";
 
@@ -65,6 +65,10 @@ class APIs{
   static String getAllVideo = BaseURL+"getAllVideos.php";
 
   static String forgotPassword = BaseURL+"forgotPassword.php";
+
+  static String hideUser = BaseURL+"hideUser.php";
+  static String showUser = BaseURL+"showUser.php";
+
 
 
 

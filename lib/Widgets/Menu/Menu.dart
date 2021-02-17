@@ -34,6 +34,7 @@ class _MenuState extends State<Menu> {
        /*     MenuItem(title: "All Users",iconData: Icons.people,position: 14,callback: widget.callback,),*/
             MenuItem(title: "Add User",iconData: Icons.person_add,position: 13,callback: widget.callback,),
             MenuItem(title: "Videos",iconData: Icons.video_collection_outlined,position: 15,callback: widget.callback,),
+            MenuItem(title: "Hidden",iconData: Icons.archive_rounded,position: 16,callback: widget.callback,),
             Spacer(),
             GestureDetector(onTap: (){
               Navigator.pushNamedAndRemoveUntil(context, "Signin", (r) => false);

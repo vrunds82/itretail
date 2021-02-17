@@ -8,6 +8,7 @@ import 'package:itretail/Screens/Questions_Screens/equipment_shipped_form.dart';
 import 'package:itretail/Screens/admin/AddUser/AddUser.dart';
 import 'package:itretail/Screens/admin/allUsers/AllUsers.dart';
 import 'package:itretail/Screens/admin/customer_requirement_form/customer_requirment.dart';
+import 'package:itretail/Screens/admin/hiddenUsers/hiddenUsers.dart';
 import 'package:itretail/Screens/admin/shippingInformatin/shippingInfromation.dart';
 import 'package:itretail/Screens/admin/userFinalPayment/userFinalPayment.dart';
 import 'package:itretail/Screens/admin/userHardwareImages/userHardwareImages.dart';
@@ -108,6 +109,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
         break;
       case 15:
         return TrainingVideos(callback: callBackFunction,);
+        break;
+      case 16:
+        return HiddenUsers(callback: callBackFunction,);
         break;
 
     }

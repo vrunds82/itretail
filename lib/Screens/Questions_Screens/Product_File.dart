@@ -859,7 +859,8 @@ class _ProductfileState extends State<Productfile> {
         body: {"uid":Global.userID??2.toString(),
           "upca":jsonEncode(UPCA).toString(),
           "ean":jsonEncode(EAN).toString(),
-          "002":jsonEncode(_002).toString()
+          "002":jsonEncode(_002).toString(),
+          "csv":csvPath??""
         }).then((value) async {
       print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);

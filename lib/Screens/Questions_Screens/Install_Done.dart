@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/CustomFiles/CustomReiasedButtonGreyColor.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
@@ -8,7 +8,7 @@ import 'package:itretail/Screens/Global/CustomColors.dart';
  
 
  import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:itretail/Screens/CustomFiles/CustomRaisedButtonGreenColor.dart';
 import 'package:itretail/Screens/Global/CustomColors.dart';
 

@@ -12,16 +12,16 @@ import 'package:itretail/models/crfModel.dart';
 import 'package:itretail/models/usersModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AllUsers extends StatefulWidget {
+class HiddenUsers extends StatefulWidget {
   VoidCallback callback;
 
-  AllUsers({this.callback});
+  HiddenUsers({this.callback});
 
   @override
-  _AllUsersState createState() => _AllUsersState();
+  _HiddenUsersState createState() => _HiddenUsersState();
 }
 
-class _AllUsersState extends State<AllUsers> {
+class _HiddenUsersState extends State<HiddenUsers> {
 
   String users = "";
 
@@ -65,7 +65,7 @@ class _AllUsersState extends State<AllUsers> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Customers",
+                          "Archived Customers",
                           style: TextStyle(
                               fontSize:
                               MediaQuery.of(context).size.height * 0.05,
@@ -94,7 +94,7 @@ class _AllUsersState extends State<AllUsers> {
                               )),
                               Expanded(flex: 4,child: Center(child: Text("Level",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),))),
                               Expanded(flex: 1,child: Center(child: Text("File",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),))),
-                              Center(child: Text("Hide",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
+                              Center(child: Text("Show",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 22),)),
                             ],
                           ),
                           Expanded(
@@ -353,7 +353,7 @@ class _AllUsersState extends State<AllUsers> {
 
                                   ProgressDialog.showProgressDialog(context: context);
 
-                                  await http.post(APIs.hideUser,body: {
+                                  await http.post(APIs.showUser,body: {
                                     "uid":allUsers[index].id,
                                     "key":"admin"
                                   });
@@ -366,7 +366,7 @@ class _AllUsersState extends State<AllUsers> {
 
                                   Fluttertoast.showToast(msg: "Double tap to hide");
 
-                                },child: Icon(Icons.archive_rounded,size: 35,color: Colors.red,)),
+                                },child: Icon(Icons.unarchive_rounded,size: 35,color: Colors.green,)),
 
                                 ],
                                 ),
@@ -416,7 +416,7 @@ class _AllUsersState extends State<AllUsers> {
     }
 
    await http.post(APIs.getAllCustomer,body: {
-     "type":"0"
+     "type":"1"
    }).then((response) {
       print(response.body);
       users=response.body;

@@ -116,6 +116,7 @@ class _OnbordingquesState extends State<Onbordingques> {
 
     await http.post(APIs.getUserOnBoarding,
         body: {"uid": Global.userID}).then((response) {
+      print("Response");
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);
@@ -199,7 +200,7 @@ class _OnbordingquesState extends State<Onbordingques> {
     radioRandomWeights = "No";
     radioProductFile = "No";
     radioBackOffice = "No";
-
+    radioNewStore = "Yes";
 
     checkForDetails();
 
