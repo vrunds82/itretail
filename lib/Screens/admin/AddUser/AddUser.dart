@@ -387,7 +387,7 @@ class _AddUserState extends State<AddUser> {
     Global.newUserContact = numberController.text;
     Global.newUserPinCode = pincodeController.text;
     Global.newUserLoginID = idController.text;
-    Global.newUserLoginPassword = passwordController.text;
+    Global.newUserLoginPassword = loginPasswordController.text;
     Global.newUserPin = pinController.text;
 
     Global.currentMenu=14;
