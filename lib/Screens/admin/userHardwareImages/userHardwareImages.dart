@@ -34,7 +34,7 @@ class _UserHardwareImagesState extends State<UserHardwareImages> {
   List<String> storePictures = new List();
   getUserOnBoarding() async {
     await http.post(APIs.getHardwareImages,
-        body: {"uid": Global.currentUserSelected}).then((response) {
+        body: {"uid": Global.currentUserSelected,"key":Global.key}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);

@@ -160,7 +160,7 @@ class _BackOfficeSetupState extends State<BackOfficeSetup> {
                             Row(
                               children: [
                                 CustomTextUnderline(
-                                  title: "2. How to setup Departments",
+                                  title: "2. How to setup departments",
                                   titleclr: Greencolor,
                                   underlineclr: Greencolor,
                                   url: "https://knowledgebase.itretail.com/knowledge-base/department-setup/",
@@ -395,6 +395,7 @@ updateLevelStatus(String status) async {
   await http.post(APIs.updateBackOfficeSetup, body: {
     "status": status,
     "uid":Global.loggedUser.id
+    ,"key":Global.key
   }).then((value) {
     print(value.body);
   });

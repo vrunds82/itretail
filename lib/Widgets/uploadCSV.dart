@@ -51,7 +51,8 @@ class _UploadCSVState extends State<UploadCSV> {
     print("calling API");
     await http.post(APIs.docUploadURL,
         body: {"image": image64,
-        "ext":ext}).then((value) {
+        "ext":ext
+          ,"key":Global.key}).then((value) {
           print(value.body);
       Url = value.body;
       widget.onChanged(Url);

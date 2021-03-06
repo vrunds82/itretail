@@ -185,26 +185,35 @@ class _StorepictureState extends State<Storepicture> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Image.asset(
-                                            'assets/images/1.png',
+                                            'assets/storeImages/1.jpg',
                                             //height: MediaQuery.of(context).size.height * 0.3,
-                                            width: MediaQuery.of(context).size.width * 0.15,
+                                            width: MediaQuery.of(context).size.width * 0.12,
                                           ),
                                           SizedBox(
                                             width: 10,
                                           ),
                                           Image.asset(
-                                            'assets/images/2.png',
+                                            'assets/storeImages/2.jpg',
                                             //height: MediaQuery.of(context).size.height * 0.3,
-                                            width: MediaQuery.of(context).size.width * 0.15,
+                                            width: MediaQuery.of(context).size.width * 0.12,
                                           ),
                                           SizedBox(
                                             width: 10,
                                           ),
                                           Image.asset(
-                                            'assets/images/1.png',
+                                            'assets/storeImages/3.jpg',
                                             //height: MediaQuery.of(context).size.height * 0.3,
-                                            width: MediaQuery.of(context).size.width * 0.15,
+                                            width: MediaQuery.of(context).size.width * 0.12,
                                           ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Image.asset(
+                                            'assets/storeImages/4.jpg',
+                                            // height: MediaQuery.of(context).size.height * 0.3,
+                                            width: MediaQuery.of(context).size.width * 0.12,
+                                          ),
+
                                         ],
                                       ),
                                       SizedBox(
@@ -213,27 +222,8 @@ class _StorepictureState extends State<Storepicture> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Image.asset(
-                                            'assets/images/2.png',
-                                            //height: MediaQuery.of(context).size.height * 0.3,
-                                            width: MediaQuery.of(context).size.width * 0.15,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/1.png',
-                                            // height: MediaQuery.of(context).size.height * 0.3,
-                                            width: MediaQuery.of(context).size.width * 0.15,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/2.png',
-                                            //height: MediaQuery.of(context).size.height * 0.3,
-                                            width: MediaQuery.of(context).size.width * 0.15,
-                                          ),
+
+
                                         ],
                                       ),
                                     ],
@@ -330,7 +320,7 @@ postData();
                                           },
                                           titleclr: Colors.white,
                                         ):Custombuttongrey(
-                                          title: "Re Submit",
+                                          title: "Submit",
                                           bgclr: Colors.green,
                                           click: () {
                                             update();
@@ -366,6 +356,7 @@ postData();
   await  http.post("${BaseURL}addStore.php",
         body: {"uid":Global.userID??2.toString(),
           "pics":jsonEncode(storePictures).toString()
+          ,"key":Global.key
         }).then((value){
 
       print(value.body);
@@ -382,7 +373,7 @@ postData();
   getData()
   async {
    await http.post(APIs.getStoreImages,
-        body: {"uid":Global.userID??2.toString()
+        body: {"uid":Global.userID??2.toString(),"key":Global.key
         }).then((value){
       print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);
@@ -403,7 +394,7 @@ postData();
     ProgressDialog.showProgressDialog(context: context);
     await http.post(APIs.updateStoreImages,
         body: {"uid":Global.userID??2.toString(),
-          "pics":jsonEncode(storePictures).toString()
+          "pics":jsonEncode(storePictures).toString(),"key":Global.key
 
         }).then((value) async {
 

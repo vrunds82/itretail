@@ -813,7 +813,7 @@ class _ProductfileState extends State<Productfile> {
           "upca":jsonEncode(UPCA).toString(),
           "ean":jsonEncode(EAN).toString(),
           "002":jsonEncode(_002).toString(),
-          "csv":csvPath??""
+          "csv":csvPath??"","key":Global.key
         }).then((value) async {
       print(value.body);
       await APIs.getUserDetails();
@@ -829,7 +829,7 @@ class _ProductfileState extends State<Productfile> {
   getData()
   async {
     await http.post(APIs.getProductFile,
-        body: {"uid":Global.userID??2.toString()
+        body: {"uid":Global.userID??2.toString(),"key":Global.key
         }).then((value){
       print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);
@@ -860,7 +860,7 @@ class _ProductfileState extends State<Productfile> {
           "upca":jsonEncode(UPCA).toString(),
           "ean":jsonEncode(EAN).toString(),
           "002":jsonEncode(_002).toString(),
-          "csv":csvPath??""
+          "csv":csvPath??"","key":Global.key
         }).then((value) async {
       print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);

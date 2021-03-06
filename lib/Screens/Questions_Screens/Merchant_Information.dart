@@ -305,6 +305,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
             "pname":personName.text.replaceAll("'", "\\'"),
             "phone":number.text.toString(),
             "uid":Global.userID
+            ,"key":Global.key
 
           } ).then((value) async {
 
@@ -340,10 +341,11 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
 
       await http.post(APIs.updateMerchantInfo,
           body:{
-            "cname":companyName.text,
-            "pname":personName.text,
+            "cname":companyName.text.replaceAll("'", "\\'"),
+            "pname":personName.text.replaceAll("'", "\\'"),
             "phone":number.text.toString(),
-            "uid":Global.userID
+            "uid":Global.userID,"key":Global.key
+
 
           } ).then((value) async {
 
@@ -388,7 +390,7 @@ class _MerchantinformationpageState extends State<Merchantinformationpage> {
 
   getUserMerchantDetails() async {
     await http.post(APIs.getMerchantInfo,
-        body: {"uid": Global.userID}).then((response) {
+        body: {"uid": Global.userID,"key":Global.key}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);

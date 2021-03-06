@@ -47,7 +47,7 @@ class _TrainingVideosState extends State<TrainingVideos> {
       http.post(APIs.addVideo,body: {
         "title":title.text,
         "url":url.text,
-        "admin":"admin"
+        "admin":"admin","key":Global.key
       }).then((value) {
 
         title.clear();

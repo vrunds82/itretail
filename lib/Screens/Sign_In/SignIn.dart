@@ -34,143 +34,166 @@ class _SigninpageState extends State<Signinpage> {
         body: Form(
       key: _formKey,
       child: Column(children: [
-        Row(children: [
-          //part 1
-          Expanded(
-            flex: 40,
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(40.0),
-                    child: Card(
-                      elevation: 20,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                      ),
-                      color: Colors.white.withOpacity(0.9),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Text(
-                              "Sign In",
-                              style: TextStyle(
-                                  fontSize:
+        Container(height: 100,
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Row(
+              children: [
+                SizedBox(width: 100,),
+                Image.asset("assets/images/logo.png",height: 50,)
+              ],
+            ),
+          ),),
+        Expanded(
+
+          child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage( 'assets/images/signinbg.jpg'),
+                    fit: BoxFit.cover
+                )
+            ),
+
+            child:
+
+
+            Row(children: [
+              //part 1
+              Expanded(
+                flex: 30,
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(40.0),
+                        child: Card(
+                          elevation: 20,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                          ),
+                          color: Colors.white.withOpacity(0.9),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                      fontSize:
                                       MediaQuery.of(context).size.height * 0.05,
-                                  color: Greencolor),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              child: Column(
-                                children: [
-                                  //email
-                                  Row(
+                                      color: Greencolor),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Column(
                                     children: [
-                                      CustomText(
-                                        title: "Email Address",
-                                        textcolor: Greycolor,
+                                      //email
+                                      Row(
+                                        children: [
+                                          CustomText(
+                                            title: "Email Address",
+                                            textcolor: Greycolor,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  //SizedBox(height: 5,),
-                                  SignInTextField(
-                                    hintTitle: "you@example.com",
-                                    textController: emailController,
-                                    validator: (value) {
-                                      bool isEmail(String em) {
-                                        String p =
-                                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                      //SizedBox(height: 5,),
+                                      SignInTextField(
+                                        hintTitle: "you@example.com",
+                                        textController: emailController,
+                                        validator: (value) {
+                                          bool isEmail(String em) {
+                                            String p =
+                                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
-                                        RegExp regExp = new RegExp(p);
+                                            RegExp regExp = new RegExp(p);
 
-                                        return regExp.hasMatch(em);
-                                      }
-                                      if (value.length == 0) {
-                                        return 'Please enter email id';
-                                      }
+                                            return regExp.hasMatch(em);
+                                          }
+                                          if (value.length == 0) {
+                                            return 'Please enter email id';
+                                          }
 
-                                      else if (!isEmail(value)) {
-                                        return 'Please Enter Valid Email Address';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-
-                                  SizedBox(
-                                    height: 40,
-                                  ),
-
-                                  //password
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      CustomText(
-                                        title: "Password",
-                                        textcolor: Greycolor,
+                                          else if (!isEmail(value)) {
+                                            return 'Please Enter Valid Email Address';
+                                          }
+                                          return null;
+                                        },
                                       ),
+
                                       SizedBox(
-                                        width:
+                                        height: 40,
+                                      ),
+
+                                      //password
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          CustomText(
+                                            title: "Password",
+                                            textcolor: Greycolor,
+                                          ),
+                                          SizedBox(
+                                            width:
                                             MediaQuery.of(context).size.width *
                                                 0.07,
+                                          ),
+                                          Spacer(),
+                                          GestureDetector(
+                                            onTap: () async {
+                                              if(emailController.text=="" || emailController.text==null){
+                                                Fluttertoast.showToast(msg: "Please enter registered email address and click on Forgot Password");
+                                              }else{
+
+                                                await http.post(APIs.forgotPassword, body: {"email":emailController.text,"key":Global.key}).then((value) {
+
+                                                  var parsedJson = jsonDecode(value.body);
+                                                  if (parsedJson['status'].toString() == "1") {
+
+                                                    Fluttertoast.showToast(msg: "Please check your mail inbox for password.");
+
+                                                  }
+                                                  else {
+                                                    Fluttertoast.showToast(msg: "No account is linked with this email address");
+                                                  }
+                                                });
+
+
+                                              }
+                                            },
+                                            child: CustomText(
+                                              textcolor: Greencolor,
+                                              title: 'Forgot Password',
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                      Spacer(),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          if(emailController.text=="" || emailController.text==null){
-                                            Fluttertoast.showToast(msg: "Please enter registered email address and click on Forgot Password");
-                                          }else{
-
-                                            await http.post(APIs.forgotPassword, body: {"email":emailController.text}).then((value) {
-
-                                              var parsedJson = jsonDecode(value.body);
-                                              if (parsedJson['status'].toString() == "1") {
-
-                                                Fluttertoast.showToast(msg: "Please check your mail inbox for password.");
-
-                                              }
-                                              else {
-                                                Fluttertoast.showToast(msg: "No account is linked with this email address");
-                                              }
-                                            });
-
-
+                                      //SizedBox(height: 5,),
+                                      SignInTextField(
+                                        hintTitle: "password",
+                                        textController: passwordController,
+                                        validator: (value) {
+                                          if (value.length == 0) {
+                                            return 'Please enter password';
                                           }
+                                          else if (value.length < 8) {
+                                            return 'Password must be 8 characters or more';
+                                          }
+                                          return null;
                                         },
-                                        child: CustomText(
-                                          textcolor: Greencolor,
-                                          title: 'Forgot Password',
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  //SizedBox(height: 5,),
-                                  SignInTextField(
-                                    hintTitle: "password",
-                                    textController: passwordController,
-                                    validator: (value) {
-                                      if (value.length == 0) {
-                                        return 'Please enter password';
-                                      }
-                                      else if (value.length < 8) {
-                                        return 'Password must be 8 characters or more';
-                                      }
-                                      return null;
-                                    },
-                                    isPass: true,
-                                  ),
+                                        isPass: true,
+                                      ),
 
-                                  /*Row(
+                                      /*Row(
                                         children: [
                                           Checkbox(checkColor: Colors.white,
                                             activeColor: Greencolor,
@@ -189,63 +212,64 @@ class _SigninpageState extends State<Signinpage> {
                                         ],
                                       ),*/
 
-                                  SizedBox(
-                                    height: 30,
-                                  ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
 
-                                  Custombuttongreen(
-                                    title: "Sign In",
-                                    titleclr: Whitecolor,
-                                    bgclr: Greencolor,
-                                    click: () {
-                                      if (_formKey.currentState.validate()) {
-                                        // If the form is valid, display a snackbar. In the real world,
-                                        // you'd often call a server or save the information in a database.
-                                        print("Done");
+                                      Custombuttongreen(
+                                        title: "Sign In",
+                                        titleclr: Whitecolor,
+                                        bgclr: Greencolor,
+                                        click: () {
+                                          if (_formKey.currentState.validate()) {
+                                            // If the form is valid, display a snackbar. In the real world,
+                                            // you'd often call a server or save the information in a database.
+                                            print("Done");
 
-                                        signInAPICall();
-                                      }
-                                      //       Navigator.of(context).pushNamed('Signup');
-                                    },
-                                  ),
+                                            signInAPICall();
+                                          }
+                                          //       Navigator.of(context).pushNamed('Signup');
+                                        },
+                                      ),
 
-                                  SizedBox(
-                                    height: 20,
-                                  ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
 
-                                  /*Text("Don't have an account ? Sign Up",style: TextStyle(
+                                      /*Text("Don't have an account ? Sign Up",style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Greycolor,fontSize: 22,
                                         fontWeight: FontWeight.bold
                                       ),),
                                       SizedBox(height: 20,),*/
-                                ],
-                              ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+              //part 2
+              Expanded(
+                flex: 60,
+                child: Column(
+                  children: [
+                    Container(
+
+                      )
+                  ],
+                ),
+              )
+            ]),
+
+
           ),
-          //part 2
-          Expanded(
-            flex: 60,
-            child: Column(
-              children: [
-                Container(
-                    height: MediaQuery.of(context).size.height,
-                    child: Image.asset(
-                      'assets/images/signinbg.png',
-                      fit: BoxFit.cover,
-                    ))
-              ],
-            ),
-          )
-        ])
+        )
       ]),
     ));
   }
@@ -254,6 +278,7 @@ class _SigninpageState extends State<Signinpage> {
     Map<String, String> params = {
       "email": emailController.text,
       "password": passwordController.text
+      ,"key":Global.key
     };
 
    await http.post(APIs.loginURL, body: params).then((value) {

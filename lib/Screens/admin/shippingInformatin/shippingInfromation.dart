@@ -47,6 +47,7 @@ class _ShippingInformationState extends State<ShippingInformation> {
   TextEditingController l57 = new TextEditingController();
   TextEditingController l58 = new TextEditingController();
   TextEditingController l59 = new TextEditingController();
+  TextEditingController l510 = new TextEditingController();
 
 
 
@@ -324,6 +325,26 @@ class _ShippingInformationState extends State<ShippingInformation> {
                                   ),
                                 ],
                               ):SizedBox(),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText(
+                                    title: "Additional Hardware",
+                                  ),CustomTextField(
+                                    hintTitle: "Your Answer Here....",
+                                    textController: l510,
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Please enter answer';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: gapBetweenNewQue,
+                                  ),
+                                ],
+                              )
 
                             ],
                           ),
@@ -538,7 +559,7 @@ class _ShippingInformationState extends State<ShippingInformation> {
 
 
     await http.post(APIs.getShippingInformation,
-        body: {"uid":Global.currentUser.id.toString()??2.toString() }).then((value) async {
+        body: {"uid":Global.currentUser.id.toString()??2.toString(),"key":Global.key }).then((value) async {
 
       print("Shipping Information"+value.body);
       var parsedData = jsonDecode(value.body);
@@ -553,6 +574,7 @@ class _ShippingInformationState extends State<ShippingInformation> {
       l57.text = shippingDetails.l57??"";
       l58.text = shippingDetails.l58??"";
       l59.text = shippingDetails.l59??"";
+      l510.text = shippingDetails.l510??"";
 
       setState(() {
 
@@ -582,10 +604,11 @@ class _ShippingInformationState extends State<ShippingInformation> {
             "l57":l57.text.toString()??"" ,
             "l58":l58.text.toString()??"" ,
             "l59":l59.text.toString()??"",
-            "status":checkCondition()?3.toString():1.toString()
+            "l510":l510.text.toString()??"",
+            "status":checkCondition()?3.toString():1.toString(),"key":Global.key
           }).then((value) async {
-
-        print(value.body);
+        print("response");
+        print("response : " + value.body);
         var parsedData = jsonDecode(value.body);
         if(parsedData['status']==1){
 
@@ -619,6 +642,7 @@ class _ShippingInformationState extends State<ShippingInformation> {
     if( Global.crfModel.l57){if(l57.text!=""){ abc.add(true);}else{abc.add(false);}}
     if( Global.crfModel.l58){if(l58.text!=""){ abc.add(true);}else{abc.add(false);}}
     if( Global.crfModel.l59){if(l59.text!=""){ abc.add(true);}else{abc.add(false);}}
+
 
     print(abc.toString());
     print(!abc.contains(false));

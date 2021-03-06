@@ -287,6 +287,27 @@ class _EquipmentShippedState extends State<EquipmentShipped> {
                                 ),
                               ],
                             ),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                        width: gap,
+                                        child: CustomText(
+                                          title: "Additional Hardware",
+                                        )),
+                                    //SizedBox(width: MediaQuery.of(context).size.width*0.2,),
+                                    Expanded(
+                                        child: Statictextitalic(
+                                          title: shippingDetails.l510??"No information available yet.",
+                                        ))
+                                  ],
+                                ),
+                              ],
+                            ),
                             //9
                           ],
                         ),
@@ -334,7 +355,7 @@ class _EquipmentShippedState extends State<EquipmentShipped> {
 
 
     await http.post(APIs.getShippingInformation,
-        body: {"uid":Global.userID.toString()??2.toString() }).then((value) async {
+        body: {"uid":Global.userID.toString()??2.toString(),"key":Global.key }).then((value) async {
 
       print("Shipping Information"+value.body);
       var parsedData = jsonDecode(value.body);

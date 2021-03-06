@@ -203,7 +203,7 @@ class _CustomerRequirementState extends State<CustomerRequirement> {
       "crf":jsonEncode(crfModel),
       "levels":jsonEncode(levels),
       "current_level":(levs.indexOf(0)+1).toString(),
-      "level_status":0.toString()
+      "level_status":0.toString(),"key":Global.key
 
     };
 

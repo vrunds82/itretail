@@ -357,7 +357,7 @@ class _UserProductFileState extends State<UserProductFile> {
     print(Global.currentUser.id);
     await http.post(APIs.getProductFile,
         body: {
-      "uid":Global.currentUser.id??2.toString()
+      "uid":Global.currentUser.id??2.toString(),"key":Global.key
         }).then((value){
       print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);

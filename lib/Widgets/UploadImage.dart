@@ -53,7 +53,8 @@ class _UploadImageState extends State<UploadImage> {
     String Url;
     print("calling API");
     await http.post(APIs.imageUploadURL,
-        body: {"image": image64}).then((value) {
+        body: {"image": image64
+        ,"key":Global.key}).then((value) {
       Url = value.body;
       widget.onChanged(Url);
     }).catchError((onError) {

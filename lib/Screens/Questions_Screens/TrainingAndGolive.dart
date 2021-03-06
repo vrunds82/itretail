@@ -38,7 +38,9 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
       });
     }
 
-    await http.post(APIs.getAllVideo,body: {}).then((response) {
+    await http.post(APIs.getAllVideo,body: {
+    "key":Global.key
+    }).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);
@@ -130,7 +132,7 @@ class _TrainingandgoliveState extends State<Trainingandgolive> {
                           ):SizedBox(),
                           SizedBox(height: 10,),
                          Text("Once onboarding is complete you will be working with our IT Retail Support Team.\n\n"
-                             "Our Support Team is here to assist you with any technical questions that may arise. IT Retail strives to provide unparalleled support to our clients is available to you Monday - Friday, 8:00 a.m. - 5:00 p.m. PST. They can be reached via chat or emailed at support@itretail.com and by dialing 951-682-6277 ext 1.\n\n"
+                             "Our Support Team is here to assist you with any technical questions that may arise. IT Retail strives to provide unparalleled support to our clients. Our Support Team is available to you Monday-Friday 8:00am- 5:00pm PST. They can be reached via chat or emailed at support@itretail.com and by dialing 951-682-6277 ext 1.\n\n"
                              "For billing questions please contact accounting at 951-682-6277 ext 3. In addition to your dedicated team, we also offer online assistance through our Knowledge Base. This Knowledge Base contains a repository of knowledge articles, on-demand/interactive training, FAQs, How-to videos and more.\n\n"
                              "We hope that you enjoy success with your solution and should you experience an issue or just have a question, help is just one click or call away.",
                          style: TextStyle(wordSpacing: 1.1,fontSize: 16),textAlign: TextAlign.justify,),

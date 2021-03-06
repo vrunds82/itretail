@@ -354,8 +354,8 @@ class _HiddenUsersState extends State<HiddenUsers> {
                                   ProgressDialog.showProgressDialog(context: context);
 
                                   await http.post(APIs.showUser,body: {
-                                    "uid":allUsers[index].id,
-                                    "key":"admin"
+                                    "uid":allUsers[index].id
+                                  ,"key":Global.key
                                   });
 
                                   Navigator.of(context).pop();
@@ -416,7 +416,7 @@ class _HiddenUsersState extends State<HiddenUsers> {
     }
 
    await http.post(APIs.getAllCustomer,body: {
-     "type":"1"
+     "type":"1","key":Global.key
    }).then((response) {
       print(response.body);
       users=response.body;

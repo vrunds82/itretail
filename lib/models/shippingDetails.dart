@@ -8,6 +8,7 @@ class ShippingDetails {
   String l57;
   String l58;
   String l59;
+  String l510;
 
   ShippingDetails(
       {this.l51,
@@ -18,7 +19,8 @@ class ShippingDetails {
         this.l56,
         this.l57,
         this.l58,
-        this.l59});
+        this.l59,
+        this.l510});
 
   ShippingDetails.fromJson(Map<String, dynamic> json) {
     l51 = json['l51'];
@@ -30,6 +32,7 @@ class ShippingDetails {
     l57 = json['l57'];
     l58 = json['l58'];
     l59 = json['l59'];
+    l510 = json['l510'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +46,7 @@ class ShippingDetails {
     data['l57'] = this.l57;
     data['l58'] = this.l58;
     data['l59'] = this.l59;
+    data['l510'] = this.l510;
     return data;
   }
 }

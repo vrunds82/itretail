@@ -35,6 +35,8 @@ class Global{
   static CRFModel crfModel;
   static UserModel loggedUser;
 
+  static String key="rqegggggggggqw464erqwert6548qwer1g4erh53sd";
+
 
 }
 

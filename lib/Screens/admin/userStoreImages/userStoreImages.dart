@@ -37,7 +37,7 @@ class _UserStoreImagesState extends State<UserStoreImages> {
   List<String> storePictures = new List();
   getUserStoreImages() async {
     await http.post(APIs.getStoreImages,
-        body: {"uid": Global.currentUserSelected}).then((response) {
+        body: {"uid": Global.currentUserSelected,"key":Global.key}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);

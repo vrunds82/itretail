@@ -9,7 +9,7 @@ import 'package:itretail/models/commentsModel.dart';
 import 'package:itretail/models/crfModel.dart';
 import 'package:itretail/models/usersModel.dart';
 
-const String BaseURL = "https://admin.itretail.saurabhenterprise.com/api/";
+const String BaseURL = "https://itretailportal.com/api/";
 const String UploadURL = "${BaseURL}uploads/";
 const String UploadedDocsURL = "${BaseURL}docs/";
 
@@ -32,6 +32,7 @@ class APIs{
   static String addMerchantInfo = BaseURL+"addMerchantInfo.php";
   static String updateMerchantInfo = BaseURL+"updateMerchantInfo.php";
   static String getMerchantInfo = BaseURL+"getMerchantInfo.php";
+  static String addHardwareImages = BaseURL+"addhardware.php";
   static String getHardwareImages = BaseURL+"getHardware.php";
   static String updateHardwareImages = BaseURL+"updateHardware.php";
 
@@ -40,7 +41,7 @@ class APIs{
 
   static String addShippingInformation = BaseURL+"addShippingInformation.php";
   static String getShippingInformation = BaseURL+"getShippingInformation.php";
-  static String updateShippingInformation = BaseURL+"updateStoreImages.php";
+  //static String updateShippingInformation = BaseURL+"updateStoreImages.php";
 
   static String addProductFile = BaseURL+"addProductFile.php";
   static String getProductFile = BaseURL+"getProductFIle.php";
@@ -82,6 +83,8 @@ class APIs{
 
   await   http.post(APIs.getUserDetailsURL, body: {
       "id":Global.userID
+    ,"key":Global.key
+
     }).then((value) {
       print(value.body);
 
@@ -181,6 +184,7 @@ class APIs{
        "nextlevel": nextLevel.toString(),
        "comment": "Details Approved.",
        "level_status": nextLevel == 5 ? "1" : "0"
+       ,"key":Global.key
      }).then((value) {
        print(value.body);
      });
@@ -196,6 +200,7 @@ class APIs{
       "level":Global.currentLevel,
       "comment":comment,
       "images": images
+      ,"key":Global.key
     }).then((value) {
 
       print(value.body);
@@ -211,6 +216,7 @@ class APIs{
     await http.post(getCommentsURL,body: {
       "uid":uid,
       "level":level
+      ,"key":Global.key
 
     }).then((value) {
 
@@ -251,6 +257,7 @@ class APIs{
       "uid":uid,
       "level":level,
       "date":date
+      ,"key":Global.key
     }).then((value) {
       print(value.body);
     });

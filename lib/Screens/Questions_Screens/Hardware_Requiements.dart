@@ -40,7 +40,7 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
 
   getHardwareIMages() async {
     await http.post(APIs.getHardwareImages,
-        body: {"uid": Global.userID}).then((response) {
+        body: {"uid": Global.userID,"key":Global.key}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);
@@ -568,13 +568,14 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
   }
 
   update() async {
+    print("updating HardwareImages");
     ProgressDialog.showProgressDialog(context: context);
    await http.post(APIs.updateHardwareImages,
         body: {"uid":Global.userID??2.toString(),
           "computer":jsonEncode(computerPorts).toString(),
           "scale":jsonEncode(scale).toString(),
           "scanner":jsonEncode(scanner).toString(),
-          "printer":jsonEncode(printer).toString(),
+          "printer":jsonEncode(printer).toString(),"key":Global.key
         }).then((value) async {
 
       print(value.body);
@@ -594,14 +595,17 @@ class _HardwarerequirnmentState extends State<Hardwarerequirnment> {
   postData()
   async {
 
+    print("Adding HardwareImages");
+
     ProgressDialog.showProgressDialog(context: context);
 
-   await http.post("${BaseURL}addhardware.php",
+   await http.post(APIs.addHardwareImages,
     body: {"uid":Global.userID??2.toString(),
       "computer":jsonEncode(computerPorts).toString(),
       "scale":jsonEncode(scale).toString(),
       "scanner":jsonEncode(scanner).toString(),
-      "printer":jsonEncode(printer).toString(),
+      "printer":jsonEncode(printer).toString()
+       ,"key":Global.key
     }).then((value) async {
 
       print(value.body);

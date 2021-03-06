@@ -33,7 +33,7 @@ class _UserOnBoardingState extends State<UserOnBoarding> {
   List<String> storePictures = new List();
   getUserOnBoarding() async {
     await http.post(APIs.getUserOnBoarding,
-        body: {"uid": Global.currentUserSelected}).then((response) {
+        body: {"uid": Global.currentUserSelected,"key":Global.key}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);

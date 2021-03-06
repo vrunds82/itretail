@@ -40,7 +40,7 @@ class _UserMerchantInfoState extends State<UserMerchantInfo> {
   List<String> storePictures = new List();
   getUserOnBoarding() async {
     await http.post(APIs.getMerchantInfo,
-        body: {"uid": Global.currentUserSelected??18.toString()}).then((response) {
+        body: {"uid": Global.currentUserSelected??18.toString(),"key":Global.key}).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);

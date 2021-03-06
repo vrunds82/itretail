@@ -330,7 +330,7 @@ class _InstalledStoreImagesState extends State<InstalledStoreImages> {
                                           },
                                           titleclr: Colors.white,
                                         ):Custombuttongrey(
-                                          title: "Re Submit",
+                                          title: "Submit",
                                           bgclr: Colors.green,
                                           click: () {
                                             update();
@@ -365,7 +365,7 @@ class _InstalledStoreImagesState extends State<InstalledStoreImages> {
     ProgressDialog.showProgressDialog(context: context);
     await  http.post(APIs.addInstallImages,
         body: {"uid":Global.userID??2.toString(),
-          "pics":jsonEncode(storePictures).toString()
+          "pics":jsonEncode(storePictures).toString(),"key":Global.key
         }).then((value){
 
       print(value.body);
@@ -382,7 +382,7 @@ class _InstalledStoreImagesState extends State<InstalledStoreImages> {
   getData()
   async {
     await http.post(APIs.getInstallImages,
-        body: {"uid":Global.userID??2.toString()
+        body: {"uid":Global.userID??2.toString(),"key":Global.key
         }).then((value){
       print("Response from Server : "+value.body);
       var parsedJson = jsonDecode(value.body);
@@ -403,7 +403,7 @@ class _InstalledStoreImagesState extends State<InstalledStoreImages> {
     ProgressDialog.showProgressDialog(context: context);
     await http.post(APIs.updateInstallImages,
         body: {"uid":Global.userID??2.toString(),
-          "pics":jsonEncode(storePictures).toString()
+          "pics":jsonEncode(storePictures).toString(),"key":Global.key
 
         }).then((value) async {
 

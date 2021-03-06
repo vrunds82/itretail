@@ -33,7 +33,9 @@ class _WatchTrainingVideoState extends State<WatchTrainingVideo> {
       });
     }
 
-    await http.post(APIs.getAllVideo,body: {}).then((response) {
+    await http.post(APIs.getAllVideo,body: {
+    "key":Global.key
+    }).then((response) {
       print(response.body);
 
       var parsedJson = jsonDecode(response.body);
